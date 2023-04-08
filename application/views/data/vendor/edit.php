@@ -1,0 +1,134 @@
+<?php $this->load->view('project/element/header'); ?>
+<?php $this->load->view('project/element/sidebar'); ?>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<div class="page-wrapper">
+
+  <div class="page-content-tab">
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="page-title-box">
+            <div class="float-end">
+              <ol class="breadcrumb">
+
+              </ol>
+            </div>
+            <!-- <h4 class="page-title">Navbar</h4> -->
+          </div>
+          <!--end page-title-box-->
+        </div>
+        <!--end col-->
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title"><?php echo $title; ?></h4>
+              <p class="text-muted mb-0"><?php echo $subtitle; ?>
+                <!-- <code class="highlighter-rouge">background-color</code> utilities. -->
+              </p>
+            </div><!--end card-header-->
+            <div class="card-body">
+
+              <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container-fluid">
+
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent6">
+
+
+                    <?php $this->load->view('data/vendor/navbar'); ?>
+
+
+
+                  </div>
+              </nav>
+            </div>
+
+            <!-- CONTENT -->
+
+
+
+
+            <div class="card-body">
+
+              <div class="row">
+                <div class="col-lg-6">
+                  <form action="<?= site_url('data_vendor/edit/' . $user['id']); ?>" method="post">
+                    <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
+                    <input type="hidden" name="id" value="<?= $user['id']; ?>">
+
+                    <!-- Tambahkan input field dan select option sesuai dengan kode HTML untuk halaman create, dengan mengganti `set_value` menjadi data saat ini dari user yang sedang diedit. -->
+
+                    <div class="mb-3 row">
+                      <label for="vendor_name" class="col-sm-2 col-form-label text-end">Nama Vendor</label>
+                      <div class="col-sm-10">
+                        <input class="form-control <?php echo (form_error('vendor_name') != "") ? 'is-invalid' : ''; ?>" type="text" name="vendor_name" value="<?= (set_value('vendor_name') != "") ? set_value('vendor_name') : $user['vendor_name']; ?>" id="vendor_name">
+                        <?php echo form_error('vendor_name', '<div class="invalid-feedback">', '</div>'); ?>
+                      </div>
+                    </div>
+
+
+
+                    <div class="mb-3 row">
+                      <label for="telp" class="col-sm-2 col-form-label text-end">No Telp</label>
+
+                      <div class="col-sm-10">
+                        <div class="input-group">
+                          <div class="input-group-text">+</div>
+                          <input class="form-control <?php echo (form_error('telp') != "") ? 'is-invalid' : ''; ?>" type="number" name="telp" value="<?= (set_value('telp') != "") ? set_value('telp') : $user['telp']; ?>" id="telp" placeholder="6281xxxxxxx">
+                          <?php echo form_error('telp', '<div class="invalid-feedback">', '</div>'); ?>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                      <label for="vendor_address" class="col-sm-2 col-form-label text-end">Alamat</label>
+                      <div class="col-sm-10">
+                        <textarea class="form-control <?php echo (form_error('vendor_address') != "") ? 'is-invalid' : ''; ?>" name="vendor_address" id="vendor_address"><?= (set_value('vendor_address') != "") ? set_value('vendor_address') : $user['vendor_address']; ?></textarea>
+                        <?php echo form_error('vendor_address', '<div class="invalid-feedback">', '</div>'); ?>
+                      </div>
+                    </div>
+
+
+
+
+                    <!-- Tambahkan field lain sesuai kebutuhan, dan sesuaikan dengan halaman create. -->
+                    <div class="mb-3 row">
+                      <div class="col-sm-10 offset-sm-2">
+                        <input type="submit" value="Edit Vendor" class="btn btn-primary">
+                        <button type="button" class="btn btn-secondary" onclick="window.history.back()">Kembali</button>
+                      </div>
+                    </div>
+
+                  </form>
+                </div>
+              </div>
+
+
+              </br>
+
+            </div>
+
+            <!-- END OF CONTENT -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <?php $this->load->view('project/element/footer1'); ?>
+  </div>
+
+
+
+</div>
+
+<?php $this->load->view('project/element/footer'); ?>
+
+</body>
+
+</html>

@@ -208,6 +208,8 @@ class Auth extends CI_Controller
     );
 
     $cap = create_captcha($vals);
+    var_dump($cap);
+    exit(0);
 
     // Jika gambar captcha berhasil dibuat
     if ($cap) {

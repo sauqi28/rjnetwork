@@ -83,20 +83,26 @@
                          <li class="nav-item">
                              <a class="nav-link" href="#sidebarAnalytics" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAnalytics">
                                  <i class="ti ti-stack menu-icon"></i>
-                                 <span>Penerimaan Material</span>
+                                 <span>Penerimaan SAP</span>
                              </a>
                              <div class="collapse " id="sidebarAnalytics">
                                  <ul class="nav flex-column">
                                      <li class="nav-item">
-                                         <a class="nav-link" href="<?php echo base_url('/penerimaan_sap'); ?>">SAP</a>
+                                         <a class="nav-link" href="<?php echo base_url('/penerimaan_sap_pengadaan'); ?>">Pengadaan</a>
                                      </li><!--end nav-item-->
                                      <li class="nav-item">
-                                         <a href="<?php echo base_url('/penerimaan_marketplace'); ?>" class="nav-link ">Marketplace</a>
+                                         <a href="<?php echo base_url('/penerimaan_sap_retur'); ?>" class="nav-link ">Retur Pekerjaan</a>
+                                     </li><!--end nav-item-->
+                                     <li class="nav-item">
+                                         <a href="<?php echo base_url('/penerimaan_sap_intracompany'); ?>" class="nav-link ">Intracompany</a>
                                      </li><!--end nav-item-->
 
                                  </ul><!--end nav-->
                              </div><!--end sidebarAnalytics-->
                          </li><!--end nav-item-->
+                         <li class="nav-item">
+                             <a class="nav-link" href="<?php echo base_url('/penerimaan_marketplace'); ?>"><i class="ti ti-calendar menu-icon"></i><span>Penerimaan Marketplace</span></a>
+                         </li>
 
                          <li class="menu-label mt-0 text-primary font-12 fw-semibold">M<span>aster</span><br><span class="font-10 text-secondary fw-normal">Data</span></li>
                          <li class="nav-item">

@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="assets/images/favicon.ico"> -->
 
   <meta charset="utf-8" />
-  <title>Aplikasi PLN UP3 teluknaga</title>
+  <title>Aplikasi PLN UP3 teluknaga </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta content="Logistic" name="description" />
   <meta content="" name="author" />

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class PublicAccess extends CI_Controller
+class Publicaccess extends CI_Controller
 {
   public function __construct()
   {

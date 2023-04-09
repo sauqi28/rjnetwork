@@ -8,7 +8,7 @@ class Digital_sign_model extends CI_Model
 
   public function get_data_by_token($token)
   {
-    $this->db->select('a.id as id_sign, a.users_id, a.sequence, a.generate_at, a.request_at, a.token, a.form_name, a.x_sign, a.y_sign, a.request_status, a.title, a.desc, a.keterangan, b.fullname, b.no_wa, b.status, b.signature, c.form_id, c.key_reference, c.count_sign, c.current_count_sign, c.status as status_process, c.finished, c.finished_time, d.spk_number, d.pabrikan, d.material, DATE_FORMAT(d.tgl_penerimaan, "%e %M %Y") AS tgl_penerimaan_formatted, d.folder_name, d.tug4_unsigned_file, d.tug3_unsigned_file, d.tug3_karantina_unsigned_file');
+    $this->db->select('a.id as id_sign, a.users_id, c.form_id, a.approved, a.approved_time, a.sequence, a.generate_at, a.request_at, a.token, a.form_name, a.x_sign, a.y_sign, a.request_status, a.title, a.desc, a.keterangan, b.fullname, b.no_wa, b.status, b.signature, c.form_id, c.key_reference, c.count_sign, c.current_count_sign, c.status as status_process, c.finished, c.finished_time, d.spk_number, d.pabrikan, d.material, DATE_FORMAT(d.tgl_penerimaan, "%e %M %Y") AS tgl_penerimaan_formatted, d.folder_name, d.tug4_unsigned_file, d.tug3_unsigned_file, d.tug3_karantina_unsigned_file');
     $this->db->from('data_queue_sign a');
     $this->db->join('mst_users b', 'a.users_id = b.id');
     $this->db->join('data_process_sign c', 'a.id_process_reference = c.id_process AND a.form_name = c.form_name');

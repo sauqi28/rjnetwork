@@ -186,8 +186,11 @@
                     <div class="col-lg-12 col-xl-4">
                       <div class="float-end d-print-none mt-2 mt-md-0">
                         <!-- <a href="javascript:window.print()" class="btn btn-info btn-sm">Print</a> -->
-                        <a href="#" onclick="showConfirmation('<?php echo $id_sign; ?>','<?php echo $title; ?>','<?php echo $token; ?>')" class="btn btn-success btn-sm">Approve</a>
-                        <a href="#" class="btn btn-secondary btn-sm">Reject</a>
+                        <?php if ($approved != 1) { ?>
+                          <a href="#" onclick="showConfirmation('<?php echo $id_sign; ?>','<?php echo $title; ?>','<?php echo $token; ?>')" class="btn btn-success btn-sm">Approve</a>
+                          <a href="#" class="btn btn-secondary btn-sm">Reject</a> <?php } else {
+                                                                                  echo "Sudah Ditandatangani : " . $approved_time . "WIB";
+                                                                                } ?>
                       </div>
                     </div><!--end col-->
                   </div><!--end row-->

@@ -288,9 +288,9 @@ class Penerimaan_marketplace_model extends CI_Model
       $request_status = 0;
       if ($formid == 1 && $i >= 1 && $i <= 7) {
         $request_status = 1;
-      } elseif ($formid == 2 && $i == 1) {
+      } elseif ($formid == 2 && $i <= 2) {
         $request_status = 1;
-      } elseif ($formid == 3 && $i == 1) {
+      } elseif ($formid == 3 && $i <= 2) {
         $request_status = 1;
       }
 

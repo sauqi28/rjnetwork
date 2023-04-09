@@ -23,6 +23,52 @@ class Digital_sign_model extends CI_Model
       return false;
     }
   }
+  public function update_current_count_sign($token)
+  {
+    // Mengambil id_process_reference berdasarkan token
+    $this->db->select('id_process_reference');
+    $this->db->where('token', $token);
+    $query = $this->db->get('data_queue_sign');
+
+    if ($query->num_rows() > 0) {
+      $id_process_reference = $query->row()->id_process_reference;
+
+      // Menghitung jumlah kolom approval berdasarkan id_process_reference
+      $this->db->select_sum('approved');
+      $this->db->where('id_process_reference', $id_process_reference);
+      $query = $this->db->get('data_queue_sign');
+      $approval_sum = $query->row()->approved;
+
+      // Update kolom current_count_sign pada tabel data_process_sign
+      $this->db->where('id_process', $id_process_reference);
+      $this->db->update('data_process_sign', array('current_count_sign' => $approval_sum));
+
+      return $approval_sum;
+    } else {
+      return FALSE;
+    }
+  }
+
+  public function send_manager($token)
+  {
+    $this->db->select('id_process_reference');
+    $this->db->where('token', $token);
+    $query = $this->db->get('data_queue_sign');
+
+    if ($query->num_rows() > 0) {
+      $id_process_reference = $query->row()->id_process_reference;
+
+      $data = array(
+        'request_status' => 1
+      );
+
+      $this->db->where('id_process_reference', $id_process_reference);
+      $this->db->where('sequence', 8);
+      $this->db->update('data_queue_sign', $data);
+    }
+  }
+
+
 
   public function get_data_signature_by_token($token)
   {

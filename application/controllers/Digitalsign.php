@@ -11,6 +11,9 @@ class Digitalsign extends CI_Controller
   }
 
 
+
+
+
   public function publicmp()
   {
     $token = $this->uri->segment(3);
@@ -52,6 +55,82 @@ class Digitalsign extends CI_Controller
       echo $result;
     }
   }
+
+  public function stamp_sign()
+  {
+
+    require_once('./vendor/tecnickcom/tcpdf/tcpdf.php');
+    require_once('./vendor/setasign/fpdi/src/autoload.php');
+
+    // File paths
+    $pdf_file = FCPATH . '/uploads/tes.pdf';
+    $image_file = FCPATH . '/assets/signatures/signature_1679506271.png';
+    $output_file = FCPATH . '/uploads/nama_file_stamp.pdf';
+
+    // Create new PDF document
+    $pdf = new \setasign\Fpdi\TcpdfFpdi();
+
+    // Set default settings
+    $pdf->setPrintHeader(false);
+    $pdf->setPrintFooter(false);
+    $pdf->SetMargins(0, 0, 0, true);
+    $pdf->SetAutoPageBreak(false);
+
+
+
+    // Import the original PDF
+    $page_count = $pdf->setSourceFile($pdf_file);
+
+    // Iterate through all pages
+    for ($i = 1; $i <= $page_count; $i++) {
+      // Add a page
+      $template_id = $pdf->importPage($i);
+      $size = $pdf->getTemplateSize($template_id);
+      $orientation = $size['width'] > $size['height'] ? 'L' : 'P';
+      $pdf->AddPage($orientation, array($size['width'], $size['height']));
+
+      // Use the imported page as a template
+      $pdf->useTemplate($template_id);
+
+      // Set image size and position
+      $image_width = (5 * 3.5); // Width in points (1 point = 1/72 inches)
+      $image_height = (3 * 3.5); // Height in points
+      $position_x = 140; // X position in points
+      $position_y = 80; // Y position in points
+
+      $signer_name = 'RIZA SAUQI VALASEV';
+      $signer_position_x = 156;
+      $signer_position_y = 82.7;
+      $signer_color = [128, 128, 128]; // RGB color code for gray
+
+      $signed_at = '28 April 2022 20:09:00 WIB';
+      $signed_position_x = 156;
+      $signed_position_y = 84;
+      $signed_color = [128, 128, 128]; // RGB color code for gray
+
+
+      // Add the image
+      $pdf->Image($image_file, $position_x, $position_y, $image_width, $image_height);
+      // Set font
+      $pdf->SetFont('helvetica', 'B', 3);
+
+      // Add signer name text
+      $pdf->SetTextColor($signer_color[0], $signer_color[1], $signer_color[2]);
+      $pdf->SetXY($signer_position_x, $signer_position_y);
+      $pdf->MultiCell(0, 0, 'Digitally Signed by: ' . $signer_name, 0, 'L', 0, 1);
+
+      $pdf->SetFont('helvetica', '', 3);
+      // Add signed at text
+      $pdf->SetTextColor($signed_color[0], $signed_color[1], $signed_color[2]);
+      $pdf->SetXY($signed_position_x, $signed_position_y);
+      $pdf->MultiCell(0, 0, 'Signed At: ' . $signed_at, 0, 'L', 0, 1);
+    }
+
+    // Save the PDF to a file
+    $pdf->Output($output_file, 'F');
+  }
+
+
 
   public function whatsapp_verified()
   {

@@ -1,0 +1,8 @@
+# Ignore all files and folders in the root directory except .gitignore
+/*
+!.gitignore
+
+# Ignore all files and folders in the application folder except application/config/database.php
+/application/*
+!/application/config/database.php
+!/application/config/config.php

@@ -213,6 +213,7 @@ class Data_user extends CI_Controller
 
 	public function verify_user()
 	{
+
 		$no_wa = $this->input->post('no_wa');
 		$id = $this->input->post('id');
 		$data = $this->Data_user_model->get_user($id);

@@ -24,8 +24,8 @@
 */
 //$config['base_url'] = 'https://app.transaksiku.org/dropshiper';
 //$config['base_url'] = 'http://beonez.com/transactions';
-// $config['base_url'] = 'http://localhost/ci3';
-$config['base_url'] = 'http://172.20.10.4/pln';
+$config['base_url'] = 'http://localhost/pln';
+// $config['base_url'] = 'http://172.20.10.4/pln';
 // $config['base_url'] = 'http://192.168.0.117/ci3';
 // $config['base_url'] = 'http://10./ci3';
 //$config['base_url'] = 'http://localhost/dropship';

@@ -6,12 +6,11 @@
   <link rel="shortcut icon" href="<?php echo base_url('assets/images/favicon.ico'); ?>
 
   <meta charset=" utf-8" />
-  <title>Unikit - Admin & Dashboard Template</title>
+  <title>Aplikasi PLN UP3 teluknaga</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+  <meta content="Logistic" name="description" />
   <meta content="" name="author" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
   <!-- App favicon -->
   <link rel="shortcut icon" href="<?php echo base_url('assets/images/favicon.ico'); ?>">
 

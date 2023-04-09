@@ -37,7 +37,21 @@ class Digitalsign extends CI_Controller
     }
   }
 
+  public function single_approve()
+  {
+    $id = $this->input->post('id');
+    $token = $this->input->post('token');
 
+    // Melakukan update pada model Approval_single
+    $result = $this->Digital_sign_model->approve_signature($id, $token);
+
+    // Menampilkan pesan berdasarkan hasil update
+    if ($result == 'success') {
+      echo $result;
+    } else {
+      echo $result;
+    }
+  }
 
   public function whatsapp_verified()
   {

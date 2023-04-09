@@ -567,7 +567,25 @@
                                             <td><?php echo "Ttd Ke " . $row['sequence']; ?></td>
                                             <td><?php echo $row['formatted_request_at']; ?></td>
                                             <td><?php echo $row['formatted_approved_time']; ?></td>
-                                            <td><?php echo $row['approved']; ?></td>
+                                            <td>
+                                              <?php if ($row['approved'] == 0) {
+                                                $status = "";
+                                                $color = "";
+                                              } elseif ($row['approved'] == 1) {
+                                                $status = "Disetujui";
+                                                $color = "bg-success";
+                                              } elseif ($row['approved'] == 2) {
+                                                $status = "Ditolak";
+                                                $color = "bg-warning";
+                                              } elseif ($row['approved'] == 3) {
+                                                $status = "Gagal Dikirim";
+                                                $color = "bg-danger";
+                                              } ?>
+
+                                              <span class="badge rounded-pill <?php echo $color; ?>"><?php echo $status; ?></span>
+
+
+                                            </td>
                                             <td>
 
                                               <?php if ($row['request_status'] == 0) {

@@ -13,6 +13,7 @@
 
   <!-- App favicon -->
   <link rel="shortcut icon" href="<?php echo base_url('assets/images/favicon.ico'); ?>">
+  <link href="<?php echo base_url('assets/plugins/sweet-alert2/sweetalert2.min.css'); ?>" rel="stylesheet" type="text/css" />
   <!-- App css -->
   <link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet" type="text/css" />
   <link href="<?php echo base_url('assets/css/icons.min.css'); ?>" rel="stylesheet" type="text/css" />
@@ -185,7 +186,7 @@
                     <div class="col-lg-12 col-xl-4">
                       <div class="float-end d-print-none mt-2 mt-md-0">
                         <!-- <a href="javascript:window.print()" class="btn btn-info btn-sm">Print</a> -->
-                        <a href="#" class="btn btn-success btn-sm">Approve</a>
+                        <a href="#" onclick="showConfirmation('<?php echo $id_sign; ?>','<?php echo $title; ?>','<?php echo $token; ?>')" class="btn btn-success btn-sm">Approve</a>
                         <a href="#" class="btn btn-secondary btn-sm">Reject</a>
                       </div>
                     </div><!--end col-->
@@ -198,7 +199,58 @@
       </div><!--end col-->
     </div><!--end row-->
   </div><!--end container-->
+
   <script>
+    function showConfirmation(var1, var2, var3) {
+      Swal.fire({
+        title: 'Yakin dokumen ' + var2,
+        text: "akan ditandatangani secara digital?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Tandatangani Sekarang'
+      }).then(function(result) {
+        if (result.isConfirmed) {
+          $.post("<?php echo base_url('digitalsign/single_approve'); ?>", {
+            id: var1,
+            token: var3,
+            <?php echo $this->security->get_csrf_token_name(); ?>: "<?php echo $this->security->get_csrf_hash(); ?>"
+          }, function(response) {
+            console.log(response.trim()) // Add this line to log the response
+            if (response.trim() == 'Success') {
+              Swal.fire({
+                icon: 'success',
+                title: 'Berhasil',
+                text: 'Dokumen telah ditandatangani secara digital'
+              }).then((result) => {
+                // if (result.isConfirmed) {
+                //   window.location.href = "<?php echo base_url('data_user/index'); ?>";
+                // }
+              });
+            } else {
+              Swal.fire({
+                icon: 'error',
+                title: 'Gagal',
+                text: 'Terjadi kesalahan saat menandatangani dokumen'
+              });
+            }
+          });
+        }
+      });
+    }
+
+
+    // Fungsi untuk mendapatkan nilai cookie
+    function getCookie(name) {
+      var value = '; ' + document.cookie;
+      var parts = value.split('; ' + name + '=');
+      if (parts.length == 2) {
+        return parts.pop().split(';').shift();
+      }
+    }
+
+
     function updateTime() {
       var options = {
         timeZone: "Asia/Jakarta",

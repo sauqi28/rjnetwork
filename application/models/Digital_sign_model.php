@@ -24,9 +24,6 @@ class Digital_sign_model extends CI_Model
     }
   }
 
-
-
-
   public function get_data_signature_by_token($token)
   {
     $this->db->select('*');
@@ -39,6 +36,26 @@ class Digital_sign_model extends CI_Model
       return $query->row();
     } else {
       return false;
+    }
+  }
+
+  function approve_signature($id_sign, $token)
+  {
+    // Mendapatkan waktu saat ini
+    $approved_time = date('Y-m-d H:i:s');
+
+    // Mengubah nilai kolom approved menjadi 1 dan approved_time menjadi waktu saat ini
+    $this->db->set('approved', 1);
+    $this->db->set('approved_time', $approved_time);
+    $this->db->where('id', $id_sign);
+    $this->db->where('token', $token);
+    $this->db->update('data_queue_sign');
+
+    // Mengembalikan pesan 'Success' jika update berhasil atau 'Error' jika gagal
+    if ($this->db->affected_rows() > 0) {
+      return 'Success';
+    } else {
+      return 'Error';
     }
   }
 

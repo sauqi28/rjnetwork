@@ -53,6 +53,7 @@ class Digitalsign extends CI_Controller
     }
   }
 
+
   public function whatsapp_verified()
   {
     $token = $this->uri->segment(3);

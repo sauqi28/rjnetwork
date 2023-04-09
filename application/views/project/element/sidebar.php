@@ -4,11 +4,7 @@
          <div class="brand">
              <a href="index.html" class="logo">
                  <span>
-                     <img src="<?php echo base_url('assets/images/logo-sm.png'); ?>" alt="logo-small" class="logo-sm">
-                 </span>
-                 <span>
-                     <img src="<?php echo base_url('assets/images/logo.png'); ?>" alt="logo-large" class="logo-lg logo-light">
-                     <img src="<?php echo base_url('assets/images/logo-dark.png'); ?>" alt="logo-large" class="logo-lg logo-dark">
+                     <img src="<?php echo base_url('assets/images/Logo_PLN.png'); ?>" width="50" height="70">
                  </span>
              </a>
          </div>

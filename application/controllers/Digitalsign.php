@@ -60,9 +60,10 @@ class Digitalsign extends CI_Controller
     require_once('./vendor/setasign/fpdi/src/autoload.php');
 
     // File paths
-    $pdf_file = FCPATH . '/uploads/tes.pdf';
-    $image_file = FCPATH . '/assets/signatures/signature_1679506271.png';
-    $output_file = FCPATH . '/uploads/nama_file_stamp.pdf';
+    $pdf_file = FCPATH . 'uploads/tes.pdf';
+    $image_file = FCPATH . 'assets/signatures/signature_1679506271.png';
+    $output_file = FCPATH . 'uploads/nama_file_stamp.pdf';
+
 
     // Create new PDF document
     $pdf = new \setasign\Fpdi\TcpdfFpdi();

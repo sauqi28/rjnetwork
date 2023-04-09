@@ -227,9 +227,9 @@
                 title: 'Berhasil',
                 text: 'Dokumen telah ditandatangani secara digital'
               }).then((result) => {
-                // if (result.isConfirmed) {
-                //   window.location.href = "<?php echo base_url('data_user/index'); ?>";
-                // }
+                if (result.isConfirmed) {
+                  window.location.reload();
+                }
               });
             } else {
               Swal.fire({

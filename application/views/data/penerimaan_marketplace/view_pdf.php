@@ -104,7 +104,7 @@
                     <!-- <object data="<?php echo $pdf_file_tug4; ?>" type="application/pdf" width="100%" height="100%">
                       <p>Browser anda tidak mendukung PDF Viewer. Silahkan download PDF file di <a href="<?php echo $pdf_file_tug4; ?>">link ini</a>.</p>
                     </object> -->
-                    <iframe id="pdfViewer" src="https://drive.google.com/viewerng/viewer?embedded=true&url=<?= urlencode(($pdf_file_tug4)); ?>" frameborder="0"></iframe>
+                    <iframe id="pdf-viewer" src="https://drive.google.com/viewerng/viewer?embedded=true&url=<?= urlencode(($pdf_file_tug4)); ?>" frameborder="0"></iframe>
                   </div>
                 </div>
                 <div class="tab-pane p-3" id="profile" role="tabpanel">
@@ -119,7 +119,7 @@
                     <!-- <object data="<?php echo $pdf_file_tug3k; ?>" type="application/pdf" width="100%" height="100%">
                       <p>Browser anda tidak mendukung PDF Viewer. Silahkan download PDF file di <a href="<?php echo $pdf_file_tug3k; ?>">link ini</a>.</p>
                     </object> -->
-                    <iframe id="pdfViewer" src="https://drive.google.com/viewerng/viewer?embedded=true&url=<?= urlencode(($pdf_file_tug3k)); ?>" frameborder="0"></iframe>
+                    <iframe id="pdf-viewer" src="https://drive.google.com/viewerng/viewer?embedded=true&url=<?= urlencode(($pdf_file_tug3k)); ?>" frameborder="0"></iframe>
                   </div>
                 </div>
                 <div class="tab-pane p-3" id="settings" role="tabpanel">
@@ -134,7 +134,7 @@
                     <!-- <object data="<?php echo $pdf_file_tug3; ?>" type="application/pdf" width="100%" height="100%">
                       <p>Browser anda tidak mendukung PDF Viewer. Silahkan download PDF file di <a href="<?php echo $pdf_file_tug3; ?>">link ini</a>.</p>
                     </object> -->
-                    <iframe id="pdfViewer" src="https://drive.google.com/viewerng/viewer?embedded=true&url=<?= urlencode(($pdf_file_tug3)); ?>" frameborder="0"></iframe>
+                    <iframe id="pdf-viewer" src="https://drive.google.com/viewerng/viewer?embedded=true&url=<?= urlencode(($pdf_file_tug3)); ?>" frameborder="0"></iframe>
                   </div>
                 </div>
 

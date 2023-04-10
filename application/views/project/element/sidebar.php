@@ -52,6 +52,9 @@
                              <a class="nav-link" href="#"><i class="ti ti-calendar menu-icon"></i><span>SPK</span></a>
                          </li>
                          <li class="nav-item">
+                             <a class="nav-link" href="#"><i class="ti ti-calendar menu-icon"></i><span>Reservasi</span></a>
+                         </li>
+                         <li class="nav-item">
                              <a class="nav-link" href="#"><i class="ti ti-calendar menu-icon"></i><span>Good Issue</span></a>
                          </li>
                          <li class="nav-item">

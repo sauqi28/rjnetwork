@@ -547,7 +547,8 @@
                                     <table class="table table-bordered mb-0 table-centered">
                                       <thead>
                                         <tr>
-                                          <th>Dokumen (TUG 4, TUG 3 Karantina & Persediaan) </th>
+                                          <th>Dokumen</th>
+                                          <th>Form</th>
                                           <th>Nama Approval</th>
                                           <th>Keterangan</th>
                                           <th>Urutan TTD</th>
@@ -562,6 +563,19 @@
                                         <?php foreach ($get_sign_data_tug4 as $row) : ?>
                                           <tr>
                                             <td><?php echo $row['desc']; ?></td>
+                                            <td>
+                                              <?php
+                                              if ($row['form_name'] == 'tug4_marketplace') {
+                                                echo 'TUG 4 Berita Acara';
+                                              } elseif ($row['form_name'] == 'tug3_karantina') {
+                                                echo 'TUG 3 Karantina';
+                                              } elseif ($row['form_name'] == 'tug3_persediaan') {
+                                                echo 'TUG 3 Persediaan';
+                                              } else {
+                                                echo $row['form_name'];
+                                              }
+                                              ?>
+                                            </td>
                                             <td><?php echo $row['fullname']; ?></td>
                                             <td><?php echo $row['keterangan']; ?></td>
                                             <td><?php echo "Ttd Ke " . $row['sequence']; ?></td>
@@ -606,10 +620,16 @@
 
                                             </td>
                                             <td>
-                                              <button type="button" class="btn btn-soft-<?php echo ($row['request_status'] == 0) ? 'danger' : 'success'; ?> btn-icon-circle btn-icon-circle-sm me-2 position-relative" onclick="confirmSendWA('<?php echo $row['token']; ?>')">
-                                                <?php echo ($row['request_status'] == 0) ? '<i class="fas fa-exclamation"></i>' : '<i class="mdi mdi-whatsapp"></i>'; ?>
-                                                <span class="badge badge-dot online d-flex align-items-center position-absolute end-0 top-50"></span>
-                                              </button>
+                                              <?php if ($row['approved'] != 1) { ?>
+                                                <button type="button" class="btn btn-soft-<?php echo ($row['request_status'] == 0) ? 'danger' : 'success'; ?> btn-icon-circle btn-icon-circle-sm me-2 position-relative" onclick="confirmSendWA('<?php echo $row['token']; ?>')">
+                                                  <?php echo ($row['request_status'] == 0) ? '<i class="fas fa-exclamation"></i>' : '<i class="mdi mdi-whatsapp"></i>'; ?>
+                                                  <span class="badge badge-dot online d-flex align-items-center position-absolute end-0 top-50"></span>
+                                                </button>
+                                              <?php } else { ?><button type="button" class="btn btn-outline-success btn-icon-circle btn-icon-circle-sm" onclick="alert('Permintaan tidak dapat diproses, dikarenakan Dokumen Sudah Ditandatangani Oleh Bpk/Ibu. <?php echo $row['fullname']; ?> Sebagai <?php echo $row['keterangan']; ?>, Pada Tanggal <?php echo $row['approved_time']; ?> WIB')">
+                                                  <i class="mdi mdi-check"></i>
+                                                </button>
+                                              <?php } ?>
+
                                               <script>
                                                 function confirmSendWA(token) {
                                                   if (confirm('Kirim pesan WhatsApp ke User Ini?')) {
@@ -634,19 +654,22 @@
                                           <td></td>
                                           <td></td>
                                           <td></td>
-                                        </tr>
-                                        <tr>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
                                           <td></td>
                                         </tr>
                                         <tr>
+                                          <td></td>
+                                          <td></td>
+                                          <td></td>
+                                          <td></td>
+                                          <td></td>
+                                          <td></td>
+                                          <td></td>
+                                          <td></td>
+                                          <td></td>
+                                          <td></td>
+                                        </tr>
+                                        <tr>
+                                          <td></td>
                                           <td></td>
                                           <td></td>
                                           <td></td>
@@ -661,6 +684,19 @@
                                         <?php foreach ($get_sign_data_tug3k as $row) : ?>
                                           <tr>
                                             <td><?php echo $row['desc']; ?></td>
+                                            <td>
+                                              <?php
+                                              if ($row['form_name'] == 'tug4_marketplace') {
+                                                echo 'TUG 4 Berita Acara';
+                                              } elseif ($row['form_name'] == 'tug3_karantina') {
+                                                echo 'TUG 3 Karantina';
+                                              } elseif ($row['form_name'] == 'tug3_persediaan') {
+                                                echo 'TUG 3 Persediaan';
+                                              } else {
+                                                echo $row['form_name'];
+                                              }
+                                              ?>
+                                            </td>
                                             <td><?php echo $row['fullname']; ?></td>
                                             <td><?php echo $row['keterangan']; ?></td>
                                             <td><?php echo "Ttd Ke " . $row['sequence']; ?></td>
@@ -715,19 +751,22 @@
                                           <td></td>
                                           <td></td>
                                           <td></td>
-                                        </tr>
-                                        <tr>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
                                           <td></td>
                                         </tr>
                                         <tr>
+                                          <td></td>
+                                          <td></td>
+                                          <td></td>
+                                          <td></td>
+                                          <td></td>
+                                          <td></td>
+                                          <td></td>
+                                          <td></td>
+                                          <td></td>
+                                          <td></td>
+                                        </tr>
+                                        <tr>
+                                          <td></td>
                                           <td></td>
                                           <td></td>
                                           <td></td>
@@ -742,6 +781,19 @@
                                         <?php foreach ($get_sign_data_tug3 as $row) : ?>
                                           <tr>
                                             <td><?php echo $row['desc']; ?></td>
+                                            <td>
+                                              <?php
+                                              if ($row['form_name'] == 'tug4_marketplace') {
+                                                echo 'TUG 4 Berita Acara';
+                                              } elseif ($row['form_name'] == 'tug3_karantina') {
+                                                echo 'TUG 3 Karantina';
+                                              } elseif ($row['form_name'] == 'tug3_persediaan') {
+                                                echo 'TUG 3 Persediaan';
+                                              } else {
+                                                echo $row['form_name'];
+                                              }
+                                              ?>
+                                            </td>
                                             <td><?php echo $row['fullname']; ?></td>
                                             <td><?php echo $row['keterangan']; ?></td>
                                             <td><?php echo "Ttd Ke " . $row['sequence']; ?></td>

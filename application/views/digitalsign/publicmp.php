@@ -10,9 +10,9 @@
   <meta content="<?php echo $desc; ?>" name="description" />
   <meta content="" name="author" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
   <!-- App favicon -->
-  <link rel="shortcut icon" href="<?php echo base_url('assets/images/favicon.ico'); ?>">
+  <link rel="shortcut icon" href="<?php echo base_url('assets/images/pln-1.png'); ?>">
+  <!-- <link rel="shortcut icon" href="<?php echo base_url('assets/images/favicon.ico'); ?>"> -->
   <link href="<?php echo base_url('assets/plugins/sweet-alert2/sweetalert2.min.css'); ?>" rel="stylesheet" type="text/css" />
   <!-- App css -->
   <link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet" type="text/css" />

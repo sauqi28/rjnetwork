@@ -702,7 +702,25 @@
                                             <td><?php echo "Ttd Ke " . $row['sequence']; ?></td>
                                             <td><?php echo $row['formatted_request_at']; ?></td>
                                             <td><?php echo $row['formatted_approved_time']; ?></td>
-                                            <td><?php echo $row['approved']; ?></td>
+                                            <td>
+                                              <?php if ($row['approved'] == 0) {
+                                                $status = "";
+                                                $color = "";
+                                              } elseif ($row['approved'] == 1) {
+                                                $status = "Disetujui";
+                                                $color = "bg-success";
+                                              } elseif ($row['approved'] == 2) {
+                                                $status = "Ditolak";
+                                                $color = "bg-warning";
+                                              } elseif ($row['approved'] == 3) {
+                                                $status = "Gagal Dikirim";
+                                                $color = "bg-danger";
+                                              } ?>
+
+                                              <span class="badge rounded-pill <?php echo $color; ?>"><?php echo $status; ?></span>
+
+
+                                            </td>
                                             <td>
 
                                               <?php if ($row['request_status'] == 0) {
@@ -724,10 +742,16 @@
                                             </td>
                                             <td>
 
-                                              <button type="button" class="btn btn-soft-<?php echo ($row['request_status'] == 0) ? 'danger' : 'success'; ?> btn-icon-circle btn-icon-circle-sm me-2 position-relative" onclick="confirmSendWA('<?php echo $row['token']; ?>')">
-                                                <?php echo ($row['request_status'] == 0) ? '<i class="fas fa-exclamation"></i>' : '<i class="mdi mdi-whatsapp"></i>'; ?>
-                                                <span class="badge badge-dot online d-flex align-items-center position-absolute end-0 top-50"></span>
-                                              </button>
+                                              <?php if ($row['approved'] != 1) { ?>
+                                                <button type="button" class="btn btn-soft-<?php echo ($row['request_status'] == 0) ? 'danger' : 'success'; ?> btn-icon-circle btn-icon-circle-sm me-2 position-relative" onclick="confirmSendWA('<?php echo $row['token']; ?>')">
+                                                  <?php echo ($row['request_status'] == 0) ? '<i class="fas fa-exclamation"></i>' : '<i class="mdi mdi-whatsapp"></i>'; ?>
+                                                  <span class="badge badge-dot online d-flex align-items-center position-absolute end-0 top-50"></span>
+                                                </button>
+                                              <?php } else { ?><button type="button" class="btn btn-outline-success btn-icon-circle btn-icon-circle-sm" onclick="alert('Permintaan tidak dapat diproses, dikarenakan Dokumen Sudah Ditandatangani Oleh Bpk/Ibu. <?php echo $row['fullname']; ?> Sebagai <?php echo $row['keterangan']; ?>, Pada Tanggal <?php echo $row['approved_time']; ?> WIB')">
+                                                  <i class="mdi mdi-check"></i>
+                                                </button>
+                                              <?php } ?>
+
                                               <script>
                                                 function confirmSendWA(token) {
                                                   if (confirm('Kirim pesan WhatsApp ke User Ini?')) {
@@ -735,6 +759,7 @@
                                                   }
                                                 }
                                               </script>
+
 
 
 
@@ -799,7 +824,25 @@
                                             <td><?php echo "Ttd Ke " . $row['sequence']; ?></td>
                                             <td><?php echo $row['formatted_request_at']; ?></td>
                                             <td><?php echo $row['formatted_approved_time']; ?></td>
-                                            <td><?php echo $row['approved']; ?></td>
+                                            <td>
+                                              <?php if ($row['approved'] == 0) {
+                                                $status = "";
+                                                $color = "";
+                                              } elseif ($row['approved'] == 1) {
+                                                $status = "Disetujui";
+                                                $color = "bg-success";
+                                              } elseif ($row['approved'] == 2) {
+                                                $status = "Ditolak";
+                                                $color = "bg-warning";
+                                              } elseif ($row['approved'] == 3) {
+                                                $status = "Gagal Dikirim";
+                                                $color = "bg-danger";
+                                              } ?>
+
+                                              <span class="badge rounded-pill <?php echo $color; ?>"><?php echo $status; ?></span>
+
+
+                                            </td>
                                             <td>
 
                                               <?php if ($row['request_status'] == 0) {
@@ -821,10 +864,25 @@
                                             </td>
                                             <td>
 
-                                              <button type="button" class="btn btn-soft-<?php echo ($row['request_status'] == 0) ? 'danger' : 'success'; ?> btn-icon-circle btn-icon-circle-sm me-2 position-relative" onclick="confirmSendWA('<?php echo $row['token']; ?>')">
-                                                <?php echo ($row['request_status'] == 0) ? '<i class="fas fa-exclamation"></i>' : '<i class="mdi mdi-whatsapp"></i>'; ?>
-                                                <span class="badge badge-dot online d-flex align-items-center position-absolute end-0 top-50"></span>
-                                              </button>
+                                              <?php if ($row['approved'] != 1) { ?>
+                                                <button type="button" class="btn btn-soft-<?php echo ($row['request_status'] == 0) ? 'danger' : 'success'; ?> btn-icon-circle btn-icon-circle-sm me-2 position-relative" onclick="confirmSendWA('<?php echo $row['token']; ?>')">
+                                                  <?php echo ($row['request_status'] == 0) ? '<i class="fas fa-exclamation"></i>' : '<i class="mdi mdi-whatsapp"></i>'; ?>
+                                                  <span class="badge badge-dot online d-flex align-items-center position-absolute end-0 top-50"></span>
+                                                </button>
+                                              <?php } else { ?><button type="button" class="btn btn-outline-success btn-icon-circle btn-icon-circle-sm" onclick="alert('Permintaan tidak dapat diproses, dikarenakan Dokumen Sudah Ditandatangani Oleh Bpk/Ibu. <?php echo $row['fullname']; ?> Sebagai <?php echo $row['keterangan']; ?>, Pada Tanggal <?php echo $row['approved_time']; ?> WIB')">
+                                                  <i class="mdi mdi-check"></i>
+                                                </button>
+                                              <?php } ?>
+
+                                              <script>
+                                                function confirmSendWA(token) {
+                                                  if (confirm('Kirim pesan WhatsApp ke User Ini?')) {
+                                                    send_message(token);
+                                                  }
+                                                }
+                                              </script>
+
+
                                               <script>
                                                 function confirmSendWA(token) {
                                                   if (confirm('Kirim pesan WhatsApp ke User Ini?')) {

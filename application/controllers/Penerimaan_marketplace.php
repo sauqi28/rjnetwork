@@ -380,7 +380,7 @@ class Penerimaan_marketplace extends CI_Controller
 		$token = $this->input->post('token');
 		$data = $this->Penerimaan_marketplace_model->get_data_queue_sign($token);
 		if ($data) {
-			$pesan = "*Yth. Bpk/Ibu " . $data->fullname . "* \n" . "Mohon untuk menandatangani dokumen: \n*" . $data->title . "*\n_" . $data->desc . "_\nPada link berikut ini:   \n\n" . base_url($data->uri . $data->token) . "\n\nLink Expired 2x24 Jam";
+			$pesan = "*Yth. Bpk/Ibu " . $data->fullname . "* \n" . "Mohon untuk menandatangani dokumen: \n*" . $data->title . "*\n_" . $data->desc . "_\nPada link berikut ini:   \n\n" . base_url($data->uri . $data->token) . "\n\nLink Expired dalam 2x24 Jam";
 
 
 			$res = $this->wa_api->send_message($data->no_wa, $pesan);

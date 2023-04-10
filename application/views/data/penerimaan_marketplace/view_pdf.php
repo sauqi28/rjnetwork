@@ -95,7 +95,7 @@
                   <div class="alert icon-custom-alert alert-outline-danger alert-dismissible fade show" role="alert">
                     <i class="mdi mdi-check-all alert-icon"></i>
                     <div class="alert-text">
-                      <strong>Info!</strong> Berikut adalah tampilan file asli dan belum dilakukan pembubuhan tandatangan secara sirkulir, pastikan file yang diupload sudah sesuai
+                      <strong>Info!</strong> Berikut adalah tampilan dokumen PDF, sebelum / sesudah dilakukan penandatanganan digital,
                     </div>
 
                   </div>

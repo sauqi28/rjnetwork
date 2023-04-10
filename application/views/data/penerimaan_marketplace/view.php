@@ -538,9 +538,9 @@
                                   <p class="text-muted mb-1">There are many variations of passages of Lorem Ipsum available,
                                     but the majority have suffered alteration in some form.
                                   </p> -->
-                                  <p class=" text-end mb-1">15% Complete</p>
+                                  <p class=" text-end mb-1"><?php echo number_format($percentage, 0); ?>% Complete</p>
                                   <div class="progress" style="height: 14px;">
-                                    <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar" style="width: 15%;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar" style="width: <?php echo number_format($percentage, 0); ?>%;" aria-valuenow="<?php echo number_format($percentage, 0); ?>" aria-valuemin="0" aria-valuemax="100"></div>
                                   </div>
                                   </br>
                                   <div class="table-responsive">

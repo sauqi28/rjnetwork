@@ -31,6 +31,7 @@ class Penerimaan_marketplace_model extends CI_Model
   }
 
 
+
   public function get_sign_data($key, $id_form)
   {
     $this->db->select('b.*, c.fullname, DATE_FORMAT(b.request_at, "%e %M %Y %H:%i:%s") as formatted_request_at, DATE_FORMAT(b.approved_time, "%e %M %Y %H:%i:%s") as formatted_approved_time');
@@ -44,6 +45,23 @@ class Penerimaan_marketplace_model extends CI_Model
     $query = $this->db->get();
     return $query->result_array();
   }
+
+  public function get_percentage($key_reference)
+  {
+    $this->db->select('IF(sum(count_sign) > 0, sum(current_count_sign)/sum(count_sign)*100, 0) AS percentage');
+    $this->db->from('data_process_sign');
+    $this->db->where('key_reference', $key_reference);
+    $query = $this->db->get();
+
+    if ($query->num_rows() > 0) {
+      return $query->row()->percentage;
+    } else {
+      return 0;
+    }
+  }
+
+
+
 
 
   public function get_form_approval($id = NULL)

@@ -75,6 +75,19 @@ class Digitalsign extends CI_Controller
       } else {
         echo $result;
       }
+    } else if ($data->form_id == 3) { // tug 3 persediaan
+      // Melakukan update pada model Approval_single
+      $result = $this->Digital_sign_model->approve_signature($id, $token);
+      $approval_sum = $this->Digital_sign_model->update_current_count_sign($token);
+
+      $this->stamp_sign_tug3_persediaan($token);
+
+      // Menampilkan pesan berdasarkan hasil update
+      if ($result == 'success') {
+        echo $result;
+      } else {
+        echo $result;
+      }
     } else {
       echo "error";
     }
@@ -204,7 +217,6 @@ class Digitalsign extends CI_Controller
       return 'error';
     }
   }
-
 
   //stamp sign untuk tug 3 penerimaan marketplace karantina
   public function stamp_sign_tug3_karantina($token)
@@ -384,6 +396,107 @@ class Digitalsign extends CI_Controller
     }
   }
 
+  public function stamp_sign_tug3_persediaan($token)
+  {
+    try {
+      // $token = 'hiZZqQ4OBhn90KP';
+      $data = $this->Digital_sign_model->get_data_by_token($token);
+      require_once('./vendor/tecnickcom/tcpdf/tcpdf.php');
+      require_once('./vendor/setasign/fpdi/src/autoload.php');
+
+      // File paths
+      // $pdf_file = FCPATH . 'uploads/tes.pdf';
+      // $image_file = FCPATH . 'assets/signatures/signature_1679506271.png';
+      // $output_file = FCPATH . 'uploads/nama_file_stamp.pdf';
+
+      // $pdf_file = FCPATH . $data->folder_name . $data->tug4_unsigned_file;
+      $pdf_file = FCPATH . str_replace("./", "", $data->folder_name) . "/" . $data->tug3_unsigned_file;
+      $image_file = FCPATH . 'assets/signatures/' . $data->signature;
+      $output_file = FCPATH . str_replace("./", "", $data->folder_name) . "/" . $data->tug3_unsigned_file;
+
+
+      // Create new PDF document
+      $pdf = new \setasign\Fpdi\TcpdfFpdi();
+
+      // Set default settings
+      $pdf->setPrintHeader(false);
+      $pdf->setPrintFooter(false);
+      $pdf->SetMargins(0, 0, 0, true);
+      $pdf->SetAutoPageBreak(false);
+
+
+      // Import the original PDF
+      $page_count = $pdf->setSourceFile($pdf_file);
+
+      // Iterate through all pages
+      for ($i = 1; $i <= $page_count; $i++) {
+        // Add a page
+        $template_id = $pdf->importPage($i);
+        $size = $pdf->getTemplateSize($template_id);
+        $orientation = $size['width'] > $size['height'] ? 'L' : 'P';
+        $pdf->AddPage($orientation, array($size['width'], $size['height']));
+
+        // Use the imported page as a template
+        $pdf->useTemplate($template_id);
+
+        // // Set image size and position
+        // $image_width = (5 * 3.5); // Width in points (1 point = 1/72 inches)
+        // $image_height = (3 * 3.5); // Height in points
+        // $position_x = 140; // X position in points
+        // $position_y = 92; // Y position in points
+
+        if ($data->form_id == 3 && $data->sequence < 8) {
+
+          $image_width = (5 * 7); // Width in points (1 point = 1/72 inches)
+          $image_height = (3 * 7); // Height in points
+          $position_x = $data->x_sign; // X position in points
+          $position_y = $data->y_sign; // Y position in points
+
+          $signer_name = strtoupper($data->fullname);
+          $signer_position_x = $position_x + 32;
+          $signer_position_y = $position_y + (2.7 + 5);
+          $signer_color = [128, 128, 128]; // RGB color code for gray
+
+          $date = date('Y-m-d H:i:s');
+          $timestamp = strtotime($date);
+          $new_date_format = strftime('%e %B %Y %H:%M:%S WIB', $timestamp);
+
+          $signed_at = strtoupper($new_date_format);
+          $signed_position_x = $position_x + 32;
+          $signed_position_y = $position_y + (4 + 5);
+          $signed_color = [128, 128, 128]; // RGB color code for gray
+
+
+        }
+
+
+        // Add the image
+        $pdf->Image($image_file, $position_x, $position_y, $image_width, $image_height);
+        // Set font
+        $pdf->SetFont('helvetica', 'B', 3);
+
+        // Add signer name text
+        $pdf->SetTextColor($signer_color[0], $signer_color[1], $signer_color[2]);
+        $pdf->SetXY($signer_position_x, $signer_position_y);
+        $pdf->MultiCell(0, 0, 'Digitally Signed by: ' . $signer_name, 0, 'L', 0, 1);
+
+        $pdf->SetFont('helvetica', '', 3);
+        // Add signed at text
+        $pdf->SetTextColor($signed_color[0], $signed_color[1], $signed_color[2]);
+        $pdf->SetXY($signed_position_x, $signed_position_y);
+        $pdf->MultiCell(0, 0, 'Signed At: ' . $signed_at, 0, 'L', 0, 1);
+      }
+
+      // Save the PDF to a file
+      $pdf->Output($output_file, 'F');
+
+      // If everything is successful, return 'success'
+      return 'success';
+    } catch (Exception $e) {
+      // If an error occurs
+      return 'error';
+    }
+  }
 
 
   public function whatsapp_verified()

@@ -138,6 +138,7 @@ class Penerimaan_marketplace extends CI_Controller
 		$data['user_positions'] = $this->Penerimaan_marketplace_model->get_all_positions();
 		$data['user_roles'] = $this->Penerimaan_marketplace_model->get_all_roles();
 		$data['user_category'] = $this->Penerimaan_marketplace_model->get_all_category();
+		$data['percentage'] = $this->Penerimaan_marketplace_model->get_percentage($id);
 		$this->load->view('data/penerimaan_marketplace/view', $data);
 	}
 

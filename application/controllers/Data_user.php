@@ -220,7 +220,7 @@ class Data_user extends CI_Controller
 		$token = $this->generate_token(10);
 
 		// $pesan = "Verifikasi Wahtsapp, klik link berikut :\n" . base_url('publicaccess/whatsapp_verified/') . $token;
-		$pesan = "*Yth. Bpk/Ibu " . $data->fullname . "* \n\n" . "Mohon untuk melakukan verifikasi nomor WhatsApp sebagai notifikasi penggunaan aplikasi tanda tangan digital, melalui link berikut: \n\n" . base_url('publicaccess/whatsapp_verified/') . $token . "\n\n_Link Ekpired 15 Menit_";
+		$pesan = "*Yth. Bpk/Ibu " . $data->fullname . "* \n\n" . "Mohon untuk melakukan verifikasi nomor WhatsApp sebagai notifikasi penggunaan aplikasi tanda tangan digital, melalui link berikut: \n\n" . base_url('publicaccess/whatsapp_verified/') . $token . "\n\n_Link Expired dalam 15 Menit_";
 
 
 		$res = $this->wa_api->send_message($data->no_wa, $pesan);
@@ -240,7 +240,7 @@ class Data_user extends CI_Controller
 		$token = $this->generate_token(10);
 
 		// $pesan = "Verifikasi Wahtsapp, klik link berikut :\n" . base_url('publicaccess/whatsapp_verified/') . $token;
-		$pesan = "*Yth. Bpk/Ibu " . $data->fullname . "* \n\n" . "Mohon untuk merekam spesimen tanda tangan secara digital, untuk selanjutnya digunakan sebagai pembubuhan dokumen pada link berikut: \n\n" . base_url('publicaccess/signature_verified/') . $token . "\n\n_Link Ekpired 15 Menit_";
+		$pesan = "*Yth. Bpk/Ibu " . $data->fullname . "* \n\n" . "Mohon untuk merekam spesimen tanda tangan secara digital, untuk selanjutnya digunakan sebagai pembubuhan dokumen pada link berikut: \n\n" . base_url('publicaccess/signature_verified/') . $token . "\n\n_Link Expired dalam 15 Menit_";
 
 		$res = $this->wa_api->send_message($data->no_wa, $pesan);
 		if ($res == 'success') {

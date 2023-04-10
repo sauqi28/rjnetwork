@@ -47,7 +47,7 @@ class Digitalsign extends CI_Controller
       // Melakukan update pada model Approval_single
       $result = $this->Digital_sign_model->approve_signature($id, $token);
       $approval_sum = $this->Digital_sign_model->update_current_count_sign($token);
-      if ($approval_sum <= 7 && $approval_sum != 8) {
+      if ($approval_sum >= 5 && $approval_sum <= 7 && $approval_sum != 8) {
         $send_manager = $this->Digital_sign_model->send_manager($token);
       }
       $this->stamp_sign($token);

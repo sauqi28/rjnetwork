@@ -233,9 +233,9 @@
               });
             } else {
               Swal.fire({
-                icon: 'error',
+                icon: 'warning',
                 title: 'Gagal',
-                text: 'Terjadi kesalahan saat menandatangani dokumen'
+                text: 'Penandatanganan Untuk Dokumen Ini Dalam Proses Development'
               });
             }
           });

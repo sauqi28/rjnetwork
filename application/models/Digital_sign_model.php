@@ -63,6 +63,7 @@ class Digital_sign_model extends CI_Model
       );
 
       $this->db->where('id_process_reference', $id_process_reference);
+      $this->db->where('request_status', 0); // Tambahkan kondisi WHERE request_status = 0
       $this->db->where('sequence', 8);
       $this->db->update('data_queue_sign', $data);
     }

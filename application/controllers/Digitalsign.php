@@ -169,6 +169,7 @@ class Digitalsign extends CI_Controller
       // $pdf_file = FCPATH . $data->folder_name . $data->tug4_unsigned_file;
       $pdf_file = FCPATH . str_replace("./", "", $data->folder_name) . "/" . $data->tug4_unsigned_file;
       $image_file = FCPATH . 'assets/signatures/' . $data->signature;
+      $stamp_file = FCPATH . 'assets/signatures/' . "stamping.png";
       $output_file = FCPATH . str_replace("./", "", $data->folder_name) . "/" . $data->tug4_unsigned_file;
 
 
@@ -250,6 +251,9 @@ class Digitalsign extends CI_Controller
 
         // Add the image
         $pdf->Image($image_file, $position_x, $position_y, $image_width, $image_height);
+        if ($data->form_id == 1 && $data->sequence == 8) {
+          $pdf->Image($stamp_file, $position_x - 10, $position_y, 30, 30);
+        }
         // Set font
         $pdf->SetFont('helvetica', 'B', 3);
 

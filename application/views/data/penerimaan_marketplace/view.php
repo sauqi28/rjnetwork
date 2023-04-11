@@ -198,6 +198,7 @@
                               </div><!--end card-header-->
 
                               <?php if ($user['tug_unsigned_locked'] == 1) { ?>
+
                                 <div class="alert icon-custom-alert alert-outline-success alert-dismissible fade show" role="alert">
                                   <i class="mdi mdi-check-all alert-icon"></i>
                                   <div class="alert-text">
@@ -252,6 +253,7 @@
 
                                       </td>
                                     </tr>
+
                                     <tr>
                                       <td>3</td>
                                       <td>TUG 3 Persediaan</td>
@@ -265,12 +267,27 @@
 
                                       </td>
                                     </tr>
+                                    <tr>
+                                      <td></td>
+                                      <td>
+
+                                      </td>
+                                      <td></td>
+                                      <td></td>
+                                      <td>
+
+                                        <div class="button-items">
+                                          <button type="button" class="btn btn-xs btn-success btn-icon-square-sm" onclick="goPdf('<?php echo $user['key']; ?>')"><i class="far fa-file-pdf"></i></button>
+                                        </div>
+                                      </td>
+                                    </tr>
 
                                     <script>
-                                      function goView(var1) {
-                                        window.location.href = '<?php echo base_url('penerimaan_marketplace/view_pdf/'); ?>' + var1;
+                                      function goPdf(var1) {
+                                        window.location.href = '<?php echo base_url('penerimaan_marketplace/merge_document/'); ?>' + var1;
                                       }
                                     </script>
+
 
 
                                   </tbody>

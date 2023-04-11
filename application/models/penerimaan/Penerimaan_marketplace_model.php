@@ -16,7 +16,7 @@ class Penerimaan_marketplace_model extends CI_Model
       return $query->result_array();
     }
 
-    $this->db->select('a.*,b.fullname, 
+    $this->db->select('a.*,b.fullname, a.spk_number,
                        DATE_FORMAT(a.tug3_unsigned_upload_time, "%d %M %Y | %H:%i:%s WIB") AS tug3_unsigned_upload_time_formatted, 
                        DATE_FORMAT(a.tug3_karantina_unsigned_upload_time, "%d %M %Y | %H:%i:%s WIB") AS tug3_karantina_unsigned_upload_time_formatted, 
                        DATE_FORMAT(a.tug4_unsigned_upload_time, "%d %M %Y | %H:%i:%s WIB") AS tug4_unsigned_upload_time_formatted, 
@@ -30,7 +30,16 @@ class Penerimaan_marketplace_model extends CI_Model
     return $user_additional_info;
   }
 
+  public function merge_document($key)
+  {
+    // Query untuk mengambil data dokumen dari tabel data_penerimaan_marketplace
+    $this->db->select('*');
+    $this->db->from('data_penerimaan_marketplace');
+    $this->db->where('key', $key);
+    $query = $this->db->get();
 
+    return $query->result();
+  }
 
   public function get_sign_data($key, $id_form)
   {

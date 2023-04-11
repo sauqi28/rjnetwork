@@ -189,8 +189,8 @@
                       <div class="float-end d-print-none mt-2 mt-md-0">
                         <!-- <a href="javascript:window.print()" class="btn btn-info btn-sm">Print</a> -->
                         <?php if ($approved != 1) { ?>
-                          <a href="#" onclick="showConfirmation('<?php echo $id_sign; ?>','<?php echo $title; ?>','<?php echo $token; ?>')" class="btn btn-success btn-sm">Approve</a>
-                          <a href="#" class="btn btn-secondary btn-sm">Reject</a> <?php } else {
+                          <a href="#" onclick="showConfirmation('<?php echo $id_sign; ?>','<?php echo $title; ?>','<?php echo $token; ?>')" class="btn btn-success btn-lg">Approve</a>
+                          <a href="#" class="btn btn-secondary btn-lg">Reject</a> <?php } else {
                                                                                   echo "Sudah Ditandatangani : " . $approved_time . "WIB";
                                                                                 } ?>
                       </div>

@@ -161,6 +161,54 @@ class Penerimaan_marketplace extends CI_Controller
 		}
 	}
 
+	public function merge_document($key)
+	{
+		// Mendapatkan data dokumen dari database
+		$data = $this->Penerimaan_marketplace_model->merge_document($key);
+
+		// Mendefinisikan path dan nama file hasil penggabungan
+		$output_file = 'Penerimaan_Marketplace_' . $key . '.pdf';
+		$output_path = FCPATH . 'download/' . $output_file;
+
+		// Inisialisasi variabel
+		$file_paths = array();
+
+		// Loop untuk mendapatkan path file dokumen
+		foreach ($data as $row) {
+			$folder_name = $row->folder_name;
+			$tug4_unsigned_file = $row->tug4_unsigned_file;
+			$tug3_karantina_unsigned_file = $row->tug3_karantina_unsigned_file;
+			$tug3_unsigned_file = $row->tug3_unsigned_file;
+
+			// Path file dokumen
+			$file_paths[] = FCPATH . $folder_name . '/' . $tug4_unsigned_file;
+			$file_paths[] = FCPATH . $folder_name . '/' . $tug3_karantina_unsigned_file;
+			$file_paths[] = FCPATH . $folder_name . '/' . $tug3_unsigned_file;
+		}
+
+		// Membuat objek TCPDF
+		$pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
+
+		// Menggabungkan file PDF menjadi satu file
+		$pdf->setPrintHeader(false);
+		$pdf->setPrintFooter(false);
+		$pdf->AddPage();
+		foreach ($file_paths as $file_path) {
+			$pdf->Image($file_path, 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0, false, false, false);
+			$pdf->AddPage();
+		}
+
+		// Mengirim output PDF ke browser
+		$pdf->Output($output_path, 'F');
+		header('Content-Type: application/pdf');
+		header('Content-Disposition: attachment; filename="' . $output_file . '"');
+		header('Content-Transfer-Encoding: binary');
+		header('Content-Length: ' . filesize($output_path));
+		readfile($output_path);
+	}
+
+
+
 	public function view_pdf($filename)
 	{
 		$pdf_file_tug4 = $this->Penerimaan_marketplace_model->get_pdf_file($filename, 'tug4');

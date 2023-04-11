@@ -32,13 +32,9 @@ class Penerimaan_marketplace_model extends CI_Model
 
   public function merge_document($key)
   {
-    // Query untuk mengambil data dokumen dari tabel data_penerimaan_marketplace
-    $this->db->select('*');
-    $this->db->from('data_penerimaan_marketplace');
     $this->db->where('key', $key);
-    $query = $this->db->get();
-
-    return $query->result();
+    $query = $this->db->get('data_penerimaan_marketplace');
+    return $query->row();
   }
 
   public function get_sign_data($key, $id_form)

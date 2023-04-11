@@ -87,12 +87,7 @@
                     <li class="nav-item">
                       <a class="nav-link active" data-bs-toggle="tab" href="#home" role="tab" aria-selected="true">File TUG</a>
                     </li>
-                    <li class="nav-item">
-                      <a class="nav-link" data-bs-toggle="tab" href="#profile" role="tab" aria-selected="false">Proses TTD Digital</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" data-bs-toggle="tab" href="#settings" role="tab" aria-selected="false">Settings</a>
-                    </li>
+
                   </ul>
 
                   <!-- Tab panes -->
@@ -972,17 +967,7 @@
 
 
                     </div>
-                    <div class="tab-pane p-3" id="profile" role="tabpanel">
-                      <p class="mb-0 text-muted">
-                        Food truck fixie locavore, accusamus mcsweeney's
-                        single-origin coffee squid.
-                      </p>
-                    </div>
-                    <div class="tab-pane p-3" id="settings" role="tabpanel">
-                      <p class="text-muted mb-0">
-                        Trust fund seitan letterpress, keytar raw denim keffiyeh etsy.
-                      </p>
-                    </div>
+
                   </div>
                 </div>
 

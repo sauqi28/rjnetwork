@@ -132,7 +132,8 @@
 
                       <?php if ($form_id == 1) { ?>
                         <div>
-                          <iframe id="pdfViewer" src="https://drive.google.com/viewerng/viewer?embedded=true&url=<?= urlencode(base_url($folder_name . "/" . $tug4_unsigned_file)); ?>" frameborder="0"></iframe>
+                          <iframe id="pdfViewer" src="https://drive.google.com/viewerng/viewer?embedded=true&url=<?= urlencode(base_url(ltrim($folder_name, './') . "/" . $tug4_unsigned_file)); ?>" frameborder="0"></iframe>
+
 
                         </div>
 
@@ -140,7 +141,7 @@
                       <?php } ?>
                       <?php if ($form_id == 2) { ?>
                         <div>
-                          <iframe id="pdfViewer" src="https://drive.google.com/viewerng/viewer?embedded=true&url=<?= urlencode(base_url($folder_name . "/" . $tug3_karantina_unsigned_file)); ?>" frameborder="0"></iframe>
+                          <iframe id="pdfViewer" src="https://drive.google.com/viewerng/viewer?embedded=true&url=<?= urlencode(base_url(ltrim($folder_name, './') . "/" .  $tug3_karantina_unsigned_file)); ?>" frameborder="0"></iframe>
 
                         </div>
 
@@ -149,7 +150,7 @@
                       <?php } ?>
                       <?php if ($form_id == 3) { ?>
                         <div>
-                          <iframe id="pdfViewer" src="https://drive.google.com/viewerng/viewer?embedded=true&url=<?= urlencode(base_url($folder_name . "/" . $tug3_unsigned_file)); ?>" frameborder="0"></iframe>
+                          <iframe id="pdfViewer" src="https://drive.google.com/viewerng/viewer?embedded=true&url=<?= urlencode(base_url(ltrim($folder_name, './') . "/" . $tug3_unsigned_file)); ?>" frameborder="0"></iframe>
 
                         </div>
 

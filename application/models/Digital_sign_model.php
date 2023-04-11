@@ -58,19 +58,27 @@ class Digital_sign_model extends CI_Model
     $this->db->where('token', $token);
     $query = $this->db->get('data_queue_sign');
 
-    if ($query->num_rows() > 0) {
+    if ($query->num_rows() > 0) { // jika manajer sudah approve tug4, maka mengirim ke tug 3 persediaan ke sequence 1
       $id_process_reference = $query->row()->id_process_reference;
 
       $data = array(
-        'request_status' => 1
+        'request_status' => 1,
+        'request_at' => date('Y-m-d H:i:s'),
       );
 
       $this->db->where('id_process_reference', $id_process_reference);
       $this->db->where('request_status', 0); // Tambahkan kondisi WHERE request_status = 0
       $this->db->where('sequence', 8);
       $this->db->update('data_queue_sign', $data);
+
+      if ($this->db->affected_rows() > 0) {
+        return 'Success';
+      } else {
+        return 'Error';
+      }
     }
   }
+
 
 
 
@@ -89,23 +97,255 @@ class Digital_sign_model extends CI_Model
     }
   }
 
-  function approve_signature($id_sign, $token)
+  function approve_signature($id_sign, $token, $id_form)
   {
     // Mendapatkan waktu saat ini
     $approved_time = date('Y-m-d H:i:s');
+    if ($id_form == 1) {
 
-    // Mengubah nilai kolom approved menjadi 1 dan approved_time menjadi waktu saat ini
-    $this->db->set('approved', 1);
-    $this->db->set('approved_time', $approved_time);
-    $this->db->where('id', $id_sign);
-    $this->db->where('token', $token);
-    $this->db->update('data_queue_sign');
+      $this->db->select('id_process_reference, sequence');
+      $this->db->where('token', $token);
+      $query = $this->db->get('data_queue_sign');
 
-    // Mengembalikan pesan 'Success' jika update berhasil atau 'Error' jika gagal
-    if ($this->db->affected_rows() > 0) {
-      return 'Success';
-    } else {
-      return 'Error';
+      if ($query->num_rows() > 0 && $query->row()->sequence == 8) { //jika manajer
+        $this->db->select('id_process_reference, sequence');
+        $this->db->where('token', $token);
+        $query = $this->db->get('data_queue_sign');
+
+        if ($query->num_rows() > 0) {
+          foreach ($query->result() as $row) {
+            $this->db->set(
+              'approved',
+              1
+            );
+            $this->db->set('approved_time', $approved_time);
+            $this->db->set('request_status', 2);
+            $this->db->where('id', $id_sign);
+            $this->db->where('token', $token);
+            $this->db->where('sequence', $row->sequence);
+            $this->db->update('data_queue_sign');
+
+
+            $key_reference = '';
+            $id_process = '';
+
+            $this->db->select('key_reference');
+            $this->db->from('data_process_sign b');
+            $this->db->join('data_queue_sign a', 'a.id_process_reference = b.id_process');
+            $this->db->where('a.token', $token);
+            $this->db->where('a.sequence', 8); // penandatanganan ke 2,
+            $query_key_ref = $this->db->get();
+
+            if ($query_key_ref->num_rows() > 0) {
+              $key_reference = $query_key_ref->row()->key_reference;
+            }
+
+            $this->db->select('id_process');
+            $this->db->from('data_process_sign');
+            $this->db->where('key_reference', $key_reference);
+            $this->db->where('form_id', 3); // form tug_3 persediaan_ bast marketplace
+            $query_id_proc = $this->db->get();
+
+            if ($query_id_proc->num_rows() > 0) {
+              $id_process = $query_id_proc->row()->id_process;
+            }
+
+            if (!empty($id_process)) {
+              $this->db->set('request_status', 1);
+              $this->db->set('request_at', $approved_time);
+              $this->db->where('id_process_reference', $id_process);
+              $this->db->where('sequence', 1);
+              $this->db->update('data_queue_sign');
+
+              if ($this->db->affected_rows() > 0) {
+                return 'Success';
+              } else {
+                return 'Error';
+              }
+            }
+          }
+        }
+      } else if ($query->row()->sequence < 8) {
+        foreach ($query->result() as $row) {
+          $this->db->set('approved', 1);
+          $this->db->set('approved_time', $approved_time);
+          $this->db->where('id', $id_sign);
+          $this->db->where('token', $token);
+          $this->db->update('data_queue_sign');
+
+
+          if ($this->db->affected_rows() > 0) {
+            return 'Success';
+          } else {
+            return 'Error';
+          }
+        }
+      }
+
+
+      //jika sequence 1-7
+
+
+    } else if ($id_form == 2) { // jika form tug3 karantina
+      $this->db->set('approved', 1);
+      $this->db->set('approved_time', $approved_time);
+      $this->db->where('id', $id_sign);
+      $this->db->where('token', $token);
+      $this->db->update('data_queue_sign');
+
+      $this->db->select('id_process_reference, sequence');
+      $this->db->where('token', $token);
+      $query = $this->db->get('data_queue_sign');
+
+      if ($query->num_rows() > 0) {
+        foreach ($query->result() as $row) {
+          $this->db->set(
+            'approved',
+            1
+          );
+          $this->db->set('approved_time', $approved_time);
+          $this->db->set('request_status', 2);
+          $this->db->where('id', $id_sign);
+          $this->db->where('token', $token);
+          $this->db->where('sequence', $row->sequence);
+          $this->db->update('data_queue_sign');
+
+          if ($row->sequence == 2) {
+            $key_reference = '';
+            $id_process = '';
+
+            $this->db->select('key_reference');
+            $this->db->from('data_process_sign b');
+            $this->db->join('data_queue_sign a', 'a.id_process_reference = b.id_process');
+            $this->db->where('a.token', $token);
+            $this->db->where('a.sequence', 2); // penandatanganan ke 2,
+            $query_key_ref = $this->db->get();
+
+            if ($query_key_ref->num_rows() > 0) {
+              $key_reference = $query_key_ref->row()->key_reference;
+            }
+
+            $this->db->select('id_process');
+            $this->db->from('data_process_sign');
+            $this->db->where('key_reference', $key_reference);
+            $this->db->where('form_id', 1); // form tug_4_ bast marketplace
+            $query_id_proc = $this->db->get();
+
+            if ($query_id_proc->num_rows() > 0) {
+              $id_process = $query_id_proc->row()->id_process;
+            }
+
+            if (!empty($id_process)) {
+              $this->db->set('request_status', 1);
+              $this->db->set('request_at', $approved_time);
+              $this->db->where('id_process_reference', $id_process);
+              $this->db->where('sequence >=', 1);
+              $this->db->where('sequence <=', 7);
+              $this->db->update('data_queue_sign');
+              if ($this->db->affected_rows() > 0) {
+                return 'Success';
+              } else {
+                return 'Error';
+              }
+            }
+          } elseif ($row->sequence == 1) {
+            $this->db->set('request_status', 1);
+            $this->db->set('request_at', $approved_time);
+            $this->db->where('id_process_reference', $row->id_process_reference);
+            $this->db->where('sequence', 2);
+            $this->db->update('data_queue_sign');
+            if ($this->db->affected_rows() > 0) {
+              return 'Success';
+            } else {
+              return 'Error';
+            }
+          }
+        }
+      }
+
+      if ($this->db->affected_rows() > 0) {
+        return 'Success';
+      } else {
+        return 'Error';
+      }
+    } else if ($id_form == 3) {
+
+      $this->db->set('approved', 1);
+      $this->db->set('approved_time', $approved_time);
+      $this->db->where('id', $id_sign);
+      $this->db->where('token', $token);
+      $this->db->update('data_queue_sign');
+
+      $this->db->select('id_process_reference, sequence');
+      $this->db->where('token', $token);
+      $query = $this->db->get('data_queue_sign');
+
+      if ($query->num_rows() > 0) {
+        foreach ($query->result() as $row) {
+          // $this->db->set(
+          //   'approved',
+          //   1
+          // );
+          // $this->db->set('approved_time', $approved_time);
+          // $this->db->set('request_status', 2);
+          // $this->db->where('id', $id_sign);
+          // $this->db->where('token', $token);
+          // $this->db->where('sequence', $row->sequence);
+          // $this->db->update('data_queue_sign');
+
+          if ($row->sequence == 2) {
+            $key_reference = '';
+            $id_process = '';
+
+            $this->db->select('key_reference');
+            $this->db->from('data_process_sign b');
+            $this->db->join('data_queue_sign a', 'a.id_process_reference = b.id_process');
+            $this->db->where('a.token', $token);
+            $this->db->where('a.sequence', 2); // penandatanganan ke 2,
+            $query_key_ref = $this->db->get();
+
+            if ($query_key_ref->num_rows() > 0) {
+              $key_reference = $query_key_ref->row()->key_reference;
+            }
+
+            $this->db->select('id_process');
+            $this->db->from('data_process_sign');
+            $this->db->where('key_reference', $key_reference);
+            $this->db->where('form_id', 3); // form tug_3 persediaan
+            $query_id_proc = $this->db->get();
+
+            if ($query_id_proc->num_rows() > 0) {
+              $id_process = $query_id_proc->row()->id_process;
+            }
+
+            if (!empty($id_process)) {
+              // $this->db->set('request_status', 1);  //brlum ada axction setelh tug 3 persediaan
+              // $this->db->set('request_at', $approved_time);
+              // $this->db->where('id_process_reference', $id_process);
+              // $this->db->where('sequence >=', 1);
+              // $this->db->where('sequence <=', 7);
+              // $this->db->update('data_queue_sign');
+            }
+          } elseif ($row->sequence == 1) {
+            $this->db->set('request_status', 1);
+            $this->db->set('request_at', $approved_time);
+            $this->db->where('id_process_reference', $row->id_process_reference);
+            $this->db->where('sequence', 2);
+            $this->db->update('data_queue_sign');
+            if ($this->db->affected_rows() > 0) {
+              return 'Success';
+            } else {
+              return 'Error';
+            }
+          }
+        }
+      }
+
+      if ($this->db->affected_rows() > 0) {
+        return 'Success';
+      } else {
+        return 'Error';
+      }
     }
   }
 

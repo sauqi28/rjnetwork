@@ -271,7 +271,6 @@ class Penerimaan_marketplace_model extends CI_Model
     $this->db->update('data_penerimaan_marketplace', $data);
   }
 
-
   public function process_sign($key, $token, $formid, $note)
   {
     $this->db->where('id', $formid);
@@ -304,11 +303,7 @@ class Penerimaan_marketplace_model extends CI_Model
     for ($i = 1; $i <= $sign_position['sign_count']; $i++) {
       // Menentukan nilai request_status berdasarkan formid dan iterasi loop
       $request_status = 0;
-      if ($formid == 1 && $i >= 1 && $i <= 7) {
-        $request_status = 1;
-      } elseif ($formid == 2 && $i <= 2) {
-        $request_status = 1;
-      } elseif ($formid == 3 && $i <= 2) {
+      if ($formid == 2 && $i < 2) { //proses silkulir
         $request_status = 1;
       }
 
@@ -330,6 +325,65 @@ class Penerimaan_marketplace_model extends CI_Model
       $this->db->insert('data_queue_sign', $data);
     }
   }
+
+  // public function process_sign($key, $token, $formid, $note)
+  // {
+  //   $this->db->where('id', $formid);
+  //   $query = $this->db->get('mst_sign_positions');
+  //   $sign_position = $query->row_array();
+
+  //   $this->db->where('key', $key);
+  //   $query = $this->db->get('data_penerimaan_marketplace');
+  //   $marketplace = $query->row_array();
+
+  //   $data = array(
+  //     'id_process' => $token,
+  //     'form_id' => $formid,
+  //     'form_name' => $sign_position['form_name'],
+  //     'key_reference' => $key,
+  //     'request_time' => date('Y-m-d H:i:s'),
+  //     'count_sign' => $sign_position['sign_count'],
+  //     'current_count_sign' => 0,
+  //     'title' => $note,
+  //     'desc' => $marketplace['spk_number'] . " - " . $marketplace['pabrikan'],
+  //     // 1 = aktif, 0 = reject / batal
+  //     'status' => 1,
+  //     // 'user_signed_request' => $this->session->userdata('user_id'),
+  //   );
+  //   $this->db->where('key', $key);
+  //   $this->db->insert('data_process_sign', $data);
+
+  //   // insert ke status queue ttd
+  //   // Looping sebanyak sign_count
+  //   for ($i = 1; $i <= $sign_position['sign_count']; $i++) {
+  //     // Menentukan nilai request_status berdasarkan formid dan iterasi loop
+  //     $request_status = 0;
+  //     if ($formid == 1 && $i >= 1 && $i <= 7) {
+  //       $request_status = 1;
+  //     } elseif ($formid == 2 && $i <= 2) {
+  //       $request_status = 1;
+  //     } elseif ($formid == 3 && $i <= 2) {
+  //       $request_status = 1;
+  //     }
+
+  //     $data = array(
+  //       'id_process_reference' => $token,
+  //       'users_id' => $sign_position['u_sign_' . $i],
+  //       'sequence' => $i,
+  //       'generate_at' => date('Y-m-d H:i:s'),
+  //       'token' => $this->generate_token(15),
+  //       'form_name' => $sign_position['form_name'],
+  //       'x_sign' => $sign_position['x_sign_' . $i],
+  //       'y_sign' => $sign_position['y_sign_' . $i],
+  //       'keterangan' => $sign_position['desc_sign_' . $i],
+  //       'uri' => '/digitalsign/publicmp/',
+  //       'title' => $note,
+  //       'request_status' => $request_status,
+  //       'desc' => $marketplace['spk_number'] . " - " . $marketplace['pabrikan'],
+  //     );
+  //     $this->db->insert('data_queue_sign', $data);
+  //   }
+  // }
 
   function generate_token($a)
   {

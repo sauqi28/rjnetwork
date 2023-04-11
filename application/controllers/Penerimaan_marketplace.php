@@ -112,9 +112,6 @@ class Penerimaan_marketplace extends CI_Controller
 		$this->load->view('data/user/user_nonaktif', $data);
 	}
 
-
-
-
 	public function view($id = NULL)
 	{
 		$data['user'] = $this->Penerimaan_marketplace_model->get_penerimaan_marketplace_view($id);
@@ -188,8 +185,6 @@ class Penerimaan_marketplace extends CI_Controller
 			show_404();
 		}
 	}
-
-
 
 	public function upload_tug4()
 	{
@@ -375,7 +370,6 @@ class Penerimaan_marketplace extends CI_Controller
 	}
 
 
-
 	public function send_message()
 	{
 		$token = $this->input->post('token');
@@ -417,8 +411,6 @@ class Penerimaan_marketplace extends CI_Controller
 			echo "Data tidak ditemukan.";
 		}
 	}
-
-
 
 
 	public function edit($id)

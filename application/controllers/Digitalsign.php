@@ -47,11 +47,12 @@ class Digitalsign extends CI_Controller
     //formulir untuk tug 4 marketplace
     if ($data->form_id == 1) {
       // Melakukan update pada model Approval_single
-      $result = $this->Digital_sign_model->approve_signature($id, $token);
+      $result = $this->Digital_sign_model->approve_signature($id, $token, $data->form_id);
       $approval_sum = $this->Digital_sign_model->update_current_count_sign($token);
 
       //kirim pesan ke manajer
-      if ($approval_sum >= 5 && $approval_sum <= 7 && $approval_sum != 8) {
+      //if ($approval_sum >= 5 && $approval_sum <= 7 && $approval_sum != 8) {
+      if ($approval_sum == 7 && $approval_sum != 8) {
         $send_manager = $this->Digital_sign_model->send_manager($token);
       }
       $this->stamp_sign($token);
@@ -64,7 +65,7 @@ class Digitalsign extends CI_Controller
       }
     } else if ($data->form_id == 2) {
       // Melakukan update pada model Approval_single
-      $result = $this->Digital_sign_model->approve_signature($id, $token);
+      $result = $this->Digital_sign_model->approve_signature($id, $token, $data->form_id);
       $approval_sum = $this->Digital_sign_model->update_current_count_sign($token);
 
       $this->stamp_sign_tug3_karantina($token);
@@ -77,7 +78,7 @@ class Digitalsign extends CI_Controller
       }
     } else if ($data->form_id == 3) { // tug 3 persediaan
       // Melakukan update pada model Approval_single
-      $result = $this->Digital_sign_model->approve_signature($id, $token);
+      $result = $this->Digital_sign_model->approve_signature($id, $token, $data->form_id);
       $approval_sum = $this->Digital_sign_model->update_current_count_sign($token);
 
       $this->stamp_sign_tug3_persediaan($token);
@@ -92,6 +93,63 @@ class Digitalsign extends CI_Controller
       echo "error";
     }
   }
+
+  //backup
+  // public function single_approve()
+  // {
+  //   $id = $this->input->post('id');
+  //   $token = $this->input->post('token');
+
+  //   $data = $this->Digital_sign_model->get_data_by_token($token);
+
+  //   //formulir untuk tug 4 marketplace
+  //   if ($data->form_id == 1) {
+  //     // Melakukan update pada model Approval_single
+  //     $result = $this->Digital_sign_model->approve_signature($id, $token);
+  //     $approval_sum = $this->Digital_sign_model->update_current_count_sign($token);
+
+  //     //kirim pesan ke manajer
+  //     if ($approval_sum >= 5 && $approval_sum <= 7 && $approval_sum != 8) {
+  //       $send_manager = $this->Digital_sign_model->send_manager($token);
+  //     }
+  //     $this->stamp_sign($token);
+
+  //     // Menampilkan pesan berdasarkan hasil update
+  //     if ($result == 'success') {
+  //       echo $result;
+  //     } else {
+  //       echo $result;
+  //     }
+  //   } else if ($data->form_id == 2) {
+  //     // Melakukan update pada model Approval_single
+  //     $result = $this->Digital_sign_model->approve_signature($id, $token);
+  //     $approval_sum = $this->Digital_sign_model->update_current_count_sign($token);
+
+  //     $this->stamp_sign_tug3_karantina($token);
+
+  //     // Menampilkan pesan berdasarkan hasil update
+  //     if ($result == 'success') {
+  //       echo $result;
+  //     } else {
+  //       echo $result;
+  //     }
+  //   } else if ($data->form_id == 3) { // tug 3 persediaan
+  //     // Melakukan update pada model Approval_single
+  //     $result = $this->Digital_sign_model->approve_signature($id, $token);
+  //     $approval_sum = $this->Digital_sign_model->update_current_count_sign($token);
+
+  //     $this->stamp_sign_tug3_persediaan($token);
+
+  //     // Menampilkan pesan berdasarkan hasil update
+  //     if ($result == 'success') {
+  //       echo $result;
+  //     } else {
+  //       echo $result;
+  //     }
+  //   } else {
+  //     echo "error";
+  //   }
+  // }
 
 
   //stamp sign untuk tug 4 penerimaan marketplace berita acara

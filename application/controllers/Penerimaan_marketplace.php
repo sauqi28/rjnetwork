@@ -160,6 +160,7 @@ class Penerimaan_marketplace extends CI_Controller
 			redirect(base_url('penerimaan_marketplace/index'));
 		}
 	}
+	//ok
 
 	public function merge_document()
 	{

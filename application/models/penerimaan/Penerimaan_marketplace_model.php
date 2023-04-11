@@ -16,7 +16,7 @@ class Penerimaan_marketplace_model extends CI_Model
       return $query->result_array();
     }
 
-    $this->db->select('a.*,b.fullname, a.spk_number,
+    $this->db->select('a.*,b.fullname, 
                        DATE_FORMAT(a.tug3_unsigned_upload_time, "%d %M %Y | %H:%i:%s WIB") AS tug3_unsigned_upload_time_formatted, 
                        DATE_FORMAT(a.tug3_karantina_unsigned_upload_time, "%d %M %Y | %H:%i:%s WIB") AS tug3_karantina_unsigned_upload_time_formatted, 
                        DATE_FORMAT(a.tug4_unsigned_upload_time, "%d %M %Y | %H:%i:%s WIB") AS tug4_unsigned_upload_time_formatted, 

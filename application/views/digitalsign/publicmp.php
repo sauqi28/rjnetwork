@@ -126,6 +126,7 @@
 
                   <div class="row">
                     <div class="col-lg-12">
+                      <span> Refresh browser apabila dokumen pdf tidak tampil</span></br>
 
 
 

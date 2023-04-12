@@ -176,7 +176,7 @@ class Penerimaan_marketplace extends CI_Controller
 				$folder_name . '/' . $data_penerimaan->tug3_unsigned_file
 			];
 
-			$output_filename = 'Penerimaan_Marketplace_' . $data_penerimaan->spk_number . '.pdf';
+			$output_filename = $data_penerimaan->spk_number . "-" . $data_penerimaan->pabrikan . '.pdf';
 			$this->pdf_merger->merge_pdfs($files_to_merge, $output_filename);
 		} else {
 			show_404();

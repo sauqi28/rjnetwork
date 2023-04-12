@@ -91,10 +91,10 @@
                              <div class="collapse " id="sidebarAnalytics">
                                  <ul class="nav flex-column">
                                      <li class="nav-item">
-                                         <a class="nav-link" href="<?php echo base_url('/penerimaan_sap_pengadaan'); ?>">Pengadaan</a>
+                                         <a class="nav-link" href="<?php echo base_url('/penerimaan_sap'); ?>">Pengadaan</a>
                                      </li><!--end nav-item-->
                                      <li class="nav-item">
-                                         <a href="<?php echo base_url('/penerimaan_sap_retur'); ?>" class="nav-link ">Retur Pekerjaan</a>
+                                         <a href="<?php echo base_url('/penerimaan_sap_return'); ?>" class="nav-link ">Retur</a>
                                      </li><!--end nav-item-->
                                      <li class="nav-item">
                                          <a href="<?php echo base_url('/penerimaan_sap_intracompany'); ?>" class="nav-link ">Intracompany</a>
@@ -103,6 +103,8 @@
                                  </ul><!--end nav-->
                              </div><!--end sidebarAnalytics-->
                          </li><!--end nav-item-->
+
+
                          <li class="nav-item">
                              <a class="nav-link" href="<?php echo base_url('/penerimaan_marketplace'); ?>"><i class="ti ti-calendar menu-icon"></i><span>Penerimaan Marketplace</span></a>
                          </li>

@@ -437,6 +437,7 @@ class Penerimaan_marketplace extends CI_Controller
 	}
 
 
+
 	public function edit($id)
 	{
 		$data['user'] = $this->Penerimaan_marketplace_model->get_penerimaan_marketplace_view($id);
@@ -473,6 +474,7 @@ class Penerimaan_marketplace extends CI_Controller
 		}
 	}
 
+
 	public function verify()
 	{
 		$key = $this->uri->segment(3);
@@ -482,6 +484,7 @@ class Penerimaan_marketplace extends CI_Controller
 		$this->session->set_flashdata('status', 'success');
 		redirect(base_url('penerimaan_marketplace/view/' . $key));
 	}
+
 
 
 	public function generate_token($length)
@@ -506,6 +509,7 @@ class Penerimaan_marketplace extends CI_Controller
 		$this->session->set_flashdata('status', 'success');
 		redirect(base_url('penerimaan_marketplace/view/' . $key));
 	}
+
 
 	public function update_status()
 	{

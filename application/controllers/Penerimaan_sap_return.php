@@ -5,7 +5,7 @@ class Penerimaan_sap_return extends CI_Controller
 {
 	private $title, $subtitle;
 
-
+	//ok
 	public function __construct()
 	{
 		parent::__construct();

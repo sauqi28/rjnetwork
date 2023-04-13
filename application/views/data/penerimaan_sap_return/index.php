@@ -21,7 +21,7 @@
           </div>
           <!--end page-title-box-->
         </div>
-        <!--end col-->
+        <!--end col--->
       </div>
       <div class="row">
         <div class="col-12">

@@ -226,6 +226,8 @@ class Penerimaan_sap_model extends CI_Model
   }
 
 
+
+
   public function save_file_tug4($id, $filename, $folder_path)
   {
 
@@ -329,6 +331,17 @@ class Penerimaan_sap_model extends CI_Model
       $this->db->insert('data_queue_sign', $data);
     }
   }
+
+  public function search_materials($search)
+  {
+    $this->db->like('material_number', $search, 'both');
+    $this->db->or_like('material_description', $search, 'both');
+    $query = $this->db->get('mst_materials');
+    return $query->result_array();
+  }
+
+
+
 
   // public function process_sign($key, $token, $formid, $note)
   // {

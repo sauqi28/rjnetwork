@@ -24,6 +24,23 @@ class Penerimaan_sap extends CI_Controller
 		}
 	}
 
+
+	public function search_materials()
+	{
+		$search = $this->input->get('q');
+		$materials = $this->Penerimaan_sap_model->search_materials($search);
+		$results = [];
+		foreach ($materials as $material) {
+			$results[] = [
+				'id' => $material['id'],
+				'number' => $material['material_number'], // Tambahkan baris ini
+				'text' => $material['material_description']
+			];
+		}
+		echo json_encode($results);
+	}
+
+
 	// public function index()
 	// {
 	// 	$data['users'] = $this->Penerimaan_sap_model->get_penerimaan_sap();
@@ -141,7 +158,7 @@ class Penerimaan_sap extends CI_Controller
 
 	public function create()
 	{
-		$this->form_validation->set_rules('spk_number', 'spk_number', 'trim|required|is_unique[data_penerimaan_sap.spk_number]');
+		$this->form_validation->set_rules('spk_number', 'spk_number', 'trim|required|is_unique[data_penerimaan_sap_return.spk_number]');
 		$this->form_validation->set_rules('pabrikan', 'pabrikan', 'trim|required');
 		$this->form_validation->set_rules('material', 'material', 'trim|required');
 		$this->form_validation->set_rules('tgl_penerimaan', 'tgl_penerimaan', 'trim|required');

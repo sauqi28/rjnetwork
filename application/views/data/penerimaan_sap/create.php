@@ -1,7 +1,11 @@
 <?php $this->load->view('project/element/header'); ?>
 <?php $this->load->view('project/element/sidebar'); ?>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<!-- memuat jQuery dari server jQuery CDN -->
+
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
@@ -87,7 +91,7 @@
                 <div class="col-lg-6">
 
 
-                  <form action="<?= site_url('penerimaan_sap_return/create'); ?>" method="post">
+                  <form action="<?= site_url('penerimaan_sap/create'); ?>" method="post">
                     <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
 
                     <div class="mb-3 row">
@@ -109,8 +113,12 @@
                     <div class="mb-3 row">
                       <label for="material" class="col-sm-2 col-form-label text-end">Material</label>
                       <div class="col-sm-10">
-                        <input class="form-control <?php echo (form_error('material') != "") ? 'is-invalid' : ''; ?>" type="text" name="material" required value="<?= set_value('material'); ?>" id="material" autocomplete="off">
-                        <?php echo form_error('material', '<div class="invalid-feedback">', '</div>'); ?>
+                        <!-- <input class="form-control <?php echo (form_error('material') != "") ? 'is-invalid' : ''; ?>" type="text" name="material" required value="<?= set_value('material'); ?>" id="material" autocomplete="off">
+                        <input type="hidden" name="material_id" id="material_id"> -->
+
+                        <!-- <select id="materials" name="materials[]" multiple="multiple" style="width: 100%;">
+                        </select> -->
+
                       </div>
                     </div>
 
@@ -122,12 +130,14 @@
                       </div>
                     </div>
 
+
                     <div class="mb-3 row">
                       <div class="col-sm-10 offset-sm-2">
                         <input type="submit" value="Tambah Penerimaan" class="btn btn-primary">
                       </div>
                     </div>
                   </form>
+
 
 
                 </div>
@@ -143,6 +153,34 @@
       </div>
 
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <!-- <script>
+      $(document).ready(function() {
+        $('#materials').select2({
+          placeholder: 'Select materials',
+          ajax: {
+            url: '<?php echo site_url('penerimaan_sap/search_materials'); ?>',
+            dataType: 'json',
+            delay: 250,
+            processResults: function(data) {
+              return {
+                results: data.map(function(material) {
+                  return {
+                    id: material.id,
+                    number: material.number,
+                    description: material.description,
+                    text: material.text + ' (' + material.number + ')'
+                  };
+                })
+              };
+            }
+          },
+          minimumInputLength: 1
+        });
+      });
+    </script> -->
+
 
     <script>
       $(document).ready(function() {

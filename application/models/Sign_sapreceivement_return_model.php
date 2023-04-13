@@ -181,10 +181,14 @@ class Sign_sapreceivement_return_model extends CI_Model
           }
         }
       }
+      if ($this->db->affected_rows() > 0) {
+        return 'Success';
+      } else {
+        return 'Error';
+      }
 
 
       //jika sequence 1-7
-
 
     } else if ($id_form == 8) { // jika form tug3 karantina
       $this->db->set('approved', 1);

@@ -2,7 +2,7 @@
     <li class="nav-item ">
       <a class="nav-link mdi mdi-format-list-bulleted-type <?php if ($navbar == "penerimaan_sap") {
                                                               echo "active";
-                                                            } ?>" href="<?php echo base_url('penerimaan_sap/'); ?>">Daftar Penerimaan Marketplace</a>
+                                                            } ?>" href="<?php echo base_url('penerimaan_sap/'); ?>">Daftar Penerimaan SAP Pengadaan</a>
     </li>
 
     <li class="nav-item">

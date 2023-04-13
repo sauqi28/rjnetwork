@@ -87,7 +87,7 @@
                 <div class="col-lg-6">
 
 
-                  <form action="<?= site_url('penerimaan_sap/create'); ?>" method="post">
+                  <form action="<?= site_url('penerimaan_sap_return/create'); ?>" method="post">
                     <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
 
                     <div class="mb-3 row">

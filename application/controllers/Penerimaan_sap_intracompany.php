@@ -136,7 +136,7 @@ class Penerimaan_sap_intracompany extends CI_Controller
 		$data['user_roles'] = $this->Penerimaan_sap_intracompany_model->get_all_roles();
 		$data['user_category'] = $this->Penerimaan_sap_intracompany_model->get_all_category();
 		$data['percentage'] = $this->Penerimaan_sap_intracompany_model->get_percentage($id);
-		$this->load->view('data/Penerimaan_sap_intracompany/view', $data);
+		$this->load->view('data/penerimaan_sap_intracompany/view', $data);
 	}
 
 	public function create()
@@ -152,7 +152,7 @@ class Penerimaan_sap_intracompany extends CI_Controller
 			$data['navbar'] = "Penerimaan_sap_intracompany_add";
 			// $this->session->set_flashdata('message', 'Oooops!!! Something Wrong');
 			// $this->session->set_flashdata('status', 'error');
-			$this->load->view('data/Penerimaan_sap_intracompany/create', $data);
+			$this->load->view('data/penerimaan_sap_intracompany/create', $data);
 		} else {
 			$this->Penerimaan_sap_intracompany_model->create_penerimaan();
 			$this->session->set_flashdata('message', 'Penerimaan SAP berhasil ditambahkan');
@@ -201,7 +201,7 @@ class Penerimaan_sap_intracompany extends CI_Controller
 				$data['title'] = $this->title;
 				$data['subtitle'] = $this->subtitle;
 				$data['navbar'] = "";
-				$this->load->view('data/Penerimaan_sap_intracompany/view_pdf', $data);
+				$this->load->view('data/penerimaan_sap_intracompany/view_pdf', $data);
 			} else {
 				show_404();
 			}

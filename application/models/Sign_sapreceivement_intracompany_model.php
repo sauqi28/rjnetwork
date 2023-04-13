@@ -267,7 +267,7 @@ class Sign_sapreceivement_intracompany_model extends CI_Model
       } else {
         return 'Error';
       }
-    } else if ($id_form == 3) {
+    } else if ($id_form == 12) {
 
       $this->db->set('approved', 1);
       $this->db->set('approved_time', $approved_time);

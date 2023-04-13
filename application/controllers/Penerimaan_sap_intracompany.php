@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Penerimaan_sap_intracompany extends CI_Controller
+class penerimaan_sap_intracompany extends CI_Controller
 {
 	private $title, $subtitle;
 
@@ -10,7 +10,7 @@ class Penerimaan_sap_intracompany extends CI_Controller
 	{
 		parent::__construct();
 
-		$this->load->model('penerimaan/Penerimaan_sap_intracompany_model');
+		$this->load->model('penerimaan/penerimaan_sap_intracompany_model');
 		$this->load->helper('url_helper');
 		$this->load->library('form_validation');
 		$this->load->library('pagination');
@@ -26,7 +26,7 @@ class Penerimaan_sap_intracompany extends CI_Controller
 
 	// public function index()
 	// {
-	// 	$data['users'] = $this->Penerimaan_sap_intracompany_model->get_Penerimaan_sap_intracompany();
+	// 	$data['users'] = $this->penerimaan_sap_intracompany_model->get_penerimaan_sap_intracompany();
 	// 	$this->load->view('data/user/index', $data);
 	// }
 
@@ -35,8 +35,8 @@ class Penerimaan_sap_intracompany extends CI_Controller
 		$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 		$search = $this->input->get('search');
 
-		$config['base_url'] = site_url('Penerimaan_sap_intracompany/index');
-		$config['total_rows'] = $this->Penerimaan_sap_intracompany_model->get_Penerimaan_sap_intracompany_count($search);
+		$config['base_url'] = site_url('penerimaan_sap_intracompany/index');
+		$config['total_rows'] = $this->penerimaan_sap_intracompany_model->get_penerimaan_sap_intracompany_count($search);
 		$config['per_page'] = 10;
 		$config['uri_segment'] = 3;
 		$config['reuse_query_string'] = TRUE;
@@ -62,11 +62,11 @@ class Penerimaan_sap_intracompany extends CI_Controller
 
 
 
-		$data['users'] = $this->Penerimaan_sap_intracompany_model->get_Penerimaan_sap_intracompany($config['per_page'], $page, $search);
+		$data['users'] = $this->penerimaan_sap_intracompany_model->get_penerimaan_sap_intracompany($config['per_page'], $page, $search);
 		$data['pagination'] = $this->pagination->create_links();
 		$data['title'] = $this->title;
 		$data['subtitle'] = $this->subtitle;
-		$data['navbar'] = "Penerimaan_sap_intracompany";
+		$data['navbar'] = "penerimaan_sap_intracompany";
 
 		$this->load->view('data/penerimaan_sap_intracompany/index', $data);
 	}
@@ -76,8 +76,8 @@ class Penerimaan_sap_intracompany extends CI_Controller
 		$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 		$search = $this->input->get('search');
 
-		$config['base_url'] = site_url('Penerimaan_sap_intracompany/index');
-		$config['total_rows'] = $this->Penerimaan_sap_intracompany_model->get_Penerimaan_sap_intracompany_count_nonaktif($search);
+		$config['base_url'] = site_url('penerimaan_sap_intracompany/index');
+		$config['total_rows'] = $this->penerimaan_sap_intracompany_model->get_penerimaan_sap_intracompany_count_nonaktif($search);
 		$config['per_page'] = 10;
 		$config['uri_segment'] = 3;
 		$config['reuse_query_string'] = TRUE;
@@ -103,26 +103,26 @@ class Penerimaan_sap_intracompany extends CI_Controller
 
 
 
-		$data['users'] = $this->Penerimaan_sap_intracompany_model->get_Penerimaan_sap_intracompany_nonaktif($config['per_page'], $page, $search);
+		$data['users'] = $this->penerimaan_sap_intracompany_model->get_penerimaan_sap_intracompany_nonaktif($config['per_page'], $page, $search);
 		$data['pagination'] = $this->pagination->create_links();
 		$data['title'] = $this->title;
 		$data['subtitle'] = $this->subtitle;
-		$data['navbar'] = "Penerimaan_sap_intracompany_nonaktif";
+		$data['navbar'] = "penerimaan_sap_intracompany_nonaktif";
 
 		$this->load->view('data/user/user_nonaktif', $data);
 	}
 
 	public function view($id = NULL)
 	{
-		$data['user'] = $this->Penerimaan_sap_intracompany_model->get_Penerimaan_sap_intracompany_view($id);
+		$data['user'] = $this->penerimaan_sap_intracompany_model->get_penerimaan_sap_intracompany_view($id);
 
-		$data['get_sign_data_tug4'] = $this->Penerimaan_sap_intracompany_model->get_sign_data($id, 10);
-		$data['get_sign_data_tug3k'] = $this->Penerimaan_sap_intracompany_model->get_sign_data($id, 11);
-		$data['get_sign_data_tug3'] = $this->Penerimaan_sap_intracompany_model->get_sign_data($id, 12);
+		$data['get_sign_data_tug4'] = $this->penerimaan_sap_intracompany_model->get_sign_data($id, 10);
+		$data['get_sign_data_tug3k'] = $this->penerimaan_sap_intracompany_model->get_sign_data($id, 11);
+		$data['get_sign_data_tug3'] = $this->penerimaan_sap_intracompany_model->get_sign_data($id, 12);
 		//data approval berdasarkan form signature dengan id 1
-		$data['tug4'] = $this->Penerimaan_sap_intracompany_model->get_form_approval(10);
-		$data['tug3k'] = $this->Penerimaan_sap_intracompany_model->get_form_approval(11);
-		$data['tug3'] = $this->Penerimaan_sap_intracompany_model->get_form_approval(12);
+		$data['tug4'] = $this->penerimaan_sap_intracompany_model->get_form_approval(10);
+		$data['tug3k'] = $this->penerimaan_sap_intracompany_model->get_form_approval(11);
+		$data['tug3'] = $this->penerimaan_sap_intracompany_model->get_form_approval(12);
 		// var_dump($data);
 
 		if (empty($data['user'])) {
@@ -132,10 +132,10 @@ class Penerimaan_sap_intracompany extends CI_Controller
 		$data['title'] = $this->title;
 		$data['subtitle'] = $this->subtitle;
 		$data['navbar'] = "";
-		$data['user_positions'] = $this->Penerimaan_sap_intracompany_model->get_all_positions();
-		$data['user_roles'] = $this->Penerimaan_sap_intracompany_model->get_all_roles();
-		$data['user_category'] = $this->Penerimaan_sap_intracompany_model->get_all_category();
-		$data['percentage'] = $this->Penerimaan_sap_intracompany_model->get_percentage($id);
+		$data['user_positions'] = $this->penerimaan_sap_intracompany_model->get_all_positions();
+		$data['user_roles'] = $this->penerimaan_sap_intracompany_model->get_all_roles();
+		$data['user_category'] = $this->penerimaan_sap_intracompany_model->get_all_category();
+		$data['percentage'] = $this->penerimaan_sap_intracompany_model->get_percentage($id);
 		$this->load->view('data/penerimaan_sap_intracompany/view', $data);
 	}
 
@@ -149,15 +149,15 @@ class Penerimaan_sap_intracompany extends CI_Controller
 		if ($this->form_validation->run() === FALSE) {
 			$data['title'] = $this->title;
 			$data['subtitle'] = $this->subtitle;
-			$data['navbar'] = "Penerimaan_sap_intracompany_add";
+			$data['navbar'] = "penerimaan_sap_intracompany_add";
 			// $this->session->set_flashdata('message', 'Oooops!!! Something Wrong');
 			// $this->session->set_flashdata('status', 'error');
 			$this->load->view('data/penerimaan_sap_intracompany/create', $data);
 		} else {
-			$this->Penerimaan_sap_intracompany_model->create_penerimaan();
+			$this->penerimaan_sap_intracompany_model->create_penerimaan();
 			$this->session->set_flashdata('message', 'Penerimaan SAP berhasil ditambahkan');
 			$this->session->set_flashdata('status', 'success');
-			redirect(base_url('Penerimaan_sap_intracompany/index'));
+			redirect(base_url('penerimaan_sap_intracompany/index'));
 		}
 	}
 	//ok
@@ -166,7 +166,7 @@ class Penerimaan_sap_intracompany extends CI_Controller
 	{
 		$key = $this->uri->segment(3);
 		$this->load->library('Pdf_merger');
-		$data_penerimaan = $this->Penerimaan_sap_intracompany_model->merge_document($key);
+		$data_penerimaan = $this->penerimaan_sap_intracompany_model->merge_document($key);
 
 		if ($data_penerimaan) {
 			$folder_name = $data_penerimaan->folder_name;
@@ -176,7 +176,7 @@ class Penerimaan_sap_intracompany extends CI_Controller
 				$folder_name . '/' . $data_penerimaan->tug3_unsigned_file
 			];
 
-			$output_filename = 'Penerimaan_sap_intracompany_' . $data_penerimaan->spk_number . '.pdf';
+			$output_filename = 'penerimaan_sap_intracompany_' . $data_penerimaan->spk_number . '.pdf';
 			$this->pdf_merger->merge_pdfs($files_to_merge, $output_filename);
 		} else {
 			show_404();
@@ -187,9 +187,9 @@ class Penerimaan_sap_intracompany extends CI_Controller
 
 	public function view_pdf($filename)
 	{
-		$pdf_file_tug4 = $this->Penerimaan_sap_intracompany_model->get_pdf_file($filename, 'tug4');
-		$pdf_file_tug3k = $this->Penerimaan_sap_intracompany_model->get_pdf_file($filename, 'tug3k');
-		$pdf_file_tug3 = $this->Penerimaan_sap_intracompany_model->get_pdf_file($filename, 'tug3');
+		$pdf_file_tug4 = $this->penerimaan_sap_intracompany_model->get_pdf_file($filename, 'tug4');
+		$pdf_file_tug3k = $this->penerimaan_sap_intracompany_model->get_pdf_file($filename, 'tug3k');
+		$pdf_file_tug3 = $this->penerimaan_sap_intracompany_model->get_pdf_file($filename, 'tug3');
 
 		if ($pdf_file_tug4 or $pdf_file_tug3k or $pdf_file_tug3) {
 
@@ -252,13 +252,13 @@ class Penerimaan_sap_intracompany extends CI_Controller
 			rename($old_path, $new_path);
 
 			// Simpan nama file ke database
-			$this->Penerimaan_sap_intracompany_model->save_file_tug4($id, $new_name, $folder_path);
+			$this->penerimaan_sap_intracompany_model->save_file_tug4($id, $new_name, $folder_path);
 
 			// Set pesan sukses sebagai flashdata
 			$this->session->set_flashdata('message', 'TUG 4 SAP berhasil diupload');
 			$this->session->set_flashdata('status', 'success');
 			// Redirect ke halaman view
-			redirect('Penerimaan_sap_intracompany/view/' . $id);
+			redirect('penerimaan_sap_intracompany/view/' . $id);
 		} else {
 			// Jika gagal, tampilkan pesan error
 			$this->session->set_flashdata('message', $this->upload->display_errors());
@@ -267,7 +267,7 @@ class Penerimaan_sap_intracompany extends CI_Controller
 			$this->session->set_flashdata('status', 'error');
 
 			// Redirect ke halaman view
-			redirect('Penerimaan_sap_intracompany/view/' . $id);
+			redirect('penerimaan_sap_intracompany/view/' . $id);
 		}
 	}
 
@@ -313,13 +313,13 @@ class Penerimaan_sap_intracompany extends CI_Controller
 			rename($old_path, $new_path);
 
 			// Simpan nama file ke database
-			$this->Penerimaan_sap_intracompany_model->save_file_tug3k($id, $new_name, $folder_path);
+			$this->penerimaan_sap_intracompany_model->save_file_tug3k($id, $new_name, $folder_path);
 
 			// Set pesan sukses sebagai flashdata
 			$this->session->set_flashdata('message', 'TUG 3 Karantina SAP berhasil diupload');
 			$this->session->set_flashdata('status', 'success');
 			// Redirect ke halaman view
-			redirect('Penerimaan_sap_intracompany/view/' . $id);
+			redirect('penerimaan_sap_intracompany/view/' . $id);
 		} else {
 			// Jika gagal, tampilkan pesan error
 			$this->session->set_flashdata('message', $this->upload->display_errors());
@@ -328,7 +328,7 @@ class Penerimaan_sap_intracompany extends CI_Controller
 			$this->session->set_flashdata('status', 'error');
 
 			// Redirect ke halaman view
-			redirect('Penerimaan_sap_intracompany/view/' . $id);
+			redirect('penerimaan_sap_intracompany/view/' . $id);
 		}
 	}
 
@@ -374,13 +374,13 @@ class Penerimaan_sap_intracompany extends CI_Controller
 			rename($old_path, $new_path);
 
 			// Simpan nama file ke database
-			$this->Penerimaan_sap_intracompany_model->save_file_tug3($id, $new_name, $folder_path);
+			$this->penerimaan_sap_intracompany_model->save_file_tug3($id, $new_name, $folder_path);
 
 			// Set pesan sukses sebagai flashdata
 			$this->session->set_flashdata('message', 'TUG 3 Persediaan SAP berhasil diupload');
 			$this->session->set_flashdata('status', 'success');
 			// Redirect ke halaman view
-			redirect('Penerimaan_sap_intracompany/view/' . $id);
+			redirect('penerimaan_sap_intracompany/view/' . $id);
 		} else {
 			// Jika gagal, tampilkan pesan error
 			$this->session->set_flashdata('message', $this->upload->display_errors());
@@ -389,7 +389,7 @@ class Penerimaan_sap_intracompany extends CI_Controller
 			$this->session->set_flashdata('status', 'error');
 
 			// Redirect ke halaman view
-			redirect('Penerimaan_sap_intracompany/view/' . $id);
+			redirect('penerimaan_sap_intracompany/view/' . $id);
 		}
 	}
 
@@ -397,7 +397,7 @@ class Penerimaan_sap_intracompany extends CI_Controller
 	public function send_message()
 	{
 		$token = $this->input->post('token');
-		$data = $this->Penerimaan_sap_intracompany_model->get_data_queue_sign($token);
+		$data = $this->penerimaan_sap_intracompany_model->get_data_queue_sign($token);
 		if ($data) {
 			$pesan = "*Yth. Bpk/Ibu " . $data->fullname . "* \n" . "Mohon untuk menandatangani dokumen: \n*" . $data->title . "*\n_" . $data->desc . "_\nPada link berikut ini:   \n\n" . base_url($data->uri . $data->token) . "\n\nLink Expired dalam 2x24 Jam";
 
@@ -405,7 +405,7 @@ class Penerimaan_sap_intracompany extends CI_Controller
 			$res = $this->wa_api->send_message($data->no_wa, $pesan);
 
 			if ($res == 'success') {
-				$this->Penerimaan_sap_intracompany_model->update_data_queue_sign($token);
+				$this->penerimaan_sap_intracompany_model->update_data_queue_sign($token);
 				echo $res;
 			} else {
 				echo $res;
@@ -418,17 +418,17 @@ class Penerimaan_sap_intracompany extends CI_Controller
 
 	public function send_message_bulk($token)
 	{
-		$data = $this->Penerimaan_sap_intracompany_model->get_data_queue_sign($token);
+		$data = $this->penerimaan_sap_intracompany_model->get_data_queue_sign($token);
 		if ($data) {
 			// $pesan = "Yth. Bpk/Ibu " . $data->fullname . "\n" . "Mohon untuk menandatangani dokumen *" . $data->title . "* _" . $data->desc . "_ Pada link berikut ini:   " . $data->uri . $data->token;
 			$pesan = "Hello,\nThis is a multi-line message.\nThank you.";
 
-			$this->Penerimaan_sap_intracompany_model->update_data_queue_sign($token);
+			$this->penerimaan_sap_intracompany_model->update_data_queue_sign($token);
 			$res = $this->wa_api->send_message($data->no_wa, $pesan);
 			$this->session->set_flashdata('message', 'Berhasil dikirim');
 			$this->session->set_flashdata('status', 'success');
 			// Redirect ke halaman view
-			redirect('Penerimaan_sap_intracompany/view/' . $token);
+			redirect('penerimaan_sap_intracompany/view/' . $token);
 
 			// tambahkan baris kode di atas sesuai dengan kolom-kolom yang ingin ditampilkan
 		} else {
@@ -439,7 +439,7 @@ class Penerimaan_sap_intracompany extends CI_Controller
 
 	public function edit($id)
 	{
-		$data['user'] = $this->Penerimaan_sap_intracompany_model->get_Penerimaan_sap_intracompany_view($id);
+		$data['user'] = $this->penerimaan_sap_intracompany_model->get_penerimaan_sap_intracompany_view($id);
 
 		if (empty($data['user'])) {
 			show_404();
@@ -458,18 +458,18 @@ class Penerimaan_sap_intracompany extends CI_Controller
 		if ($this->form_validation->run() === FALSE) {
 			$data['title'] = $this->title;
 			$data['subtitle'] = $this->subtitle;
-			$data['navbar'] = "Penerimaan_sap_intracompany_add";
-			$data['user_positions'] = $this->Penerimaan_sap_intracompany_model->get_all_positions();
-			$data['user_roles'] = $this->Penerimaan_sap_intracompany_model->get_all_roles();
-			$data['user_category'] = $this->Penerimaan_sap_intracompany_model->get_all_category();
+			$data['navbar'] = "penerimaan_sap_intracompany_add";
+			$data['user_positions'] = $this->penerimaan_sap_intracompany_model->get_all_positions();
+			$data['user_roles'] = $this->penerimaan_sap_intracompany_model->get_all_roles();
+			$data['user_category'] = $this->penerimaan_sap_intracompany_model->get_all_category();
 			$this->load->view('data/user/edit', $data);
 		} else {
-			$this->Penerimaan_sap_intracompany_model->update_user($id);
+			$this->penerimaan_sap_intracompany_model->update_user($id);
 			$this->session->set_flashdata('message', 'User berhasil di update');
 			$this->session->set_flashdata('status', 'success');
 			//$res = $this->wa_api->send_message($this->input->post('no_wa'), "user anda sudah diupdate");
 
-			redirect(base_url('Penerimaan_sap_intracompany/index'));
+			redirect(base_url('penerimaan_sap_intracompany/index'));
 		}
 	}
 
@@ -477,10 +477,10 @@ class Penerimaan_sap_intracompany extends CI_Controller
 	{
 		$key = $this->uri->segment(3);
 		$token = $this->generate_token(32);
-		$this->Penerimaan_sap_intracompany_model->verify_document($key, $token);
+		$this->penerimaan_sap_intracompany_model->verify_document($key, $token);
 		$this->session->set_flashdata('message', 'Dokumen berhasil di verifikasi');
 		$this->session->set_flashdata('status', 'success');
-		redirect(base_url('Penerimaan_sap_intracompany/view/' . $key));
+		redirect(base_url('penerimaan_sap_intracompany/view/' . $key));
 	}
 
 
@@ -496,15 +496,15 @@ class Penerimaan_sap_intracompany extends CI_Controller
 	{
 		$key = $this->uri->segment(3);
 		$token = $this->generate_token(20);
-		$this->Penerimaan_sap_intracompany_model->sign_update($key);
+		$this->penerimaan_sap_intracompany_model->sign_update($key);
 		//process signature id 1 adalah id form nya statis
-		$this->Penerimaan_sap_intracompany_model->process_sign($key, $this->generate_token(20), 10, "TUG 4 (Berita Acara) Penerimaan SAP");
-		$this->Penerimaan_sap_intracompany_model->process_sign($key, $this->generate_token(20), 11, "TUG 3 (Karantina) Penerimaan SAP");
-		$this->Penerimaan_sap_intracompany_model->process_sign($key, $this->generate_token(20), 12, "TUG 3 (Persediaan) Penerimaan SAP");
+		$this->penerimaan_sap_intracompany_model->process_sign($key, $this->generate_token(20), 10, "TUG 4 (Berita Acara) Penerimaan SAP");
+		$this->penerimaan_sap_intracompany_model->process_sign($key, $this->generate_token(20), 11, "TUG 3 (Karantina) Penerimaan SAP");
+		$this->penerimaan_sap_intracompany_model->process_sign($key, $this->generate_token(20), 12, "TUG 3 (Persediaan) Penerimaan SAP");
 
 		$this->session->set_flashdata('message', 'Berhasil mengajukan tandatangan');
 		$this->session->set_flashdata('status', 'success');
-		redirect(base_url('Penerimaan_sap_intracompany/view/' . $key));
+		redirect(base_url('penerimaan_sap_intracompany/view/' . $key));
 	}
 
 	public function update_status()
@@ -513,19 +513,19 @@ class Penerimaan_sap_intracompany extends CI_Controller
 		$id = $this->uri->segment(4);
 
 		if ($status == 1) {
-			$this->Penerimaan_sap_intracompany_model->update_status($id, 'inactive');
+			$this->penerimaan_sap_intracompany_model->update_status($id, 'inactive');
 			$message = 'Berhasil dinonaktifkan';
 
 			$this->session->set_flashdata('message', $message);
 			$this->session->set_flashdata('status', 'success');
-			redirect(base_url('Penerimaan_sap_intracompany/index'), 'refresh');
+			redirect(base_url('penerimaan_sap_intracompany/index'), 'refresh');
 		} elseif ($status == 2) {
-			$this->Penerimaan_sap_intracompany_model->update_status($id, 'active');
+			$this->penerimaan_sap_intracompany_model->update_status($id, 'active');
 			$message = 'Berhasil diaktifkan';
 
 			$this->session->set_flashdata('message', $message);
 			$this->session->set_flashdata('status', 'success');
-			redirect(base_url('Penerimaan_sap_intracompany/non_aktif'), 'refresh');
+			redirect(base_url('penerimaan_sap_intracompany/non_aktif'), 'refresh');
 		} else {
 			show_404();
 		}

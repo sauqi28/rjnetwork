@@ -68,7 +68,7 @@ class Penerimaan_sap_intracompany extends CI_Controller
 		$data['subtitle'] = $this->subtitle;
 		$data['navbar'] = "Penerimaan_sap_intracompany";
 
-		$this->load->view('data/Penerimaan_sap_intracompany/index', $data);
+		$this->load->view('data/penerimaan_sap_intracompany/index', $data);
 	}
 
 	public function non_aktif()

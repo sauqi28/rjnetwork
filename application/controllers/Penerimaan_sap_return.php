@@ -141,7 +141,7 @@ class Penerimaan_sap_return extends CI_Controller
 
 	public function create()
 	{
-		$this->form_validation->set_rules('spk_number', 'spk_number', 'trim|required|is_unique[data_Penerimaan_sap_return.spk_number]');
+		$this->form_validation->set_rules('spk_number', 'spk_number', 'trim|required|is_unique[data_penerimaan_sap_return.spk_number]');
 		$this->form_validation->set_rules('pabrikan', 'pabrikan', 'trim|required');
 		$this->form_validation->set_rules('material', 'material', 'trim|required');
 		$this->form_validation->set_rules('tgl_penerimaan', 'tgl_penerimaan', 'trim|required');

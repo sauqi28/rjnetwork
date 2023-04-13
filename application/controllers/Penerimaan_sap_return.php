@@ -35,7 +35,7 @@ class Penerimaan_sap_return extends CI_Controller
 		$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 		$search = $this->input->get('search');
 
-		$config['base_url'] = site_url('Penerimaan_sap_return/index');
+		$config['base_url'] = site_url('penerimaan_sap_return/index');
 		$config['total_rows'] = $this->Penerimaan_sap_return_model->get_Penerimaan_sap_return_count($search);
 		$config['per_page'] = 10;
 		$config['uri_segment'] = 3;
@@ -68,7 +68,7 @@ class Penerimaan_sap_return extends CI_Controller
 		$data['subtitle'] = $this->subtitle;
 		$data['navbar'] = "Penerimaan_sap_return";
 
-		$this->load->view('data/Penerimaan_sap_return/index', $data);
+		$this->load->view('data/penerimaan_sap_return/index', $data);
 	}
 
 	public function non_aktif()
@@ -76,7 +76,7 @@ class Penerimaan_sap_return extends CI_Controller
 		$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 		$search = $this->input->get('search');
 
-		$config['base_url'] = site_url('Penerimaan_sap_return/index');
+		$config['base_url'] = site_url('penerimaan_sap_return/index');
 		$config['total_rows'] = $this->Penerimaan_sap_return_model->get_Penerimaan_sap_return_count_nonaktif($search);
 		$config['per_page'] = 10;
 		$config['uri_segment'] = 3;
@@ -107,7 +107,7 @@ class Penerimaan_sap_return extends CI_Controller
 		$data['pagination'] = $this->pagination->create_links();
 		$data['title'] = $this->title;
 		$data['subtitle'] = $this->subtitle;
-		$data['navbar'] = "Penerimaan_sap_return_nonaktif";
+		$data['navbar'] = "penerimaan_sap_return_nonaktif";
 
 		$this->load->view('data/user/user_nonaktif', $data);
 	}
@@ -136,7 +136,7 @@ class Penerimaan_sap_return extends CI_Controller
 		$data['user_roles'] = $this->Penerimaan_sap_return_model->get_all_roles();
 		$data['user_category'] = $this->Penerimaan_sap_return_model->get_all_category();
 		$data['percentage'] = $this->Penerimaan_sap_return_model->get_percentage($id);
-		$this->load->view('data/Penerimaan_sap_return/view', $data);
+		$this->load->view('data/penerimaan_sap_return/view', $data);
 	}
 
 	public function create()
@@ -149,15 +149,15 @@ class Penerimaan_sap_return extends CI_Controller
 		if ($this->form_validation->run() === FALSE) {
 			$data['title'] = $this->title;
 			$data['subtitle'] = $this->subtitle;
-			$data['navbar'] = "Penerimaan_sap_return_add";
+			$data['navbar'] = "penerimaan_sap_return_add";
 			// $this->session->set_flashdata('message', 'Oooops!!! Something Wrong');
 			// $this->session->set_flashdata('status', 'error');
-			$this->load->view('data/Penerimaan_sap_return/create', $data);
+			$this->load->view('data/penerimaan_sap_return/create', $data);
 		} else {
 			$this->Penerimaan_sap_return_model->create_penerimaan();
 			$this->session->set_flashdata('message', 'Penerimaan SAP berhasil ditambahkan');
 			$this->session->set_flashdata('status', 'success');
-			redirect(base_url('Penerimaan_sap_return/index'));
+			redirect(base_url('penerimaan_sap_return/index'));
 		}
 	}
 	//ok
@@ -201,7 +201,7 @@ class Penerimaan_sap_return extends CI_Controller
 				$data['title'] = $this->title;
 				$data['subtitle'] = $this->subtitle;
 				$data['navbar'] = "";
-				$this->load->view('data/Penerimaan_sap_return/view_pdf', $data);
+				$this->load->view('data/penerimaan_sap_return/view_pdf', $data);
 			} else {
 				show_404();
 			}
@@ -258,7 +258,7 @@ class Penerimaan_sap_return extends CI_Controller
 			$this->session->set_flashdata('message', 'TUG 4 SAP berhasil diupload');
 			$this->session->set_flashdata('status', 'success');
 			// Redirect ke halaman view
-			redirect('Penerimaan_sap_return/view/' . $id);
+			redirect('penerimaan_sap_return/view/' . $id);
 		} else {
 			// Jika gagal, tampilkan pesan error
 			$this->session->set_flashdata('message', $this->upload->display_errors());
@@ -267,7 +267,7 @@ class Penerimaan_sap_return extends CI_Controller
 			$this->session->set_flashdata('status', 'error');
 
 			// Redirect ke halaman view
-			redirect('Penerimaan_sap_return/view/' . $id);
+			redirect('penerimaan_sap_return/view/' . $id);
 		}
 	}
 
@@ -319,7 +319,7 @@ class Penerimaan_sap_return extends CI_Controller
 			$this->session->set_flashdata('message', 'TUG 3 Karantina SAP berhasil diupload');
 			$this->session->set_flashdata('status', 'success');
 			// Redirect ke halaman view
-			redirect('Penerimaan_sap_return/view/' . $id);
+			redirect('penerimaan_sap_return/view/' . $id);
 		} else {
 			// Jika gagal, tampilkan pesan error
 			$this->session->set_flashdata('message', $this->upload->display_errors());
@@ -328,7 +328,7 @@ class Penerimaan_sap_return extends CI_Controller
 			$this->session->set_flashdata('status', 'error');
 
 			// Redirect ke halaman view
-			redirect('Penerimaan_sap_return/view/' . $id);
+			redirect('penerimaan_sap_return/view/' . $id);
 		}
 	}
 
@@ -380,7 +380,7 @@ class Penerimaan_sap_return extends CI_Controller
 			$this->session->set_flashdata('message', 'TUG 3 Persediaan SAP berhasil diupload');
 			$this->session->set_flashdata('status', 'success');
 			// Redirect ke halaman view
-			redirect('Penerimaan_sap_return/view/' . $id);
+			redirect('penerimaan_sap_return/view/' . $id);
 		} else {
 			// Jika gagal, tampilkan pesan error
 			$this->session->set_flashdata('message', $this->upload->display_errors());
@@ -389,7 +389,7 @@ class Penerimaan_sap_return extends CI_Controller
 			$this->session->set_flashdata('status', 'error');
 
 			// Redirect ke halaman view
-			redirect('Penerimaan_sap_return/view/' . $id);
+			redirect('penerimaan_sap_return/view/' . $id);
 		}
 	}
 
@@ -428,7 +428,7 @@ class Penerimaan_sap_return extends CI_Controller
 			$this->session->set_flashdata('message', 'Berhasil dikirim');
 			$this->session->set_flashdata('status', 'success');
 			// Redirect ke halaman view
-			redirect('Penerimaan_sap_return/view/' . $token);
+			redirect('penerimaan_sap_return/view/' . $token);
 
 			// tambahkan baris kode di atas sesuai dengan kolom-kolom yang ingin ditampilkan
 		} else {

@@ -217,16 +217,7 @@
                     </div><!--end col-->
                     <div class="col-md-6">
 
-                      <ul class="list-inline mb-0 contact-detail float-end">
-                        <li class="list-inline-item">
-                          <div class="ps-3">
-                            <!-- <i class="mdi mdi-web"></i> -->
-                            <p class="text-muted mb-0"> <button type="button" id="approveAllButton" class="btn btn-danger btn-square  btn-lg btn-outline-dashed">Approve All Documents</button></p>
-                            <!-- <p class="text-muted mb-0">PLN UP3 Teluknaga</p> -->
-                          </div>
-                        </li>
 
-                      </ul>
                     </div><!--end col-->
                   </div><!--end row-->
                 </div><!--end card-body-->
@@ -336,6 +327,10 @@
                     <hr>
 
                   <div class="table-responsive">
+                    <div class="float-end d-print-none mt-2 mt-md-0">
+                      <button type="button" id="approveAllButton" class="btn btn-danger btn-square  btn-sm btn-outline-dashed">Approve All Documents</button>
+                    </div>
+                    <br>
                     <table class="table table-bordered mb-0 table-centered" id="staging">
                       <thead>
                         <tr>

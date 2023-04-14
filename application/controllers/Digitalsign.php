@@ -253,7 +253,7 @@ class Digitalsign extends CI_Controller
 
           $signed_at = strtoupper($new_date_format);
           $signed_position_x = $position_x + 16;
-          $signed_position_y = $position_y - 2;
+          $signed_position_y = $position_y - 10;
           $signed_color = [128, 128, 128]; // RGB color code for gray
         }
 

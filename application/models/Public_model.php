@@ -39,6 +39,7 @@ class Public_model extends CI_Model
     $this->db->where('users_id', $users_id);
     $this->db->group_start();
     $this->db->where('request_status', 2);
+    $this->db->or_where('request_status', 1);
     // $this->db->or_where('request_status', 1);
     $this->db->group_end();
     $this->db->group_start();

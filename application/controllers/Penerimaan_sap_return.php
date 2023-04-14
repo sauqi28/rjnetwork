@@ -241,7 +241,7 @@ class Penerimaan_sap_return extends CI_Controller
 			$spk_number = str_replace($invalid_chars, '', $spk_number);
 
 			// Buat direktori jika belum ada
-			$folder_path = './uploads/sapreturn/' . str_replace('/', '-', $spk_number);
+			$folder_path = './uploads/sapreturn/' . str_replace('/', '-', $spk_number) . $id;
 			if (!is_dir($folder_path)) {
 				mkdir($folder_path, 0777, true);
 			}
@@ -302,7 +302,7 @@ class Penerimaan_sap_return extends CI_Controller
 			$spk_number = str_replace($invalid_chars, '', $spk_number);
 
 			// Buat direktori jika belum ada
-			$folder_path = './uploads/sapreturn/' . str_replace('/', '-', $spk_number);
+			$folder_path = './uploads/sapreturn/' . str_replace('/', '-', $spk_number) . $id;
 			if (!is_dir($folder_path)) {
 				mkdir($folder_path, 0777, true);
 			}
@@ -363,7 +363,7 @@ class Penerimaan_sap_return extends CI_Controller
 			$spk_number = str_replace($invalid_chars, '', $spk_number);
 
 			// Buat direktori jika belum ada
-			$folder_path = './uploads/sapreturn/' . str_replace('/', '-', $spk_number);
+			$folder_path = './uploads/sapreturn/' . str_replace('/', '-', $spk_number) . $id;
 			if (!is_dir($folder_path)) {
 				mkdir($folder_path, 0777, true);
 			}

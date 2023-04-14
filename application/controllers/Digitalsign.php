@@ -243,8 +243,8 @@ class Digitalsign extends CI_Controller
           // $position_y = 209; // Y position in points
 
           $signer_name = strtoupper($data->fullname);
-          $signer_position_x = $position_x + (18 * 3);
-          $signer_position_y = $position_y + (2.7 * 4);
+          $signer_position_x = $position_x + (18 * 2);
+          $signer_position_y = $position_y + (2.7 * 6);
           $signer_color = [128, 128, 128]; // RGB color code for gray
 
           $date = date('Y-m-d H:i:s');
@@ -252,8 +252,8 @@ class Digitalsign extends CI_Controller
           $new_date_format = strftime('%e %B %Y %H:%M:%S WIB', $timestamp);
 
           $signed_at = strtoupper($new_date_format);
-          $signed_position_x = $position_x + (18 * 3);
-          $signed_position_y = $position_y + (4 * 4);
+          $signed_position_x = $position_x + (18 * 2);
+          $signed_position_y = $position_y + (3 * 6);
           $signed_color = [128, 128, 128]; // RGB color code for gray
         }
 
@@ -262,7 +262,7 @@ class Digitalsign extends CI_Controller
         // Add the image
         $pdf->Image($image_file, $position_x, $position_y, $image_width, $image_height);
         if ($data->form_id == 1 && $data->sequence == 8) {
-          $pdf->Image($stamp_file, $position_x - 10, $position_y + 7, 35, 35);
+          $pdf->Image($stamp_file, $position_x - 10, $position_y + 3, 35, 35);
         }
         // Set font
         $pdf->SetFont('helvetica', 'B', 3);

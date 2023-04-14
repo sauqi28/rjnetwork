@@ -336,13 +336,14 @@
                     <hr>
 
                   <div class="table-responsive">
-                    <div class="float-end d-print-none mt-2 mt-md-0">
-                      <button type="button" id="approveAllButton" class="btn btn-danger btn-square  btn-sm btn-outline-dashed">Approve All Documents</button>
-                    </div>
-                    <br>
+                    <?php if (!empty($data_queue_sign)) : ?>
+                      <div class="float-end d-print-none mt-2 mt-md-0">
+                        <button type="button" id="approveAllButton" class="btn btn-danger btn-square  btn-sm btn-outline-dashed">Approve All Documents</button>
+                      </div>
+                      <br>
+                    <?php endif ?>
                     <table class="table table-bordered mb-0 table-centered" id="staging">
                       <thead>
-                        <tr>
                         <tr>
                           <th hidden></th>
                           <th hidden></th>
@@ -353,14 +354,11 @@
                           <th>Tgl</th>
                           <th>Lihat</th>
                         </tr>
-
-                        </tr>
                       </thead>
                       <tbody>
                         <?php foreach ($data_queue_sign as $queue) : ?>
                           <?php $i = 1;
                           foreach ($queue->details as $detail) : ?>
-
                             <tr>
                               <td hidden class="id"><span hidden><?= $detail->id ?></span></td>
                               <td hidden class="token"><span hidden><?= $detail->token ?></span></td>
@@ -377,8 +375,8 @@
                         <?php endforeach ?>
                       </tbody>
                     </table>
-
                   </div><!--end card-body-->
+
 
                   <hr>
 

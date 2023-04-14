@@ -327,180 +327,178 @@
                     <hr>
 
                   <div class="table-responsive">
-                    <div class="float-end d-print-none mt-2 mt-md-0">
-                      <button type="button" id="approveAllButton" class="btn btn-danger btn-square  btn-sm btn-outline-dashed">Approve All Documents</button>
-                    </div>
-                    <br>
-                    <table class="table table-bordered mb-0 table-centered" id="staging">
-                      <thead>
-                        <tr>
-                        <tr>
-                          <th hidden></th>
-                          <th hidden></th>
-                          <th hidden></th>
-                          <th>Judul</th>
-                          <th>Desc</th>
-                          <th>Status</th>
-                          <th>Tgl</th>
-                          <th>Lihat</th>
-                        </tr>
-
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php foreach ($data_queue_sign as $queue) : ?>
-                          <?php $i = 1;
-                          foreach ($queue->details as $detail) : ?>
-
-                            <tr>
-                              <td hidden class="id"><span hidden><?= $detail->id ?></span></td>
-                              <td hidden class="token"><span hidden><?= $detail->token ?></span></td>
-                              <td hidden class="uri"><span hidden><?= $detail->uri ?></span></td>
-                              <td><?= $detail->title ?></td>
-                              <td><?= $detail->desc ?></td>
-                              <td><span class="badge rounded-pill bg-info">Menunggu Approval</span></td>
-                              <td><?= $detail->request_at ?></td>
-                              <td>
-                                <div class="float-end d-print-none mt-2 mt-md-0"><a href="<?= base_url($detail->uri) . $detail->token ?>" class="btn btn-warning btn-xs">Detail</a></div>
-                              </td>
-                            </tr>
+                    <div class="table-responsive">
+                      <?php if (!empty($data_queue_sign)) : ?>
+                        <div class="float-end d-print-none mt-2 mt-md-0">
+                          <button type="button" id="approveAllButton" class="btn btn-danger btn-square  btn-sm btn-outline-dashed">Approve All Documents</button>
+                        </div>
+                        <br>
+                      <?php endif ?>
+                      <table class="table table-bordered mb-0 table-centered" id="staging">
+                        <thead>
+                          <tr>
+                            <th hidden></th>
+                            <th hidden></th>
+                            <th hidden></th>
+                            <th>Judul</th>
+                            <th>Desc</th>
+                            <th>Status</th>
+                            <th>Tgl</th>
+                            <th>Lihat</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php foreach ($data_queue_sign as $queue) : ?>
+                            <?php $i = 1;
+                            foreach ($queue->details as $detail) : ?>
+                              <tr>
+                                <td hidden class="id"><span hidden><?= $detail->id ?></span></td>
+                                <td hidden class="token"><span hidden><?= $detail->token ?></span></td>
+                                <td hidden class="uri"><span hidden><?= $detail->uri ?></span></td>
+                                <td><?= $detail->title ?></td>
+                                <td><?= $detail->desc ?></td>
+                                <td><span class="badge rounded-pill bg-info">Menunggu Approval</span></td>
+                                <td><?= $detail->request_at ?></td>
+                                <td>
+                                  <div class="float-end d-print-none mt-2 mt-md-0"><a href="<?= base_url($detail->uri) . $detail->token ?>" class="btn btn-warning btn-xs">Detail</a></div>
+                                </td>
+                              </tr>
+                            <?php endforeach ?>
                           <?php endforeach ?>
-                        <?php endforeach ?>
-                      </tbody>
-                    </table>
+                        </tbody>
+                      </table>
+                    </div><!--end 
 
-                  </div><!--end card-body-->
-
-                  <hr>
+                    <hr>
 
 
 
 
 
-                </div><!--end card-->
-              </div><!--end col-->
-            </div><!--end row-->
-          </div><!--end card-body-->
-        </div><!--end col-->
-      </div><!--end row-->
-    </div><!--end container-->
+                  </div><!--end card-->
+                  </div><!--end col-->
+                </div><!--end row-->
+              </div><!--end card-body-->
+            </div><!--end col-->
+          </div><!--end row-->
+        </div><!--end container-->
 
 
 
-    <script>
-      function showConfirmation(var1, var2, var3) {
-        Swal.fire({
-          title: 'Yakin dokumen ' + var2,
-          text: "akan ditandatangani secara digital?",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Tandatangani Sekarang'
-        }).then(function(result) {
-          if (result.isConfirmed) {
-            $.post("<?php echo base_url('signsapreceivement/single_approve'); ?>", {
-              id: var1,
-              token: var3,
-              <?php echo $this->security->get_csrf_token_name(); ?>: "<?php echo $this->security->get_csrf_hash(); ?>"
-            }, function(response) {
-              console.log(response.trim()) // Add this line to log the response
-              if (response.trim() == 'Success') {
-                Swal.fire({
-                  icon: 'success',
-                  title: 'Berhasil',
-                  text: 'Dokumen telah ditandatangani secara digital'
-                }).then((result) => {
-                  if (result.isConfirmed) {
-                    window.location.reload();
+        <script>
+          function showConfirmation(var1, var2, var3) {
+            Swal.fire({
+              title: 'Yakin dokumen ' + var2,
+              text: "akan ditandatangani secara digital?",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Tandatangani Sekarang'
+            }).then(function(result) {
+              if (result.isConfirmed) {
+                $.post("<?php echo base_url('signsapreceivement/single_approve'); ?>", {
+                  id: var1,
+                  token: var3,
+                  <?php echo $this->security->get_csrf_token_name(); ?>: "<?php echo $this->security->get_csrf_hash(); ?>"
+                }, function(response) {
+                  console.log(response.trim()) // Add this line to log the response
+                  if (response.trim() == 'Success') {
+                    Swal.fire({
+                      icon: 'success',
+                      title: 'Berhasil',
+                      text: 'Dokumen telah ditandatangani secara digital'
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        window.location.reload();
+                      }
+                    });
+                  } else {
+                    Swal.fire({
+                      icon: 'warning',
+                      title: 'Gagal',
+                      text: 'Penandatanganan Untuk Dokumen Ini Dalam Proses Development'
+                    });
                   }
-                });
-              } else {
-                Swal.fire({
-                  icon: 'warning',
-                  title: 'Gagal',
-                  text: 'Penandatanganan Untuk Dokumen Ini Dalam Proses Development'
                 });
               }
             });
           }
-        });
-      }
 
 
 
 
-      // Fungsi untuk mendapatkan nilai cookie
-      function getCookie(name) {
-        var value = '; ' + document.cookie;
-        var parts = value.split('; ' + name + '=');
-        if (parts.length == 2) {
-          return parts.pop().split(';').shift();
-        }
-      }
-
-
-      function updateTime() {
-        var options = {
-          timeZone: "Asia/Jakarta",
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-          hour: "numeric",
-          minute: "numeric",
-          second: "numeric",
-          hour12: false
-        };
-        var serverTime = new Date().toLocaleString("en-US", options); // 8 April 2023, 11:00:00
-
-        // Tampilkan waktu server di halaman
-        document.getElementById("server-time").innerHTML = serverTime;
-      }
-
-      // Panggil updateTime() setiap 1 detik
-      setInterval(updateTime, 1000);
-    </script>
-
-
-    <script>
-      function verify_user(id) {
-        $.ajax({
-          url: "<?php echo base_url('publicaccess/verify_wa'); ?>",
-          type: "POST",
-          data: {
-            id: id,
-            <?php echo $this->security->get_csrf_token_name(); ?>: "<?php echo $this->security->get_csrf_hash(); ?>"
-          },
-          dataType: "json",
-          success: function(response) {
-            if (response.success) {
-              Swal.fire({
-                title: "Sukses",
-                text: "Verifikasi berhasil!",
-                icon: "success",
-                timer: 3000,
-                showConfirmButton: false,
-              }).then(() => {
-                // Setelah beberapa detik, arahkan ke halaman login
-                window.location.href = "<?php echo base_url('auth/login'); ?>";
-              });
-            } else {
-              Swal.fire({
-                title: "Gagal",
-                text: "Verifikasi gagal!",
-                icon: "error",
-              });
+          // Fungsi untuk mendapatkan nilai cookie
+          function getCookie(name) {
+            var value = '; ' + document.cookie;
+            var parts = value.split('; ' + name + '=');
+            if (parts.length == 2) {
+              return parts.pop().split(';').shift();
             }
           }
-        });
-      }
-    </script>
 
 
-    <!-- App js -->
+          function updateTime() {
+            var options = {
+              timeZone: "Asia/Jakarta",
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+              hour: "numeric",
+              minute: "numeric",
+              second: "numeric",
+              hour12: false
+            };
+            var serverTime = new Date().toLocaleString("en-US", options); // 8 April 2023, 11:00:00
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="<?php echo base_url('assets/js/app.js'); ?>"></script>
+            // Tampilkan waktu server di halaman
+            document.getElementById("server-time").innerHTML = serverTime;
+          }
+
+          // Panggil updateTime() setiap 1 detik
+          setInterval(updateTime, 1000);
+        </script>
+
+
+        <script>
+          function verify_user(id) {
+            $.ajax({
+              url: "<?php echo base_url('publicaccess/verify_wa'); ?>",
+              type: "POST",
+              data: {
+                id: id,
+                <?php echo $this->security->get_csrf_token_name(); ?>: "<?php echo $this->security->get_csrf_hash(); ?>"
+              },
+              dataType: "json",
+              success: function(response) {
+                if (response.success) {
+                  Swal.fire({
+                    title: "Sukses",
+                    text: "Verifikasi berhasil!",
+                    icon: "success",
+                    timer: 3000,
+                    showConfirmButton: false,
+                  }).then(() => {
+                    // Setelah beberapa detik, arahkan ke halaman login
+                    window.location.href = "<?php echo base_url('auth/login'); ?>";
+                  });
+                } else {
+                  Swal.fire({
+                    title: "Gagal",
+                    text: "Verifikasi gagal!",
+                    icon: "error",
+                  });
+                }
+              }
+            });
+          }
+        </script>
+
+
+        <!-- App js -->
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="<?php echo base_url('assets/js/app.js'); ?>"></script>
 
 </body>
 

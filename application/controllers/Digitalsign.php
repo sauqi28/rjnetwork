@@ -262,7 +262,7 @@ class Digitalsign extends CI_Controller
         // Add the image
         $pdf->Image($image_file, $position_x, $position_y, $image_width, $image_height);
         if ($data->form_id == 1 && $data->sequence == 8) {
-          $pdf->Image($stamp_file, $position_x - 15, $position_y - 5, 35, 35);
+          $pdf->Image($stamp_file, $position_x - 10, $position_y + 10, 35, 35);
         }
         // Set font
         $pdf->SetFont('helvetica', 'B', 3);

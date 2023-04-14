@@ -26,6 +26,17 @@ class Signsap3receivement extends CI_Controller
 
     // Cek apakah data ditemukan dan validasi token_wa_created
     if ($user_data && $this->_is_token_valid($user_data->request_at)) {
+
+      $this->load->model('Public_model');
+
+      // Ambil data dari tabel data_queue_sign
+
+      $user_data->data_queue_sign = $this->Public_model->get_queue_sign($token);
+
+      foreach ($user_data->data_queue_sign as $queue) {
+        $queue->details = $this->Public_model->get_queue_sign_by_users_id($queue->users_id);
+      }
+
       // Kirim data ke view
 
       $this->load->view('digitalsign/publicsapintracompany', $user_data);

@@ -21,6 +21,58 @@ class Public_model extends CI_Model
     }
   }
 
+
+  public function get_queue_sign($token)
+  {
+    $this->db->select('*');
+    $this->db->from('data_queue_sign');
+    $this->db->where('token', $token);
+    $query = $this->db->get();
+
+    return $query->result();
+  }
+
+  public function get_queue_sign_by_users_id($users_id)
+  {
+    $this->db->select('*');
+    $this->db->from('data_queue_sign');
+    $this->db->where('users_id', $users_id);
+    $this->db->group_start();
+    $this->db->where('request_status', 2);
+    // $this->db->or_where('request_status', 1);
+    $this->db->group_end();
+    $this->db->group_start();
+    $this->db->where('approved', null);
+    $this->db->or_where('approved', 0);
+    $this->db->group_end();
+    $this->db->order_by('request_at', 'ASC');
+    $query = $this->db->get();
+
+    return $query->result();
+  }
+
+  public function get_queue_sign_by_users_id_stag($users_id)
+  {
+    $this->db->select('*');
+    $this->db->from('data_queue_sign');
+    $this->db->where('users_id', $users_id);
+    $this->db->group_start();
+    $this->db->where('request_status', 0);
+    // $this->db->or_where('request_status', 1);
+    $this->db->group_end();
+    $this->db->group_start();
+    $this->db->where('approved', null);
+    $this->db->or_where('approved', 0);
+    $this->db->group_end();
+    $this->db->order_by('request_at', 'ASC');
+    $query = $this->db->get();
+
+    return $query->result();
+  }
+
+
+
+
   public function get_data_signature_by_token($token)
   {
     $this->db->select('*');

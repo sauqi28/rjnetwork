@@ -253,7 +253,7 @@ class Digitalsign extends CI_Controller
 
           $signed_at = strtoupper($new_date_format);
           $signed_position_x = $position_x + 16;
-          $signed_position_y = $position_y - 60;
+          $signed_position_y = $position_y + 4;
           $signed_color = [128, 128, 128]; // RGB color code for gray
         }
 
@@ -262,7 +262,7 @@ class Digitalsign extends CI_Controller
         // Add the image
         $pdf->Image($image_file, $position_x, $position_y, $image_width, $image_height);
         if ($data->form_id == 1 && $data->sequence == 8) {
-          $pdf->Image($stamp_file, $position_x - 3, $position_y, 36, 36);
+          $pdf->Image($stamp_file, $position_x - 8, $position_y - 50, 37, 37);
         }
         // Set font
         $pdf->SetFont('helvetica', 'B', 3);

@@ -113,8 +113,8 @@
                     <div class="mb-3 row">
                       <label for="material" class="col-sm-2 col-form-label text-end">Material</label>
                       <div class="col-sm-10">
-                        <!-- <input class="form-control <?php echo (form_error('material') != "") ? 'is-invalid' : ''; ?>" type="text" name="material" required value="<?= set_value('material'); ?>" id="material" autocomplete="off">
-                        <input type="hidden" name="material_id" id="material_id"> -->
+                        <input class="form-control <?php echo (form_error('material') != "") ? 'is-invalid' : ''; ?>" type="text" name="material" required value="<?= set_value('material'); ?>" id="material" autocomplete="off">
+                        <input type="hidden" name="material_id" id="material_id">
 
                         <!-- <select id="materials" name="materials[]" multiple="multiple" style="width: 100%;">
                         </select> -->

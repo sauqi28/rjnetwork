@@ -19,6 +19,15 @@
   <link href="<?php echo base_url('assets/css/icons.min.css'); ?>" rel="stylesheet" type="text/css" />
   <link href="<?php echo base_url('assets/css/app.min.css'); ?>" rel="stylesheet" type="text/css" />
   <style>
+    /* Import Ubuntu font from Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+    /* Use Ubuntu font for all elements */
+    * {
+      font-family: 'Ubuntu', sans-serif;
+    }
+  </style>
+  <style>
     .table thead {
       background-color: #FFFFFF;
       /* warna putih */

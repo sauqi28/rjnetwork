@@ -515,9 +515,9 @@ class Penerimaan_sap extends CI_Controller
 		$token = $this->generate_token(20);
 		$this->Penerimaan_sap_model->sign_update($key);
 		//process signature id 1 adalah id form nya statis
-		$this->Penerimaan_sap_model->process_sign($key, $this->generate_token(20), 4, "TUG 4 (Berita Acara) Penerimaan SAP");
-		$this->Penerimaan_sap_model->process_sign($key, $this->generate_token(20), 5, "TUG 3 (Karantina) Penerimaan SAP");
-		$this->Penerimaan_sap_model->process_sign($key, $this->generate_token(20), 6, "TUG 3 (Persediaan) Penerimaan SAP");
+		$this->Penerimaan_sap_model->process_sign($key, $this->generate_token(20), 4, "TUG 4 (Berita Acara) Penerimaan SAP - Pengadaan");
+		$this->Penerimaan_sap_model->process_sign($key, $this->generate_token(20), 5, "TUG 3 (Karantina) Penerimaan SAP - Pengadaan");
+		$this->Penerimaan_sap_model->process_sign($key, $this->generate_token(20), 6, "TUG 3 (Persediaan) Penerimaan SAP - Pengadaan");
 
 		$this->session->set_flashdata('message', 'Berhasil mengajukan tandatangan');
 		$this->session->set_flashdata('status', 'success');

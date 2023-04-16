@@ -242,8 +242,8 @@ class Signsapreceivement extends CI_Controller
           // $position_y = 209; // Y position in points
 
           $signer_name = strtoupper($data->fullname);
-          $signer_position_x = $position_x + 10;
-          $signer_position_y = $position_y + 2.7;
+          $signer_position_x = $position_x + 25;
+          $signer_position_y = $position_y + (2.7 + 5);
           $signer_color = [128, 128, 128]; // RGB color code for gray
 
           $date = date('Y-m-d H:i:s');
@@ -251,8 +251,8 @@ class Signsapreceivement extends CI_Controller
           $new_date_format = strftime('%e %B %Y %H:%M:%S WIB', $timestamp);
 
           $signed_at = strtoupper($new_date_format);
-          $signed_position_x = $position_x + 10;
-          $signed_position_y = $position_y + 4;
+          $signed_position_x = $position_x + 25;
+          $signed_position_y = $position_y + (4 + 5);
           $signed_color = [128, 128, 128]; // RGB color code for gray
         }
 
@@ -261,7 +261,7 @@ class Signsapreceivement extends CI_Controller
         // Add the image
         $pdf->Image($image_file, $position_x, $position_y, $image_width, $image_height);
         if ($data->form_id == 4 && $data->sequence == 8) {
-          $pdf->Image($stamp_file, $position_x - 10, $position_y - 3, 34, 34);
+          $pdf->Image($stamp_file, $position_x - 15, $position_y - 3, 34, 34);
         }
         // Set font
         $pdf->SetFont('helvetica', 'B', 3);

@@ -48,8 +48,13 @@ class Signsap2receivement extends CI_Controller
 
   public function single_approve()
   {
-    $id = $this->input->post('id');
-    $token = $this->input->post('token');
+    if ($this->uri->segment(3) && $this->uri->segment(4)) {
+      $id = $this->uri->segment(3);
+      $token = $this->uri->segment(4);
+    } else {
+      $id = $this->input->post('id');
+      $token = $this->input->post('token');
+    }
 
     $data = $this->Sign_sapreceivement_return_model->get_data_by_token($token);
 

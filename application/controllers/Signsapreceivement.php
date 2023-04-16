@@ -48,10 +48,17 @@ class Signsapreceivement extends CI_Controller
 
   public function single_approve()
   {
-    $id = $this->input->post('id');
-    $token = $this->input->post('token');
+    if ($this->uri->segment(3) && $this->uri->segment(4)) {
+      $id = $this->uri->segment(3);
+      $token = $this->uri->segment(4);
+    } else {
+      $id = $this->input->post('id');
+      $token = $this->input->post('token');
+    }
 
     $data = $this->Sign_sapreceivement_procurement_model->get_data_by_token($token);
+    var_dump($data);
+    exit(0);
 
     //formulir untuk tug 4 marketplace
     if ($data->form_id == 4) {

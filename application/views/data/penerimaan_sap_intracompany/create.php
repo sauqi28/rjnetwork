@@ -99,7 +99,7 @@
                     </div>
 
                     <div class="mb-3 row">
-                      <label for="pabrikan" class="col-sm-2 col-form-label text-end">Pabrikan</label>
+                      <label for="pabrikan" class="col-sm-2 col-form-label text-end">Unit</label>
                       <div class="col-sm-10">
                         <input class="form-control <?php echo (form_error('pabrikan') != "") ? 'is-invalid' : ''; ?>" type="text" name="pabrikan" required value="<?= set_value('pabrikan'); ?>" id="pabrikan" autocomplete="off">
                         <?php echo form_error('pabrikan', '<div class="invalid-feedback">', '</div>'); ?>

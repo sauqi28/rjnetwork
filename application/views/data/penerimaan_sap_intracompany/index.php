@@ -97,7 +97,7 @@
                     <tr>
                       <th>No</th>
                       <th>No SPK</th>
-                      <th>Pabrikan</th>
+                      <th>Unit</th>
                       <th>Material</th>
                       <th>Tgl Penerimaan</th>
                       <th class="text-end">Action</th>

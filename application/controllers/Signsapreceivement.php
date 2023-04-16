@@ -234,8 +234,8 @@ class Signsapreceivement extends CI_Controller
           $signed_color = [128, 128, 128]; // RGB color code for gray
 
         } else if ($data->form_id == 4 && $data->sequence == 8) { //manager
-          $image_width = (5 * 5.4); // Width in points (1 point = 1/72 inches)
-          $image_height = (3 * 5.4); // Height in points
+          $image_width = (5 * 12.4); // Width in points (1 point = 1/72 inches)
+          $image_height = (3 * 12.4); // Height in points
           $position_x = $data->x_sign; // X position in points
           $position_y = $data->y_sign; // Y position in points
           // $position_x = 135; // X position in points
@@ -261,7 +261,7 @@ class Signsapreceivement extends CI_Controller
         // Add the image
         $pdf->Image($image_file, $position_x, $position_y, $image_width, $image_height);
         if ($data->form_id == 4 && $data->sequence == 8) {
-          $pdf->Image($stamp_file, $position_x + 10, $position_y, 30, 30);
+          $pdf->Image($stamp_file, $position_x - 10, $position_y - 10, 36, 36);
         }
         // Set font
         $pdf->SetFont('helvetica', 'B', 3);

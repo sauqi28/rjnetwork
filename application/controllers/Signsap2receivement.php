@@ -103,6 +103,23 @@ class Signsap2receivement extends CI_Controller
     }
   }
 
+
+  public function background_approval()
+  {
+    $id = $this->input->post('id');
+    $token = $this->input->post('token');
+    $this->load->model('Public_model');
+
+    $result = $this->Public_model->background_approve($token);
+
+
+    if ($result == 'success') {
+      echo $result;
+    } else {
+      echo $result;
+    }
+  }
+
   //backup
   // public function single_approve()
   // {

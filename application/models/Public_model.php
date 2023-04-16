@@ -21,6 +21,22 @@ class Public_model extends CI_Model
     }
   }
 
+  public function background_approve($token)
+  {
+    $data = array(
+      'python_exec_request' => 1,
+      'python_exec_request_time' => date('Y-m-d H:i:s')
+    );
+
+    $this->db->where('token', $token);
+    $this->db->update('data_queue_sign', $data);
+    if ($this->db->affected_rows() > 0) {
+      return 'Success';
+    } else {
+      return 'Error';
+    }
+  }
+
 
   public function get_queue_sign($token)
   {

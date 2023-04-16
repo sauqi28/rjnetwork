@@ -111,7 +111,8 @@
               var uri = $(this).find('.uri').text();
 
               var uri_parts = uri.split('/');
-              uri_parts[2] = 'single_approve';
+              // uri_parts[2] = 'single_approve';
+              uri_parts[2] = 'background_approval';
               var new_uri = uri_parts.join('/');
 
               $.ajax({

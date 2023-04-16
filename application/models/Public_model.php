@@ -25,7 +25,7 @@ class Public_model extends CI_Model
   {
     $data = array(
       'python_exec_request' => 1,
-      'python_exec_request_time' => date('Y-m-d H:i:s')
+      'python_exec_request_time' => date('Y-m-d H:i:s', time() + rand(5, 45))
     );
 
     $this->db->where('token', $token);
@@ -36,6 +36,7 @@ class Public_model extends CI_Model
       return 'Error';
     }
   }
+
 
 
   public function get_queue_sign($token)

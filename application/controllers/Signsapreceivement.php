@@ -261,7 +261,7 @@ class Signsapreceivement extends CI_Controller
         // Add the image
         $pdf->Image($image_file, $position_x, $position_y, $image_width, $image_height);
         if ($data->form_id == 4 && $data->sequence == 8) {
-          $pdf->Image($stamp_file, $position_x - 25, $position_y + 10, 34, 34);
+          $pdf->Image($stamp_file, $position_x - 10, $position_y - 3, 34, 34);
         }
         // Set font
         $pdf->SetFont('helvetica', 'B', 3);

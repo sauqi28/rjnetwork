@@ -25,6 +25,7 @@ class Public_model extends CI_Model
   {
     $data = array(
       'python_exec_request' => 1,
+      'approved' => 1,
       'python_exec_request_time' => date('Y-m-d H:i:s', time() + rand(5, 45))
     );
 

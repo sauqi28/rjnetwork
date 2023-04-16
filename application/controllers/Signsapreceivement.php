@@ -242,8 +242,8 @@ class Signsapreceivement extends CI_Controller
           // $position_y = 209; // Y position in points
 
           $signer_name = strtoupper($data->fullname);
-          $signer_position_x = $position_x + 25;
-          $signer_position_y = $position_y + (2.7 + 5);
+          $signer_position_x = $position_x + 30;
+          $signer_position_y = $position_y + (2.7 + 10);
           $signer_color = [128, 128, 128]; // RGB color code for gray
 
           $date = date('Y-m-d H:i:s');
@@ -251,8 +251,8 @@ class Signsapreceivement extends CI_Controller
           $new_date_format = strftime('%e %B %Y %H:%M:%S WIB', $timestamp);
 
           $signed_at = strtoupper($new_date_format);
-          $signed_position_x = $position_x + 25;
-          $signed_position_y = $position_y + (4 + 5);
+          $signed_position_x = $position_x + 30;
+          $signed_position_y = $position_y + (4 + 10);
           $signed_color = [128, 128, 128]; // RGB color code for gray
         }
 

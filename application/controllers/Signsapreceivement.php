@@ -57,8 +57,8 @@ class Signsapreceivement extends CI_Controller
     }
 
     $data = $this->Sign_sapreceivement_procurement_model->get_data_by_token($token);
-    var_dump($data);
-    exit(0);
+    // var_dump($data);
+    // exit(0);
 
     //formulir untuk tug 4 marketplace
     if ($data->form_id == 4) {

@@ -106,8 +106,9 @@
     $(document).ready(function() {
       const canvas = document.getElementById('signature-pad');
       const signaturePad = new SignaturePad(canvas, {
-        penColor: 'rgb(0, 0, 0)', // warna hitam
-        minWidth: 3, // ketebalan minimal 3
+        // penColor: 'rgb(0, 0, 0)', // warna hitam
+        penColor: 'rgb(0, 0, 255)', // warna biru
+        minWidth: 4, // ketebalan minimal 3
         velocityFilterWeight: 0.7 // kecepatan filter saat menggambar
       });
 

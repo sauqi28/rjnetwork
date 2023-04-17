@@ -313,10 +313,12 @@
                     <div class="col-lg-12 col-xl-4">
                       <div class="float-end d-print-none mt-2 mt-md-0">
                         <!-- <a href="javascript:window.print()" class="btn btn-info btn-sm">Print</a> -->
-                        <?php if ($approved != 1) { ?>
+                        <?php if ($approved == null or $approved == 0) { ?>
                           <a href="#" onclick="showConfirmation('<?php echo $id_sign; ?>','<?php echo $title; ?>','<?php echo $token; ?>')" class="btn btn-success btn-sm">Approve This Document</a>
-                          <a href="#" class="btn btn-secondary btn-sm">Reject</a> <?php } else {
+                          <a href="#" class="btn btn-secondary btn-sm">Reject</a> <?php } else if ($approved == 1) {
                                                                                   echo "Sudah Ditandatangani : " . $approved_time . "WIB";
+                                                                                } else if ($approved == 5) {
+                                                                                  echo "Proses Stamping TTD Digital : " . $python_exec_request_time . "WIB";
                                                                                 } ?>
                       </div>
                     </div><!--end col-->

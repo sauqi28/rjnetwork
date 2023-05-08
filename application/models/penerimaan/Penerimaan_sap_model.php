@@ -125,6 +125,7 @@ class Penerimaan_sap_model extends CI_Model
       $this->db->or_where("DATE_FORMAT(a.tgl_penerimaan, '%M') LIKE '%{$search}%'");
       $this->db->group_end();
     }
+    $this->db->order_by('a.id', 'DESC');
     $this->db->limit($limit, $start);
     $query = $this->db->get();
     $result = $query->result_array();
@@ -214,16 +215,34 @@ class Penerimaan_sap_model extends CI_Model
     // var_dump($tgl_penerimaan);
     // var_dump($tgl_penerimaan_sql);
     // exit(0);
+    $key = uniqid();
+    $array_data = explode(",", trim($this->input->post('pabrikan')));
     $data = array(
-      'key' => uniqid(),
+      'key' => $key,
       'spk_number' => trim($this->input->post('spk_number')),
-      'pabrikan' => trim($this->input->post('pabrikan')),
-      'material' => $this->input->post('material'),
+      'pabrikan' => $array_data[1],
+      'pabrikan_id' => $array_data[0],
+      // 'material' => $this->input->post('material'),
       'tgl_penerimaan' => $tgl_penerimaan_sql,
       'created_at' => date('Y-m-d H:i:s')
     );
-    return $this->db->insert('data_penerimaan_sap', $data);
+    $this->db->insert('data_penerimaan_sap', $data);
+
+    $materials = $this->input->post('material'); // mendapatkan array material dari form
+
+    foreach ($materials as $value) {
+      $data_tabel = array(
+        'key' => $key, // menyimpan nilai ke dalam array asosiatif
+        'id_material' => $value // menyimpan nilai ke dalam array asosiatif
+      );
+
+      $this->db->insert('data_penerimaan_material_sap', $data_tabel); // melakukan insert ke database
+    }
+
+    return true; // mengembalikan nilai true jika berhasil menyimpan ke database
+
   }
+
 
 
 
@@ -503,6 +522,18 @@ class Penerimaan_sap_model extends CI_Model
   }
 
 
+
+
+  public function get_pabrikan()
+  {
+    $query = $this->db->get('mst_vendors');
+    return $query->result();
+  }
+  public function get_material()
+  {
+    $query = $this->db->get('mst_materials');
+    return $query->result();
+  }
 
 
   public function get_all_positions()

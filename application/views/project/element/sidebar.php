@@ -108,6 +108,13 @@
                          <li class="nav-item">
                              <a class="nav-link" href="<?php echo base_url('/penerimaan_marketplace'); ?>"><i class="ti ti-calendar menu-icon"></i><span>Penerimaan Marketplace</span></a>
                          </li>
+                         <li class="nav-item">
+                             <a class="nav-link" href="<?php echo base_url('/bulk_approval_receivement'); ?>"><i class="ti ti-calendar menu-icon"></i><span>Manajemen Approval</span></a>
+                         </li>
+                         <li class="nav-item">
+                             <a class="nav-link" href="<?php echo base_url('/bulk_notification_receivement'); ?>"><i class="ti ti-calendar menu-icon"></i><span>Manajemen Notifikasi</span></a>
+                         </li>
+
 
                          <li class="menu-label mt-0 text-primary font-12 fw-semibold">M<span>aster</span><br><span class="font-10 text-secondary fw-normal">Data</span></li>
                          <li class="nav-item">

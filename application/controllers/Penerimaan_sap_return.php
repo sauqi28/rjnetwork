@@ -490,22 +490,51 @@ class Penerimaan_sap_return extends CI_Controller
 		$token = bin2hex($this->encryption->create_key($length));
 		return $token;
 	}
-
-
 	public function sign_document()
 	{
 		$key = $this->uri->segment(3);
-		$token = $this->generate_token(20);
-		$this->Penerimaan_sap_return_model->sign_update($key);
-		//process signature id 1 adalah id form nya statis
-		$this->Penerimaan_sap_return_model->process_sign($key, $this->generate_token(20), 7, "TUG 4 (Berita Acara) Penerimaan SAP - Retur");
-		$this->Penerimaan_sap_return_model->process_sign($key, $this->generate_token(20), 8, "TUG 3 (Karantina) Penerimaan SAP - Retur");
-		$this->Penerimaan_sap_return_model->process_sign($key, $this->generate_token(20), 9, "TUG 3 (Persediaan) Penerimaan SAP - Retur");
+		if ($key) {
+			$key = $this->uri->segment(3);
+			$token = $this->generate_token(20);
+			$this->Penerimaan_sap_return_model->sign_update($key);
+			//process signature id 1 adalah id form nya statis
+			$this->Penerimaan_sap_return_model->process_sign($key, $this->generate_token(20), 7, "TUG 4 (Berita Acara) Penerimaan SAP - Retur");
+			$this->Penerimaan_sap_return_model->process_sign($key, $this->generate_token(20), 8, "TUG 3 (Karantina) Penerimaan SAP - Retur");
+			$this->Penerimaan_sap_return_model->process_sign($key, $this->generate_token(20), 9, "TUG 3 (Persediaan) Penerimaan SAP - Retur");
 
-		$this->session->set_flashdata('message', 'Berhasil mengajukan tandatangan');
-		$this->session->set_flashdata('status', 'success');
-		redirect(base_url('Penerimaan_sap_return/view/' . $key));
+			$this->session->set_flashdata('message', 'Berhasil mengajukan tandatangan');
+			$this->session->set_flashdata('status', 'success');
+			redirect(base_url('Penerimaan_sap_return/view/' . $key));
+		} else {
+			$key = $this->input->post('key');
+			$token = $this->generate_token(20);
+			$this->Penerimaan_sap_return_model->sign_update($key);
+			//process signature id 1 adalah id form nya statis
+			$this->Penerimaan_sap_return_model->process_sign($key, $this->generate_token(20), 7, "TUG 4 (Berita Acara) Penerimaan SAP - Retur");
+			$this->Penerimaan_sap_return_model->process_sign($key, $this->generate_token(20), 8, "TUG 3 (Karantina) Penerimaan SAP - Retur");
+			$this->Penerimaan_sap_return_model->process_sign($key, $this->generate_token(20), 9, "TUG 3 (Persediaan) Penerimaan SAP - Retur");
+
+
+
+
+			echo "success";
+		}
 	}
+
+	// public function sign_document()
+	// {
+	// 	$key = $this->uri->segment(3);
+	// 	$token = $this->generate_token(20);
+	// 	$this->Penerimaan_sap_return_model->sign_update($key);
+	// 	//process signature id 1 adalah id form nya statis
+	// 	$this->Penerimaan_sap_return_model->process_sign($key, $this->generate_token(20), 7, "TUG 4 (Berita Acara) Penerimaan SAP - Retur");
+	// 	$this->Penerimaan_sap_return_model->process_sign($key, $this->generate_token(20), 8, "TUG 3 (Karantina) Penerimaan SAP - Retur");
+	// 	$this->Penerimaan_sap_return_model->process_sign($key, $this->generate_token(20), 9, "TUG 3 (Persediaan) Penerimaan SAP - Retur");
+
+	// 	$this->session->set_flashdata('message', 'Berhasil mengajukan tandatangan');
+	// 	$this->session->set_flashdata('status', 'success');
+	// 	redirect(base_url('Penerimaan_sap_return/view/' . $key));
+	// }
 
 	public function update_status()
 	{

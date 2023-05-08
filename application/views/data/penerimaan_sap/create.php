@@ -1,6 +1,7 @@
 <?php $this->load->view('project/element/header'); ?>
 <?php $this->load->view('project/element/sidebar'); ?>
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link href="<?php echo base_url('assets/plugins/select/selectr.min.css'); ?>" rel="stylesheet" type="text/css" />
 
 
 
@@ -102,22 +103,30 @@
                       </div>
                     </div>
 
+
                     <div class="mb-3 row">
                       <label for="pabrikan" class="col-sm-2 col-form-label text-end">Pabrikan</label>
                       <div class="col-sm-10">
-                        <input class="form-control <?php echo (form_error('pabrikan') != "") ? 'is-invalid' : ''; ?>" type="text" name="pabrikan" required value="<?= set_value('pabrikan'); ?>" id="pabrikan" autocomplete="off">
+                        <select class="form-select <?php echo (form_error('') != "") ? 'is-invalid' : ''; ?>" name="pabrikan" id="default">
+                          <option> Pilih Pabrikan </option>
+                          <?php foreach ($pabrikan as $position) : ?>
+
+                            <option value="<?= $position->id . ',' . $position->vendor_name ?>" <?= set_select('pabrikan', $position->id); ?>><?= $position->id . " | " . $position->vendor_name ?></option>
+                          <?php endforeach; ?>
+                        </select>
                         <?php echo form_error('pabrikan', '<div class="invalid-feedback">', '</div>'); ?>
                       </div>
                     </div>
 
+
+
+
+
                     <div class="mb-3 row">
                       <label for="material" class="col-sm-2 col-form-label text-end">Material</label>
                       <div class="col-sm-10">
-                        <input class="form-control <?php echo (form_error('material') != "") ? 'is-invalid' : ''; ?>" type="text" name="material" required value="<?= set_value('material'); ?>" id="material" autocomplete="off">
-                        <input type="hidden" name="material_id" id="material_id">
-
-                        <!-- <select id="materials" name="materials[]" multiple="multiple" style="width: 100%;">
-                        </select> -->
+                        <select id="materials" name="material[]" multiple="multiple" style="width: 100%;">
+                        </select>
 
                       </div>
                     </div>
@@ -155,10 +164,11 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <!-- <script>
+    <script src="<?php echo base_url('assets/plugins/select/selectr.min.js'); ?>"></script>
+    <script>
       $(document).ready(function() {
         $('#materials').select2({
-          placeholder: 'Select materials',
+          placeholder: 'Pilih Material',
           ajax: {
             url: '<?php echo site_url('penerimaan_sap/search_materials'); ?>',
             dataType: 'json',
@@ -179,7 +189,7 @@
           minimumInputLength: 1
         });
       });
-    </script> -->
+    </script>
 
 
     <script>
@@ -233,7 +243,7 @@
 
 
 
-
+    <script src="<?php echo base_url('assets/pages/forms-advanced.js'); ?>"></script>
     <?php $this->load->view('project/element/footer1'); ?>
   </div>
 

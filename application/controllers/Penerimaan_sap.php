@@ -54,7 +54,7 @@ class Penerimaan_sap extends CI_Controller
 
 		$config['base_url'] = site_url('penerimaan_sap/index');
 		$config['total_rows'] = $this->Penerimaan_sap_model->get_penerimaan_sap_count($search);
-		$config['per_page'] = 10;
+		$config['per_page'] = 30;
 		$config['uri_segment'] = 3;
 		$config['reuse_query_string'] = TRUE;
 
@@ -95,7 +95,7 @@ class Penerimaan_sap extends CI_Controller
 
 		$config['base_url'] = site_url('penerimaan_sap/index');
 		$config['total_rows'] = $this->Penerimaan_sap_model->get_penerimaan_sap_count_nonaktif($search);
-		$config['per_page'] = 10;
+		$config['per_page'] = 30;
 		$config['uri_segment'] = 3;
 		$config['reuse_query_string'] = TRUE;
 
@@ -158,19 +158,24 @@ class Penerimaan_sap extends CI_Controller
 
 	public function create()
 	{
-		$this->form_validation->set_rules('spk_number', 'spk_number', 'trim|required|is_unique[data_penerimaan_sap_return.spk_number]');
+		$this->form_validation->set_rules('spk_number', 'spk_number', 'trim|required');
 		$this->form_validation->set_rules('pabrikan', 'pabrikan', 'trim|required');
-		$this->form_validation->set_rules('material', 'material', 'trim|required');
+		// $this->form_validation->set_rules('material', 'material', 'trim|required');
 		$this->form_validation->set_rules('tgl_penerimaan', 'tgl_penerimaan', 'trim|required');
+
 
 		if ($this->form_validation->run() === FALSE) {
 			$data['title'] = $this->title;
 			$data['subtitle'] = $this->subtitle;
 			$data['navbar'] = "penerimaan_sap_add";
+			$data['pabrikan'] = $this->Penerimaan_sap_model->get_pabrikan();
+			$data['material'] = $this->Penerimaan_sap_model->get_material();
 			// $this->session->set_flashdata('message', 'Oooops!!! Something Wrong');
 			// $this->session->set_flashdata('status', 'error');
 			$this->load->view('data/penerimaan_sap/create', $data);
 		} else {
+			// var_dump($this->input->post('material'));
+			// exit(0);
 			$this->Penerimaan_sap_model->create_penerimaan();
 			$this->session->set_flashdata('message', 'Penerimaan SAP berhasil ditambahkan');
 			$this->session->set_flashdata('status', 'success');
@@ -508,21 +513,50 @@ class Penerimaan_sap extends CI_Controller
 		return $token;
 	}
 
-
 	public function sign_document()
 	{
 		$key = $this->uri->segment(3);
-		$token = $this->generate_token(20);
-		$this->Penerimaan_sap_model->sign_update($key);
-		//process signature id 1 adalah id form nya statis
-		$this->Penerimaan_sap_model->process_sign($key, $this->generate_token(20), 4, "TUG 4 (Berita Acara) Penerimaan SAP - Pengadaan");
-		$this->Penerimaan_sap_model->process_sign($key, $this->generate_token(20), 5, "TUG 3 (Karantina) Penerimaan SAP - Pengadaan");
-		$this->Penerimaan_sap_model->process_sign($key, $this->generate_token(20), 6, "TUG 3 (Persediaan) Penerimaan SAP - Pengadaan");
+		if ($key) {
+			$key = $this->uri->segment(3);
+			$token = $this->generate_token(20);
+			$this->Penerimaan_sap_model->sign_update($key);
+			//process signature id 1 adalah id form nya statis
+			$this->Penerimaan_sap_model->process_sign($key, $this->generate_token(20), 4, "TUG 4 (Berita Acara) Penerimaan SAP - Pengadaan");
+			$this->Penerimaan_sap_model->process_sign($key, $this->generate_token(20), 5, "TUG 3 (Karantina) Penerimaan SAP - Pengadaan");
+			$this->Penerimaan_sap_model->process_sign($key, $this->generate_token(20), 6, "TUG 3 (Persediaan) Penerimaan SAP - Pengadaan");
 
-		$this->session->set_flashdata('message', 'Berhasil mengajukan tandatangan');
-		$this->session->set_flashdata('status', 'success');
-		redirect(base_url('penerimaan_sap/view/' . $key));
+			$this->session->set_flashdata('message', 'Berhasil mengajukan tandatangan');
+			$this->session->set_flashdata('status', 'success');
+			redirect(base_url('penerimaan_sap/view/' . $key));
+		} else {
+			$key = $this->input->post('key');
+			$token = $this->generate_token(20);
+			$this->Penerimaan_sap_model->sign_update($key);
+			//process signature id 1 adalah id form nya statis
+			$this->Penerimaan_sap_model->process_sign($key, $this->generate_token(20), 4, "TUG 4 (Berita Acara) Penerimaan SAP - Pengadaan");
+			$this->Penerimaan_sap_model->process_sign($key, $this->generate_token(20), 5, "TUG 3 (Karantina) Penerimaan SAP - Pengadaan");
+			$this->Penerimaan_sap_model->process_sign($key, $this->generate_token(20), 6, "TUG 3 (Persediaan) Penerimaan SAP - Pengadaan");
+
+
+			echo "success";
+		}
 	}
+
+
+	// public function sign_document()
+	// {
+	// 	$key = $this->uri->segment(3);
+	// 	$token = $this->generate_token(20);
+	// 	$this->Penerimaan_sap_model->sign_update($key);
+	// 	//process signature id 1 adalah id form nya statis
+	// 	$this->Penerimaan_sap_model->process_sign($key, $this->generate_token(20), 4, "TUG 4 (Berita Acara) Penerimaan SAP - Pengadaan");
+	// 	$this->Penerimaan_sap_model->process_sign($key, $this->generate_token(20), 5, "TUG 3 (Karantina) Penerimaan SAP - Pengadaan");
+	// 	$this->Penerimaan_sap_model->process_sign($key, $this->generate_token(20), 6, "TUG 3 (Persediaan) Penerimaan SAP - Pengadaan");
+
+	// 	$this->session->set_flashdata('message', 'Berhasil mengajukan tandatangan');
+	// 	$this->session->set_flashdata('status', 'success');
+	// 	redirect(base_url('penerimaan_sap/view/' . $key));
+	// }
 
 	public function update_status()
 	{

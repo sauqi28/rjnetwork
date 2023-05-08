@@ -494,21 +494,48 @@ class Penerimaan_marketplace extends CI_Controller
 		return $token;
 	}
 
-
 	public function sign_document()
 	{
 		$key = $this->uri->segment(3);
-		$token = $this->generate_token(20);
-		$this->Penerimaan_marketplace_model->sign_update($key);
-		//process signature id 1 adalah id form nya statis
-		$this->Penerimaan_marketplace_model->process_sign($key, $this->generate_token(20), 1, "TUG 4 (Berita Acara) Penerimaan Marketplace");
-		$this->Penerimaan_marketplace_model->process_sign($key, $this->generate_token(20), 2, "TUG 3 (Karantina) Penerimaan Marketplace");
-		$this->Penerimaan_marketplace_model->process_sign($key, $this->generate_token(20), 3, "TUG 3 (Persediaan) Penerimaan Marketplace");
+		if ($key !=  null) {
+			$key = $this->uri->segment(3);
+			$token = $this->generate_token(20);
+			$this->Penerimaan_marketplace_model->sign_update($key);
+			//process signature id 1 adalah id form nya statis
+			$this->Penerimaan_marketplace_model->process_sign($key, $this->generate_token(20), 1, "TUG 4 (Berita Acara) Penerimaan Marketplace");
+			$this->Penerimaan_marketplace_model->process_sign($key, $this->generate_token(20), 2, "TUG 3 (Karantina) Penerimaan Marketplace");
+			$this->Penerimaan_marketplace_model->process_sign($key, $this->generate_token(20), 3, "TUG 3 (Persediaan) Penerimaan Marketplace");
 
-		$this->session->set_flashdata('message', 'Berhasil mengajukan tandatangan');
-		$this->session->set_flashdata('status', 'success');
-		redirect(base_url('penerimaan_marketplace/view/' . $key));
+			$this->session->set_flashdata('message', 'Berhasil mengajukan tandatangan');
+			$this->session->set_flashdata('status', 'success');
+			redirect(base_url('penerimaan_marketplace/view/' . $key));
+		} else {
+			$key = $this->input->post('key');
+			$token = $this->generate_token(20);
+			$this->Penerimaan_marketplace_model->sign_update($key);
+			//process signature id 1 adalah id form nya statis
+			$this->Penerimaan_marketplace_model->process_sign($key, $this->generate_token(20), 1, "TUG 4 (Berita Acara) Penerimaan Marketplace");
+			$this->Penerimaan_marketplace_model->process_sign($key, $this->generate_token(20), 2, "TUG 3 (Karantina) Penerimaan Marketplace");
+			$this->Penerimaan_marketplace_model->process_sign($key, $this->generate_token(20), 3, "TUG 3 (Persediaan) Penerimaan Marketplace");
+			echo "success";
+		}
 	}
+
+
+	// public function sign_document()
+	// {
+	// 	$key = $this->uri->segment(3);
+	// 	$token = $this->generate_token(20);
+	// 	$this->Penerimaan_marketplace_model->sign_update($key);
+	// 	//process signature id 1 adalah id form nya statis
+	// 	$this->Penerimaan_marketplace_model->process_sign($key, $this->generate_token(20), 1, "TUG 4 (Berita Acara) Penerimaan Marketplace");
+	// 	$this->Penerimaan_marketplace_model->process_sign($key, $this->generate_token(20), 2, "TUG 3 (Karantina) Penerimaan Marketplace");
+	// 	$this->Penerimaan_marketplace_model->process_sign($key, $this->generate_token(20), 3, "TUG 3 (Persediaan) Penerimaan Marketplace");
+
+	// 	$this->session->set_flashdata('message', 'Berhasil mengajukan tandatangan');
+	// 	$this->session->set_flashdata('status', 'success');
+	// 	redirect(base_url('penerimaan_marketplace/view/' . $key));
+	// }
 
 
 	public function update_status()

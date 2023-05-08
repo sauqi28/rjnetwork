@@ -491,21 +491,37 @@ class penerimaan_sap_intracompany extends CI_Controller
 		return $token;
 	}
 
-
 	public function sign_document()
 	{
 		$key = $this->uri->segment(3);
-		$token = $this->generate_token(20);
-		$this->penerimaan_sap_intracompany_model->sign_update($key);
-		//process signature id 1 adalah id form nya statis
-		$this->penerimaan_sap_intracompany_model->process_sign($key, $this->generate_token(20), 10, "TUG 4 (Berita Acara) Penerimaan SAP Intracompany");
-		$this->penerimaan_sap_intracompany_model->process_sign($key, $this->generate_token(20), 11, "TUG 3 (Karantina) Penerimaan SAP Intracompany");
-		$this->penerimaan_sap_intracompany_model->process_sign($key, $this->generate_token(20), 12, "TUG 3 (Persediaan) Penerimaan SAP Intracompany");
+		if ($key) {
+			$key = $this->uri->segment(3);
+			$token = $this->generate_token(20);
+			$this->penerimaan_sap_intracompany_model->sign_update($key);
+			//process signature id 1 adalah id form nya statis
+			$this->penerimaan_sap_intracompany_model->process_sign($key, $this->generate_token(20), 10, "TUG 4 (Berita Acara) Penerimaan SAP Intracompany");
+			$this->penerimaan_sap_intracompany_model->process_sign($key, $this->generate_token(20), 11, "TUG 3 (Karantina) Penerimaan SAP Intracompany");
+			$this->penerimaan_sap_intracompany_model->process_sign($key, $this->generate_token(20), 12, "TUG 3 (Persediaan) Penerimaan SAP Intracompany");
 
-		$this->session->set_flashdata('message', 'Berhasil mengajukan tandatangan');
-		$this->session->set_flashdata('status', 'success');
-		redirect(base_url('penerimaan_sap_intracompany/view/' . $key));
+			$this->session->set_flashdata('message', 'Berhasil mengajukan tandatangan');
+			$this->session->set_flashdata('status', 'success');
+			redirect(base_url('penerimaan_sap_intracompany/view/' . $key));
+		} else {
+			$key = $this->input->post('key');
+			$token = $this->generate_token(20);
+			$this->penerimaan_sap_intracompany_model->sign_update($key);
+			//process signature id 1 adalah id form nya statis
+			$this->penerimaan_sap_intracompany_model->process_sign($key, $this->generate_token(20), 10, "TUG 4 (Berita Acara) Penerimaan SAP Intracompany");
+			$this->penerimaan_sap_intracompany_model->process_sign($key, $this->generate_token(20), 11, "TUG 3 (Karantina) Penerimaan SAP Intracompany");
+			$this->penerimaan_sap_intracompany_model->process_sign($key, $this->generate_token(20), 12, "TUG 3 (Persediaan) Penerimaan SAP Intracompany");
+
+
+
+			echo "success";
+		}
 	}
+
+
 
 	public function update_status()
 	{

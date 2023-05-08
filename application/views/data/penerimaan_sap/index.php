@@ -98,8 +98,9 @@
                       <th>No</th>
                       <th>No SPK</th>
                       <th>Pabrikan</th>
-                      <th>Material</th>
                       <th>Tgl Penerimaan</th>
+                      <th>Status</th>
+                      <th>Progress Approval</th>
                       <th class="text-end">Action</th>
                     </tr>
                   </thead>
@@ -110,10 +111,25 @@
                         <td><?php echo $i++; ?></td>
                         <td><?php echo $user['spk_number']; ?></td>
                         <td><?php echo $user['pabrikan']; ?></td>
-                        <td><?php echo $user['material']; ?></td>
                         <td><?php echo $user['tgl_penerimaan']; ?></td>
+                        <td>
+                          <?php
+                          if ($user['tug_unsigned_locked'] == 1 && $user['tug_signed_request'] == 0) {
+                            echo '<span class="badge rounded-pill bg-warning">Dokumen Terverifikasi</span>';
+                          } else if ($user['tug_unsigned_locked'] == 1 && $user['tug_signed_request'] == 1) {
+                            echo '<span class="badge rounded-pill bg-info">Proses Sirkulir</span>';
+                          } else if ($user['tug_unsigned_locked'] == 0 && $user['tug_signed_request'] == 0) {
+                            echo '<span class="badge rounded-pill bg-danger">Menunggu Validasi</span>';
+                          }
+                          ?>
+                        </td>
 
 
+                        <td>
+                          <div class="progress mb-3">
+                            <div class="progress-bar bg-success progress-bar-striped" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">40%</div>
+                          </div>
+                        </td>
 
 
                         <td class="text-end">
@@ -126,6 +142,7 @@
 
                           </div>
                         </td>
+
 
                       </tr>
                     <?php endforeach; ?>

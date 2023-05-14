@@ -66,7 +66,7 @@ class Monitor extends CI_Controller
 		$data['pagination'] = $this->pagination->create_links();
 		$data['title'] = $this->title;
 		$data['subtitle'] = $this->subtitle;
-		$data['navbar'] = "data_user";
+		$data['navbar'] = "monitor/users";
 
 		$this->load->view('data/monitor/index', $data);
 	}
@@ -107,7 +107,7 @@ class Monitor extends CI_Controller
 		$data['pagination'] = $this->pagination->create_links();
 		$data['title'] = $this->title;
 		$data['subtitle'] = $this->subtitle;
-		$data['navbar'] = "data_user_nonaktif";
+		$data['navbar'] = "monitor/nonaktif";
 
 		$this->load->view('data/monitor/user_nonaktif', $data);
 	}

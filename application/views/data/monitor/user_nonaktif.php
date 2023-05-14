@@ -40,10 +40,10 @@
                   <div class="collapse navbar-collapse" id="navbarSupportedContent6">
 
 
-                    <?php $this->load->view('data/user/navbar'); ?>
+                    <?php $this->load->view('data/monitor/navbar'); ?>
 
 
-                    <form class="d-flex" method="get" action="<?php echo base_url('data_user/non_aktif'); ?>">
+                    <form class="d-flex" method="get" action="<?php echo base_url('monitor/nonaktif'); ?>">
                       <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2" name="search" value="<?php echo $this->input->get('search'); ?>" autofocus id="search-input">
                         <button class="btn btn-secondary" type="submit" id="button-addon2"><i class="fas fa-search"></i></button>
@@ -95,13 +95,12 @@
                 <table class="table table-bordered mb-0 table-centered">
                   <thead>
                     <tr>
-                      <th>No</th>
-                      <th>NIP/Username</th>
+                      <th>Status</th>
+                      <th>Lokasi</th>
                       <th>Nama</th>
-                      <th>Posisi/Jabatan</th>
-                      <th>Role</th>
-                      <th>Verified</th>
-                      <th>Signature</th>
+                      <th>User PPPOE</th>
+                      <th>Last Check</th>
+
                       <th class="text-end">Action</th>
                     </tr>
                   </thead>
@@ -109,56 +108,25 @@
                     <?php $i = 1;
                     foreach ($users as $user) : ?>
                       <tr>
-                        <td><?php echo $i++; ?></td>
-                        <td><?php echo $user['nip'] . "/" . $user['username']; ?></td>
-                        <td><?php echo $user['fullname']; ?></td>
-                        <td><?php echo $user['position_name']; ?></td>
-                        <td><span class="badge badge-soft-success"><?php echo $user['role_name']; ?></span></td>
                         <td>
-                          <button type="button" class="btn btn-soft-<?php echo ($user['verified_wa'] == 0) ? 'danger' : 'success'; ?> btn-icon-circle btn-icon-circle-sm me-2 position-relative" onclick="<?php echo ($user['verified_wa'] == 0) ? 'confirmVerifyUser(' . $user['no_wa'] . ', ' . $user['id'] . ')' : 'confirmResendVerifyUser(' . $user['no_wa'] . ', ' . $user['id'] . ')'; ?>">
-                            <?php echo ($user['verified_wa'] == 0) ? '<i class="fas fa-exclamation"></i>' : '<i class="mdi mdi-checkbox-marked-circle-outline"></i>'; ?>
-                            <span class="badge badge-dot online d-flex align-items-center position-absolute end-0 top-50"></span>
-                          </button>
+                          <?php if ($user['ping_status'] == 1) : ?>
+                            <span class="badge badge-soft-success">OK<?php echo " | " . $user['Latency'] . "ms"; ?></span>
+                          <?php elseif ($user['ping_status'] == 0) : ?>
+                            <span class="badge badge-soft-danger">DC</span>
+                          <?php endif; ?>
                         </td>
-                        <td>
-                          <button type="button" class="btn btn-soft-<?php echo ($user['signature'] == NULL) ? 'danger' : 'success'; ?> btn-icon-circle btn-icon-circle-sm me-2 position-relative" onclick="<?php echo ($user['signature'] == NULL) ? 'confirmVerifySignature(' . $user['no_wa'] . ', ' . $user['id'] . ')' : 'confirmResendVerifySignature(' . $user['no_wa'] . ', ' . $user['id'] . ')'; ?>">
-                            <?php echo ($user['signature'] == NULL) ? '<i class="fas fa-exclamation"></i>' : '<i class="mdi mdi-checkbox-marked-circle-outline"></i>'; ?>
-                            <span class="badge badge-dot online d-flex align-items-center position-absolute end-0 top-50"></span>
-                          </button>
-                        </td>
-                        <script>
-                          function confirmVerifyUser(no_wa, id) {
-                            if (confirm('Apakah Anda yakin ingin memverifikasi pengguna ini? Jika Iya, user akan menerima Link WhatsApp untuk verifikasi nomor wa.')) {
-                              verify_user(no_wa, id);
-                            }
-                          }
 
-                          function confirmVerifySignature(no_wa, id) {
-                            if (confirm('Apakah Anda yakin ingin memverifikasi tanda tangan pengguna ini? Jika Iya, user akan menerima Link WhatsApp untuk pengambilan E-signature')) {
-                              verify_signature(no_wa, id);
-                            }
-                          }
-
-                          function confirmResendVerifyUser(no_wa, id) {
-                            if (confirm('Apakah Anda yakin ingin mengirim ulang verifikasi nomor wa ke pengguna ini?')) {
-                              verify_user(no_wa, id);
-                            }
-                          }
-
-                          function confirmResendVerifySignature(no_wa, id) {
-                            if (confirm('Apakah Anda yakin ingin mengirim ulang verifikasi tanda tangan ke pengguna ini?')) {
-                              verify_signature(no_wa, id);
-                            }
-                          }
-                        </script>
+                        <td><?php echo $user['LocationName']; ?></td>
+                        <td><?php echo $user['name']; ?></td>
+                        <td><?php echo $user['user_pppoe']; ?></td>
+                        <td><?php echo $user['formatted_timestamp']; ?></td>
 
 
 
                         <td class="text-end">
                           <div class="button-items">
                             <button type="button" class="btn btn-xs btn-primary btn-icon-square-sm" onclick="goView('<?php echo $user['id']; ?>')"><i class="fas fa-eye"></i></button>
-                            <button type="button" class="btn btn-xs btn-warning btn-icon-square-sm" onclick="goEdit('<?php echo $user['id']; ?>')"><i class="fas fa-edit"></i></button>
-                            <button type="button" class="btn btn-xs btn-success btn-icon-square-sm" onclick="showConfirmation('<?php echo $user['id']; ?>','<?php echo $user['fullname']; ?>')"><i class="fab fa-get-pocket"></i></button>
+
 
 
 
@@ -189,15 +157,15 @@
       function showConfirmation(var1, var2) {
         Swal.fire({
           title: 'User ' + var2,
-          text: "akan diaktifkan?",
+          text: "akan dinonaktifkan?",
           icon: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
           cancelButtonColor: '#d33',
-          confirmButtonText: 'Ya, Aktifkan User!'
+          confirmButtonText: 'Ya, Nonaktifkan User!'
         }).then(function(result) {
           if (result.isConfirmed) {
-            window.location.href = '<?php echo base_url('data_user/update_status/2/'); ?>' + var1;
+            window.location.href = '<?php echo base_url('data_user/update_status/1/'); ?>' + var1;
           }
         });
       }
@@ -215,89 +183,81 @@
       }
 
       function verify_user(no_wa, id) {
-        $.ajax({
-          url: "<?php echo base_url('data_user/verify_user'); ?>",
-          type: "POST",
-          data: {
-            no_wa: no_wa,
-            id: id,
-            <?php echo $this->security->get_csrf_token_name(); ?>: "<?php echo $this->security->get_csrf_hash(); ?>"
-          },
-          dataType: "json",
-          success: function(response) {
-            console.log(response); // Add this line to log the response
-            if (response.status) {
-              Swal.fire({
-                icon: 'success',
-                title: 'Sukses',
-                text: 'User Anda sudah diupdate.'
-              });
-            } else {
-              Swal.fire({
-                icon: 'error',
-                title: 'Gagal',
-                text: 'Terjadi kesalahan saat memperbarui user.'
-              });
-            }
-          },
-          // error: function(jqXHR, textStatus, errorThrown) {
-          //   Swal.fire({
-          //     icon: 'error',
-          //     title: 'Gagal',
-          //     text: 'Terjadi kesalahan saat mengirim permintaan.'
-          //   });
-          // }
-          error: function(jqXHR, textStatus, errorThrown) {
+        // if (confirm('Yakin Kirim pesan WhatsApp ke User Ini?')) {
+        Swal.fire({
+          title: 'Loading...',
+          html: 'Sedang mengirim pesan WhatsApp. Mohon tunggu sebentar...',
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          onOpen: function() {
+            Swal.showLoading();
+          }
+        });
+
+        $.post("<?php echo base_url('data_user/verify_user'); ?>", {
+          no_wa: no_wa,
+          id: id,
+          <?php echo $this->security->get_csrf_token_name(); ?>: "<?php echo $this->security->get_csrf_hash(); ?>"
+        }, function(response) {
+          console.log(response.trim()) // Add this line to log the response
+          if (response == 'success') {
             Swal.fire({
               icon: 'success',
-              title: 'Sukses',
-              text: 'Link verifikasi sudah dikirimkan ke WahtsApp'
+              title: 'Berhasil dikirim',
+              text: 'Pesan sudah berhasil dikirimkan'
+            }).then((result) => {
+              // if (result.isConfirmed) {
+              //   window.location.href = "<?php echo base_url('data_user/index'); ?>";
+              // }
+            });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Gagal dikirim',
+              text: 'Terjadi kesalahan saat mengirim pesan WhatsApp.'
             });
           }
         });
+
       }
 
+
       function verify_signature(no_wa, id) {
-        $.ajax({
-          url: "<?php echo base_url('data_user/verify_signature'); ?>",
-          type: "POST",
-          data: {
-            no_wa: no_wa,
-            id: id,
-            <?php echo $this->security->get_csrf_token_name(); ?>: "<?php echo $this->security->get_csrf_hash(); ?>"
-          },
-          dataType: "json",
-          success: function(response) {
-            console.log(response); // Add this line to log the response
-            if (response.status) {
-              Swal.fire({
-                icon: 'success',
-                title: 'Sukses',
-                text: 'User Anda sudah diupdate.'
-              });
-            } else {
-              Swal.fire({
-                icon: 'error',
-                title: 'Gagal',
-                text: 'Terjadi kesalahan saat memperbarui user.'
-              });
-            }
-          },
-          // error: function(jqXHR, textStatus, errorThrown) {
-          //   Swal.fire({
-          //     icon: 'error',
-          //     title: 'Gagal',
-          //     text: 'Terjadi kesalahan saat mengirim permintaan.'
-          //   });
-          // }
-          error: function(jqXHR, textStatus, errorThrown) {
+        Swal.fire({
+          title: 'Loading...',
+          html: 'Sedang mengirim pesan WhatsApp. Mohon tunggu sebentar...',
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          onOpen: function() {
+            Swal.showLoading();
+          }
+        });
+
+        $.post("<?php echo base_url('data_user/verify_signature'); ?>", {
+          no_wa: no_wa,
+          id: id,
+          <?php echo $this->security->get_csrf_token_name(); ?>: "<?php echo $this->security->get_csrf_hash(); ?>"
+        }, function(response) {
+          console.log(response.trim()) // Add this line to log the response
+          if (response == 'success') {
             Swal.fire({
               icon: 'success',
-              title: 'Sukses',
-              text: 'Link verifikasi sudah dikirimkan ke WahtsApp'
+              title: 'Berhasil dikirim',
+              text: 'Pesan sudah berhasil dikirimkan'
+            }).then((result) => {
+              // if (result.isConfirmed) {
+              //   window.location.href = "<?php echo base_url('data_user/index'); ?>";
+              // }
+            });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Gagal dikirim',
+              text: 'Terjadi kesalahan saat mengirim pesan WhatsApp.'
             });
           }
         });
+
       }
     </script>
     <!-- <script>

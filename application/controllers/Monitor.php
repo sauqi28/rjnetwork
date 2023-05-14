@@ -71,14 +71,14 @@ class Monitor extends CI_Controller
 		$this->load->view('data/monitor/index', $data);
 	}
 
-	public function non_aktif()
+	public function nonaktif()
 	{
 		$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 		$search = $this->input->get('search');
 
-		$config['base_url'] = site_url('data/monitor/index');
+		$config['base_url'] = site_url('monitor/index');
 		$config['total_rows'] = $this->Data_monitor_model->get_users_count_nonaktif($search);
-		$config['per_page'] = 10;
+		$config['per_page'] = 300;
 		$config['uri_segment'] = 3;
 		$config['reuse_query_string'] = TRUE;
 

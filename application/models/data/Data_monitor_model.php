@@ -55,24 +55,23 @@ class Data_monitor_model extends CI_Model
 
   public function get_users_nonaktif($limit, $start, $search = NULL)
   {
-    $this->db->select('a.id, a.nip,a.no_wa, a.username, a.category, a.fullname, a.email, b.position_name, c.role_name, a.verified_wa, a.signature');
-    $this->db->from('mst_users a');
-    $this->db->join('mst_user_position b', 'a.position = b.id', 'left');
-    $this->db->join('mst_user_role c', 'a.role = c.id', 'left');
-    $this->db->join('mst_user_category cat', 'a.category = cat.id', 'left');
-
+    $this->db->select('c.id, l.LocationName, c.name, c.user_pppoe, p.*');
+    $this->db->select("DATE_FORMAT(p.timestamp, '%d %M %Y %H:%i') AS formatted_timestamp");
+    $this->db->from('Customers c');
+    $this->db->join('PingHistory p', 'c.id = p.customer_id');
+    $this->db->join('Locations l', 'c.id_locations = l.id');
+    $this->db->join('(SELECT customer_id, MAX(timestamp) AS max_timestamp FROM PingHistory GROUP BY customer_id) AS latest', 'p.customer_id = latest.customer_id AND p.timestamp = latest.max_timestamp');
+    $this->db->where('p.status', 0);
+    $this->db->order_by('l.locationname, c.name', 'ASC');
     if ($search) {
       $this->db->group_start();
-      $this->db->like('a.fullname', $search);
-      $this->db->or_like('a.email', $search);
-      $this->db->or_like('a.username', $search);
-      $this->db->or_like('a.nip', $search);
-      $this->db->or_like('b.position_name', $search);
-      $this->db->or_like('c.role_name', $search);
-      $this->db->or_like('cat.category_name', $search);
+      $this->db->like('c.name', $search);
+      $this->db->or_like('c.user_pppoe', $search);
+      $this->db->or_like('c.ip_address', $search);
+      $this->db->or_like('l.LocationName', $search);
+
       $this->db->group_end();
     }
-    $this->db->where('a.status', "inactive");
     $this->db->limit($limit, $start);
     $query = $this->db->get();
     return $query->result_array();
@@ -104,21 +103,23 @@ class Data_monitor_model extends CI_Model
 
   public function get_users_count_nonaktif($search)
   {
-    $this->db->select('a.*');
-    $this->db->from('mst_users a');
-    $this->db->join('mst_user_position b', 'a.position = b.id', 'left');
-    $this->db->join('mst_user_role c', 'a.role = c.id', 'left');
-    $this->db->join('mst_user_category cat', 'a.category = cat.id', 'left');
+    $this->db->select('c.id, l.LocationName, c.name, c.user_pppoe, p.*');
+    $this->db->select("DATE_FORMAT(p.timestamp, '%d %M %Y %H:%i') AS formatted_timestamp");
+    $this->db->from('Customers c');
+    $this->db->join('PingHistory p', 'c.id = p.customer_id');
+    $this->db->join('Locations l', 'c.id_locations = l.id');
+    $this->db->join('(SELECT customer_id, MAX(timestamp) AS max_timestamp FROM PingHistory GROUP BY customer_id) AS latest', 'p.customer_id = latest.customer_id AND p.timestamp = latest.max_timestamp');
+    $this->db->where('p.status', 0);
+    $this->db->order_by('l.locationname, c.name', 'ASC');
     if ($search) {
-      $this->db->like('a.fullname', $search);
-      $this->db->or_like('a.email', $search);
-      $this->db->or_like('a.username', $search);
-      $this->db->or_like('a.nip', $search);
-      $this->db->or_like('b.position_name', $search);
-      $this->db->or_like('c.role_name', $search);
-      $this->db->or_like('cat.category_name', $search);
+      $this->db->group_start();
+      $this->db->like('c.name', $search);
+      $this->db->or_like('c.user_pppoe', $search);
+      $this->db->or_like('c.ip_address', $search);
+      $this->db->or_like('l.LocationName', $search);
+
+      $this->db->group_end();
     }
-    $this->db->where('a.status', "inactive");
     $query = $this->db->get();
     return $query->num_rows();
   }

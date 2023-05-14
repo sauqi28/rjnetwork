@@ -127,7 +127,7 @@
 
                         <td class="text-end">
                           <div class="button-items">
-                            <button type="button" class="btn btn-xs btn-primary btn-icon-square-sm" onclick="goView('<?php echo $user['id']; ?>')"><i class="fas fa-eye"></i></button>
+                            <!-- <button type="button" class="btn btn-xs btn-primary btn-icon-square-sm" onclick="goView('<?php echo $user['id']; ?>')"><i class="fas fa-eye"></i></button> -->
 
 
 

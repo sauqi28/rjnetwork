@@ -40,7 +40,7 @@
                   <div class="collapse navbar-collapse" id="navbarSupportedContent6">
 
 
-                    <?php $this->load->view('data/user/navbar'); ?>
+                    <?php $this->load->view('data/monitor/navbar'); ?>
 
 
                     <form class="d-flex" method="get" action="<?php echo base_url('data_user/index'); ?>">
@@ -96,12 +96,12 @@
                   <thead>
                     <tr>
                       <th>No</th>
-                      <th>NIP/Username</th>
+                      <th>Lokasi</th>
                       <th>Nama</th>
-                      <th>Posisi/Jabatan</th>
-                      <th>Role</th>
-                      <th>Verified</th>
-                      <th>Signature</th>
+                      <th>User PPPOE</th>
+                      <th>Status</th>
+                      <th>Last Check</th>
+
                       <th class="text-end">Action</th>
                     </tr>
                   </thead>
@@ -110,22 +110,11 @@
                     foreach ($users as $user) : ?>
                       <tr>
                         <td><?php echo $i++; ?></td>
-                        <td><?php echo $user['nip'] . "/" . $user['username']; ?></td>
-                        <td><?php echo $user['fullname']; ?></td>
-                        <td><?php echo $user['position_name']; ?></td>
-                        <td><span class="badge badge-soft-success"><?php echo $user['role_name']; ?></span></td>
-                        <td>
-                          <button type="button" class="btn btn-soft-<?php echo ($user['verified_wa'] == 0) ? 'danger' : 'success'; ?> btn-icon-circle btn-icon-circle-sm me-2 position-relative" onclick="<?php echo ($user['verified_wa'] == 0) ? 'confirmVerifyUser(' . $user['no_wa'] . ', ' . $user['id'] . ')' : 'confirmResendVerifyUser(' . $user['no_wa'] . ', ' . $user['id'] . ')'; ?>">
-                            <?php echo ($user['verified_wa'] == 0) ? '<i class="fas fa-exclamation"></i>' : '<i class="mdi mdi-checkbox-marked-circle-outline"></i>'; ?>
-                            <span class="badge badge-dot online d-flex align-items-center position-absolute end-0 top-50"></span>
-                          </button>
-                        </td>
-                        <td>
-                          <button type="button" class="btn btn-soft-<?php echo ($user['signature'] == NULL) ? 'danger' : 'success'; ?> btn-icon-circle btn-icon-circle-sm me-2 position-relative" onclick="<?php echo ($user['signature'] == NULL) ? 'confirmVerifySignature(' . $user['no_wa'] . ', ' . $user['id'] . ')' : 'confirmResendVerifySignature(' . $user['no_wa'] . ', ' . $user['id'] . ')'; ?>">
-                            <?php echo ($user['signature'] == NULL) ? '<i class="fas fa-exclamation"></i>' : '<i class="mdi mdi-checkbox-marked-circle-outline"></i>'; ?>
-                            <span class="badge badge-dot online d-flex align-items-center position-absolute end-0 top-50"></span>
-                          </button>
-                        </td>
+                        <td><?php echo $user['LocationName']; ?></td>
+                        <td><?php echo $user['name']; ?></td>
+                        <td><?php echo $user['user_pppoe']; ?></td>
+                        <td><span class="badge badge-soft-success"><?php echo $user['ping_status']; ?></span></td>
+                        <td><?php echo $user['formatted_timestamp']; ?></td>
                         <script>
                           function confirmVerifyUser(no_wa, id) {
                             if (confirm('Apakah Anda yakin ingin memverifikasi pengguna ini? Jika Iya, user akan menerima Link WhatsApp untuk verifikasi nomor wa.')) {

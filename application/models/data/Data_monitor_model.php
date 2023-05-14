@@ -42,6 +42,9 @@ class Data_monitor_model extends CI_Model
       $this->db->group_start();
       $this->db->like('c.name', $search);
       $this->db->or_like('c.user_pppoe', $search);
+      $this->db->or_like('c.ip_address', $search);
+      $this->db->or_like('l.LocationName', $search);
+
       $this->db->group_end();
     }
     $this->db->limit($limit, $start);
@@ -89,6 +92,9 @@ class Data_monitor_model extends CI_Model
       $this->db->group_start();
       $this->db->like('c.name', $search);
       $this->db->or_like('c.user_pppoe', $search);
+      $this->db->or_like('c.ip_address', $search);
+      $this->db->or_like('l.LocationName', $search);
+
       $this->db->group_end();
     }
     $query = $this->db->get();

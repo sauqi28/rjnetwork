@@ -110,7 +110,7 @@
                       <tr>
                         <td>
                           <?php if ($user['ping_status'] == 1) : ?>
-                            <span class="badge badge-soft-success">OK</span>
+                            <span class="badge badge-soft-success">OK<?php echo $user['Latency'] . " ms"; ?></span>
                           <?php elseif ($user['ping_status'] == 0) : ?>
                             <span class="badge badge-soft-danger">DC</span>
                           <?php endif; ?>
@@ -119,7 +119,6 @@
                         <td><?php echo $user['LocationName']; ?></td>
                         <td><?php echo $user['name']; ?></td>
                         <td><?php echo $user['user_pppoe']; ?></td>
-                        <td><span class="badge badge-soft-success"><?php echo $user['ping_status']; ?></span></td>
                         <td><?php echo $user['formatted_timestamp']; ?></td>
 
 

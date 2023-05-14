@@ -18,7 +18,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
   <!-- App favicon -->
-  <link rel="shortcut icon" href="<?php echo base_url('assets/images/pln-1.png'); ?>">
+  <link rel="shortcut icon" href="<?php echo base_url('assets/images/antares_2.png'); ?>">
   <!-- <link rel="shortcut icon" href="<?php echo base_url('assets/images/favicon.ico'); ?>"> -->
   <style>
     /* Import Ubuntu font from Google Fonts */

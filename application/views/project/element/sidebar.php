@@ -27,93 +27,24 @@
 
                      <!-- Navigation -->
                      <ul class="navbar-nav tab-pane active" id="Main" role="tabpanel">
-                         <li class="menu-label mt-0 text-primary font-12 fw-semibold">P<span>engeluaran</span><br><span class="font-10 text-secondary fw-normal">Material</span></li>
+                         <li class="menu-label mt-0 text-primary font-12 fw-semibold">D<span>ashboard</span><br><span class="font-10 text-secondary fw-normal">Monitoring</span></li>
                          <li class="nav-item">
                              <a class="nav-link" href="#sidebarAnalytics" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAnalytics">
                                  <i class="ti ti-stack menu-icon"></i>
-                                 <span>Analytics</span>
+                                 <span>Monitoring</span>
                              </a>
                              <div class="collapse " id="sidebarAnalytics">
                                  <ul class="nav flex-column">
                                      <li class="nav-item">
-                                         <a class="nav-link" href="<?php echo base_url('/dashboard'); ?>">Dashboard</a>
+                                         <a class="nav-link" href="<?php echo base_url('/monitor/users'); ?>">Users</a>
                                      </li><!--end nav-item-->
                                      <li class="nav-item">
-                                         <a href="<?php echo base_url('/dashboard/report'); ?>" class="nav-link ">Report</a>
+                                         <a href="<?php echo base_url('/monitor/bts'); ?>" class="nav-link ">BTS</a>
                                      </li><!--end nav-item-->
 
                                  </ul><!--end nav-->
                              </div><!--end sidebarAnalytics-->
                          </li><!--end nav-item-->
-                         <li class="nav-item">
-                             <a class="nav-link" href="<?php echo base_url('data_reksis'); ?>"><i class="ti ti-calendar menu-icon"></i><span>Reksis</span></a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link" href="#"><i class="ti ti-calendar menu-icon"></i><span>SPK</span></a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link" href="#"><i class="ti ti-calendar menu-icon"></i><span>Reservasi</span></a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link" href="#"><i class="ti ti-calendar menu-icon"></i><span>Good Issue</span></a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link" href="#"><i class="ti ti-calendar menu-icon"></i><span>Surat Jalan</span></a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link" href="#"><i class="ti ti-calendar menu-icon"></i><span>Pemakaian Material</span></a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link" href="#"><i class="ti ti-calendar menu-icon"></i><span>Intracompany</span></a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link" href="#"><i class="ti ti-calendar menu-icon"></i><span>Retur</span></a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link" href="#"><i class="ti ti-calendar menu-icon"></i><span>Material Pinjam</span></a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link" href="#"><i class="ti ti-calendar menu-icon"></i><span>Material Retrofit</span></a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link" href="#"><i class="ti ti-calendar menu-icon"></i><span>Laporan Gangguan</span></a>
-                         </li>
-
-
-
-                         <li class="menu-label mt-0 text-primary font-12 fw-semibold">P<span>enerimaan</span><br><span class="font-10 text-secondary fw-normal">Material</span></li>
-                         <li class="nav-item">
-                         <li class="nav-item">
-                             <a class="nav-link" href="#sidebarAnalytics" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAnalytics">
-                                 <i class="ti ti-stack menu-icon"></i>
-                                 <span>Penerimaan SAP</span>
-                             </a>
-                             <div class="collapse " id="sidebarAnalytics">
-                                 <ul class="nav flex-column">
-                                     <li class="nav-item">
-                                         <a class="nav-link" href="<?php echo base_url('/penerimaan_sap'); ?>">Pengadaan</a>
-                                     </li><!--end nav-item-->
-                                     <li class="nav-item">
-                                         <a href="<?php echo base_url('/penerimaan_sap_return'); ?>" class="nav-link ">Retur</a>
-                                     </li><!--end nav-item-->
-                                     <li class="nav-item">
-                                         <a href="<?php echo base_url('/penerimaan_sap_intracompany'); ?>" class="nav-link ">Intracompany</a>
-                                     </li><!--end nav-item-->
-
-                                 </ul><!--end nav-->
-                             </div><!--end sidebarAnalytics-->
-                         </li><!--end nav-item-->
-
-
-                         <li class="nav-item">
-                             <a class="nav-link" href="<?php echo base_url('/penerimaan_marketplace'); ?>"><i class="ti ti-calendar menu-icon"></i><span>Penerimaan Marketplace</span></a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link" href="<?php echo base_url('/bulk_approval_receivement'); ?>"><i class="ti ti-calendar menu-icon"></i><span>Manajemen Approval</span></a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link" href="<?php echo base_url('/bulk_notification_receivement'); ?>"><i class="ti ti-calendar menu-icon"></i><span>Manajemen Notifikasi</span></a>
-                         </li>
 
 
                          <li class="menu-label mt-0 text-primary font-12 fw-semibold">M<span>aster</span><br><span class="font-10 text-secondary fw-normal">Data</span></li>

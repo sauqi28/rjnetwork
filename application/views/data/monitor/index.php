@@ -121,8 +121,7 @@
                         <td class="text-end">
                           <div class="button-items">
                             <button type="button" class="btn btn-xs btn-primary btn-icon-square-sm" onclick="goView('<?php echo $user['id']; ?>')"><i class="fas fa-eye"></i></button>
-                            <button type="button" class="btn btn-xs btn-warning btn-icon-square-sm" onclick="goEdit('<?php echo $user['id']; ?>')"><i class="fas fa-edit"></i></button>
-                            <button type="button" class="btn btn-xs btn-danger btn-icon-square-sm" onclick="showConfirmation('<?php echo $user['id']; ?>','<?php echo $user['name']; ?>')"><i class="fas fa-exclamation"></i></button>
+
 
 
 

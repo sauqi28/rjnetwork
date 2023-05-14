@@ -99,9 +99,9 @@
                     </div><!--end col-->
                   </div> <!--end form-group-->
                   <?php echo form_close(); ?>
-                  <div class="m-3 text-center text-muted">
+                  <!-- <div class="m-3 text-center text-muted">
                     <p class="mb-0">Don't have an account ? <a href="<?php echo base_url('auth/register'); ?>" class="text-primary ms-2">Free Resister</a></p>
-                  </div>
+                  </div> -->
                   <!-- <hr class="hr-dashed mt-4"> -->
                   <!-- <div class="text-center mt-n5">
                     <h6 class="card-bg px-3 my-4 d-inline-block">Or Login With</h6>

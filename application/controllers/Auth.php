@@ -15,7 +15,7 @@ class Auth extends CI_Controller
   public function index()
   {
     if ($this->is_logged_in()) {
-      redirect('dashboard');
+      redirect('monitor/users');
     }
     // $this->session->sess_destroy();
     $this->form_validation->set_rules('email', 'Email', 'required');

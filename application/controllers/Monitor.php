@@ -10,13 +10,13 @@ class Monitor extends CI_Controller
 	{
 		parent::__construct();
 
-		$this->load->model('data/Data_user_model');
+		$this->load->model('data/Data_monitor_model');
 		$this->load->helper('url_helper');
 		$this->load->library('form_validation');
 		$this->load->library('pagination');
 		$this->load->library('Wa_api');
-		$this->title = "Master Data Pengguna";
-		$this->subtitle = "halaman untuk mengatur informasi pengguna, penyesuaian hak akses, serta pemeliharaan data anggota aplikasi.";
+		$this->title = "Monitor Status Pengguna";
+		$this->subtitle = "Halaman Untuk Monitoring Status Pengguna";
 
 
 		if (!$this->session->userdata('logged_in')) {
@@ -26,7 +26,7 @@ class Monitor extends CI_Controller
 
 	// public function index()
 	// {
-	// 	$data['users'] = $this->Data_user_model->get_users();
+	// 	$data['users'] = $this->Data_monitor_model->get_users();
 	// 	$this->load->view('data/user/index', $data);
 	// }
 
@@ -35,8 +35,8 @@ class Monitor extends CI_Controller
 		$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 		$search = $this->input->get('search');
 
-		$config['base_url'] = site_url('data_user/index');
-		$config['total_rows'] = $this->Data_user_model->get_users_count($search);
+		$config['base_url'] = site_url('data_monitor/index');
+		$config['total_rows'] = $this->Data_monitor_model->get_users_count($search);
 		$config['per_page'] = 10;
 		$config['uri_segment'] = 3;
 		$config['reuse_query_string'] = TRUE;
@@ -62,7 +62,7 @@ class Monitor extends CI_Controller
 
 
 
-		$data['users'] = $this->Data_user_model->get_users($config['per_page'], $page, $search);
+		$data['users'] = $this->Data_monitor_model->get_users($config['per_page'], $page, $search);
 		$data['pagination'] = $this->pagination->create_links();
 		$data['title'] = $this->title;
 		$data['subtitle'] = $this->subtitle;
@@ -76,8 +76,8 @@ class Monitor extends CI_Controller
 		$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 		$search = $this->input->get('search');
 
-		$config['base_url'] = site_url('data_user/index');
-		$config['total_rows'] = $this->Data_user_model->get_users_count_nonaktif($search);
+		$config['base_url'] = site_url('data_monitor/index');
+		$config['total_rows'] = $this->Data_monitor_model->get_users_count_nonaktif($search);
 		$config['per_page'] = 10;
 		$config['uri_segment'] = 3;
 		$config['reuse_query_string'] = TRUE;
@@ -103,7 +103,7 @@ class Monitor extends CI_Controller
 
 
 
-		$data['users'] = $this->Data_user_model->get_users_nonaktif($config['per_page'], $page, $search);
+		$data['users'] = $this->Data_monitor_model->get_users_nonaktif($config['per_page'], $page, $search);
 		$data['pagination'] = $this->pagination->create_links();
 		$data['title'] = $this->title;
 		$data['subtitle'] = $this->subtitle;
@@ -117,7 +117,7 @@ class Monitor extends CI_Controller
 
 	public function view($id = NULL)
 	{
-		$data['user'] = $this->Data_user_model->get_users_view($id);
+		$data['user'] = $this->Data_monitor_model->get_users_view($id);
 		// var_dump($data);
 
 		if (empty($data['user'])) {
@@ -127,9 +127,9 @@ class Monitor extends CI_Controller
 		$data['title'] = $this->title;
 		$data['subtitle'] = $this->subtitle;
 		$data['navbar'] = "data_user_add";
-		$data['user_positions'] = $this->Data_user_model->get_all_positions();
-		$data['user_roles'] = $this->Data_user_model->get_all_roles();
-		$data['user_category'] = $this->Data_user_model->get_all_category();
+		$data['user_positions'] = $this->Data_monitor_model->get_all_positions();
+		$data['user_roles'] = $this->Data_monitor_model->get_all_roles();
+		$data['user_category'] = $this->Data_monitor_model->get_all_category();
 		$this->load->view('data/user/view', $data);
 	}
 
@@ -148,15 +148,15 @@ class Monitor extends CI_Controller
 			$data['title'] = $this->title;
 			$data['subtitle'] = $this->subtitle;
 			$data['navbar'] = "data_user_add";
-			$data['user_positions'] = $this->Data_user_model->get_all_positions();
-			$data['user_roles'] = $this->Data_user_model->get_all_roles();
-			$data['user_category'] = $this->Data_user_model->get_all_category();
+			$data['user_positions'] = $this->Data_monitor_model->get_all_positions();
+			$data['user_roles'] = $this->Data_monitor_model->get_all_roles();
+			$data['user_category'] = $this->Data_monitor_model->get_all_category();
 			$this->load->view('data/user/create', $data);
 		} else {
-			$this->Data_user_model->create_user();
+			$this->Data_monitor_model->create_user();
 			$this->session->set_flashdata('message', 'User berhasil ditambahkan');
 			$this->session->set_flashdata('status', 'success');
-			redirect(base_url('data_user/index'));
+			redirect(base_url('data_monitor/index'));
 		}
 	}
 
@@ -165,7 +165,7 @@ class Monitor extends CI_Controller
 		// ambil data pilihan vendor dari database berdasarkan kategori user yang dipilih
 		$kategori = $this->input->post('kategori');
 		if ($kategori == 2) { // external
-			$vendor_options = $this->Data_user_model->get_vendor_options();
+			$vendor_options = $this->Data_monitor_model->get_vendor_options();
 		} else {
 			$vendor_options = array();
 		}
@@ -177,7 +177,7 @@ class Monitor extends CI_Controller
 
 	public function edit($id)
 	{
-		$data['user'] = $this->Data_user_model->get_users_view($id);
+		$data['user'] = $this->Data_monitor_model->get_users_view($id);
 
 		if (empty($data['user'])) {
 			show_404();
@@ -197,17 +197,17 @@ class Monitor extends CI_Controller
 			$data['title'] = $this->title;
 			$data['subtitle'] = $this->subtitle;
 			$data['navbar'] = "data_user_add";
-			$data['user_positions'] = $this->Data_user_model->get_all_positions();
-			$data['user_roles'] = $this->Data_user_model->get_all_roles();
-			$data['user_category'] = $this->Data_user_model->get_all_category();
+			$data['user_positions'] = $this->Data_monitor_model->get_all_positions();
+			$data['user_roles'] = $this->Data_monitor_model->get_all_roles();
+			$data['user_category'] = $this->Data_monitor_model->get_all_category();
 			$this->load->view('data/user/edit', $data);
 		} else {
-			$this->Data_user_model->update_user($id);
+			$this->Data_monitor_model->update_user($id);
 			$this->session->set_flashdata('message', 'User berhasil di update');
 			$this->session->set_flashdata('status', 'success');
 			//$res = $this->wa_api->send_message($this->input->post('no_wa'), "user anda sudah diupdate");
 
-			redirect(base_url('data_user/index'));
+			redirect(base_url('data_monitor/index'));
 		}
 	}
 
@@ -216,7 +216,7 @@ class Monitor extends CI_Controller
 
 		$no_wa = $this->input->post('no_wa');
 		$id = $this->input->post('id');
-		$data = $this->Data_user_model->get_user($id);
+		$data = $this->Data_monitor_model->get_user($id);
 		$token = $this->generate_token(10);
 
 		// $pesan = "Verifikasi Wahtsapp, klik link berikut :\n" . base_url('publicaccess/whatsapp_verified/') . $token;
@@ -225,7 +225,7 @@ class Monitor extends CI_Controller
 
 		$res = $this->wa_api->send_message($data->no_wa, $pesan);
 		if ($res == 'success') {
-			$this->Data_user_model->insert_wa_token($id, $token);
+			$this->Data_monitor_model->insert_wa_token($id, $token);
 			echo $res;
 		} else {
 			echo $res;
@@ -236,7 +236,7 @@ class Monitor extends CI_Controller
 	{
 		$no_wa = $this->input->post('no_wa');
 		$id = $this->input->post('id');
-		$data = $this->Data_user_model->get_user($id);
+		$data = $this->Data_monitor_model->get_user($id);
 		$token = $this->generate_token(10);
 
 		// $pesan = "Verifikasi Wahtsapp, klik link berikut :\n" . base_url('publicaccess/whatsapp_verified/') . $token;
@@ -244,7 +244,7 @@ class Monitor extends CI_Controller
 
 		$res = $this->wa_api->send_message($data->no_wa, $pesan);
 		if ($res == 'success') {
-			$this->Data_user_model->insert_signature_token($id, $token);
+			$this->Data_monitor_model->insert_signature_token($id, $token);
 			echo $res;
 		} else {
 			echo $res;
@@ -275,19 +275,19 @@ class Monitor extends CI_Controller
 		$id = $this->uri->segment(4);
 
 		if ($status == 1) {
-			$this->Data_user_model->update_status($id, 'inactive');
+			$this->Data_monitor_model->update_status($id, 'inactive');
 			$message = 'Berhasil dinonaktifkan';
 
 			$this->session->set_flashdata('message', $message);
 			$this->session->set_flashdata('status', 'success');
-			redirect(base_url('data_user/index'), 'refresh');
+			redirect(base_url('data_monitor/index'), 'refresh');
 		} elseif ($status == 2) {
-			$this->Data_user_model->update_status($id, 'active');
+			$this->Data_monitor_model->update_status($id, 'active');
 			$message = 'Berhasil diaktifkan';
 
 			$this->session->set_flashdata('message', $message);
 			$this->session->set_flashdata('status', 'success');
-			redirect(base_url('data_user/non_aktif'), 'refresh');
+			redirect(base_url('data_monitor/non_aktif'), 'refresh');
 		} else {
 			show_404();
 		}

@@ -115,31 +115,6 @@
                         <td><?php echo $user['user_pppoe']; ?></td>
                         <td><span class="badge badge-soft-success"><?php echo $user['ping_status']; ?></span></td>
                         <td><?php echo $user['formatted_timestamp']; ?></td>
-                        <script>
-                          function confirmVerifyUser(no_wa, id) {
-                            if (confirm('Apakah Anda yakin ingin memverifikasi pengguna ini? Jika Iya, user akan menerima Link WhatsApp untuk verifikasi nomor wa.')) {
-                              verify_user(no_wa, id);
-                            }
-                          }
-
-                          function confirmVerifySignature(no_wa, id) {
-                            if (confirm('Apakah Anda yakin ingin memverifikasi tanda tangan pengguna ini? Jika Iya, user akan menerima Link WhatsApp untuk pengambilan E-signature')) {
-                              verify_signature(no_wa, id);
-                            }
-                          }
-
-                          function confirmResendVerifyUser(no_wa, id) {
-                            if (confirm('Apakah Anda yakin ingin mengirim ulang verifikasi nomor wa ke pengguna ini?')) {
-                              verify_user(no_wa, id);
-                            }
-                          }
-
-                          function confirmResendVerifySignature(no_wa, id) {
-                            if (confirm('Apakah Anda yakin ingin mengirim ulang verifikasi tanda tangan ke pengguna ini?')) {
-                              verify_signature(no_wa, id);
-                            }
-                          }
-                        </script>
 
 
 
@@ -147,7 +122,7 @@
                           <div class="button-items">
                             <button type="button" class="btn btn-xs btn-primary btn-icon-square-sm" onclick="goView('<?php echo $user['id']; ?>')"><i class="fas fa-eye"></i></button>
                             <button type="button" class="btn btn-xs btn-warning btn-icon-square-sm" onclick="goEdit('<?php echo $user['id']; ?>')"><i class="fas fa-edit"></i></button>
-                            <button type="button" class="btn btn-xs btn-danger btn-icon-square-sm" onclick="showConfirmation('<?php echo $user['id']; ?>','<?php echo $user['fullname']; ?>')"><i class="fas fa-exclamation"></i></button>
+                            <button type="button" class="btn btn-xs btn-danger btn-icon-square-sm" onclick="showConfirmation('<?php echo $user['id']; ?>','<?php echo $user['name']; ?>')"><i class="fas fa-exclamation"></i></button>
 
 
 

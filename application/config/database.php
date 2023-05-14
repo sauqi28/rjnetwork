@@ -74,10 +74,10 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'hostname' => '127.0.0.1',
+	'hostname' => 'localhost',
 	'username' => 'root',
-	'password' => 'Suksesmuda28',
-	'database' => 'db_dummy_ci3',
+	'password' => 'P@ssw0rdpln@123',
+	'database' => 'db_rjnetwork',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE, // make sure pconnect is set to false for sessions to work

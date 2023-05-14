@@ -19,7 +19,7 @@ class Dashboard extends CI_Controller
 	public function index()
 	{
 		//var_dump($this->session->userdata('logged_in'));
-
-		$this->load->view('dashboard');
+		redirect('monitor/users');
+		//	$this->load->view('dashboard');
 	}
 }

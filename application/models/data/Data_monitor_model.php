@@ -31,7 +31,7 @@ class Data_monitor_model extends CI_Model
 
   public function get_users($limit, $start, $search = NULL)
   {
-    $this->db->select('c.id, l.LocationName, c.name, c.user_pppoe, p.*');
+    $this->db->select('c.id, l.LocationName, c.name, c.user_pppoe,c.ip_address, p.*');
     $this->db->select("DATE_FORMAT(p.timestamp, '%d %M %Y %H:%i') AS formatted_timestamp");
     $this->db->from('Customers c');
     $this->db->join('PingHistory p', 'c.id = p.customer_id');
@@ -55,7 +55,7 @@ class Data_monitor_model extends CI_Model
 
   public function get_users_nonaktif($limit, $start, $search = NULL)
   {
-    $this->db->select('c.id, l.LocationName, c.name, c.user_pppoe, p.*');
+    $this->db->select('c.id, l.LocationName, c.name, c.user_pppoe,c.ip_address, p.*');
     $this->db->select("DATE_FORMAT(p.timestamp, '%d %M %Y %H:%i') AS formatted_timestamp");
     $this->db->from('Customers c');
     $this->db->join('PingHistory p', 'c.id = p.customer_id');
@@ -80,7 +80,7 @@ class Data_monitor_model extends CI_Model
 
   public function get_users_count($search)
   {
-    $this->db->select('c.id, l.LocationName, c.name, c.user_pppoe, p.*');
+    $this->db->select('c.id, l.LocationName, c.name, c.user_pppoe,c.ip_address, p.*');
     $this->db->select("DATE_FORMAT(p.timestamp, '%d %M %Y %H:%i') AS formatted_timestamp");
     $this->db->from('Customers c');
     $this->db->join('PingHistory p', 'c.id = p.customer_id');
@@ -103,7 +103,7 @@ class Data_monitor_model extends CI_Model
 
   public function get_users_count_nonaktif($search)
   {
-    $this->db->select('c.id, l.LocationName, c.name, c.user_pppoe, p.*');
+    $this->db->select('c.id, l.LocationName, c.name, c.user_pppoe,c.ip_address, p.*');
     $this->db->select("DATE_FORMAT(p.timestamp, '%d %M %Y %H:%i') AS formatted_timestamp");
     $this->db->from('Customers c');
     $this->db->join('PingHistory p', 'c.id = p.customer_id');

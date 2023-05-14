@@ -99,6 +99,7 @@
                       <th>Lokasi</th>
                       <th>Nama</th>
                       <th>User PPPOE</th>
+                      <th>IP Address</th>
                       <th>Last Check</th>
 
                       <th class="text-end">Action</th>
@@ -119,6 +120,7 @@
                         <td><?php echo $user['LocationName']; ?></td>
                         <td><?php echo $user['name']; ?></td>
                         <td><?php echo $user['user_pppoe']; ?></td>
+                        <td><?php echo $user['ip_address']; ?></td>
                         <td><?php echo $user['formatted_timestamp']; ?></td>
 
 

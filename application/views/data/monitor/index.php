@@ -110,7 +110,7 @@
                       <tr>
                         <td>
                           <?php if ($user['ping_status'] == 1) : ?>
-                            <span class="badge badge-soft-success">OK<?php echo " | " . $user['Latency'] . " ms"; ?></span>
+                            <span class="badge badge-soft-success">OK<?php echo " | " . $user['Latency'] . "ms"; ?></span>
                           <?php elseif ($user['ping_status'] == 0) : ?>
                             <span class="badge badge-soft-danger">DC</span>
                           <?php endif; ?>

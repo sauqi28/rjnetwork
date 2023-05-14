@@ -43,7 +43,7 @@
                     <?php $this->load->view('data/monitor/navbar'); ?>
 
 
-                    <form class="d-flex" method="get" action="<?php echo base_url('data_user/index'); ?>">
+                    <form class="d-flex" method="get" action="<?php echo base_url('monitor/index'); ?>">
                       <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2" name="search" value="<?php echo $this->input->get('search'); ?>" autofocus id="search-input">
                         <button class="btn btn-secondary" type="submit" id="button-addon2"><i class="fas fa-search"></i></button>

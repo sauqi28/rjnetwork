@@ -95,11 +95,10 @@
                 <table class="table table-bordered mb-0 table-centered">
                   <thead>
                     <tr>
-                      <th>No</th>
+                      <th>Status</th>
                       <th>Lokasi</th>
                       <th>Nama</th>
                       <th>User PPPOE</th>
-                      <th>Status</th>
                       <th>Last Check</th>
 
                       <th class="text-end">Action</th>
@@ -109,7 +108,14 @@
                     <?php $i = 1;
                     foreach ($users as $user) : ?>
                       <tr>
-                        <td><?php echo $i++; ?></td>
+                        <td>
+                          <?php if ($user['ping_status'] == 1) : ?>
+                            <span class="badge badge-soft-success">OK</span>
+                          <?php elseif ($user['ping_status'] == 0) : ?>
+                            <span class="badge badge-soft-danger">DC</span>
+                          <?php endif; ?>
+                        </td>
+
                         <td><?php echo $user['LocationName']; ?></td>
                         <td><?php echo $user['name']; ?></td>
                         <td><?php echo $user['user_pppoe']; ?></td>

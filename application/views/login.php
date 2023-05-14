@@ -6,7 +6,7 @@
   <link rel="shortcut icon" href="<?php echo base_url('assets/images/favicon.ico'); ?>
 
   <meta charset=" utf-8" />
-  <title>Aplikasi PLN UP3 teluknaga</title>
+  <title>RJNetwork Management System</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta content="Logistic" name="description" />
   <meta content="" name="author" />
@@ -26,7 +26,7 @@
 
 </head>
 
-<body id="body" class="auth-page" style="background-image: url('<?php echo base_url('assets/images/pln-bg2.jpg'); ?>'); background-size: cover; background-position: center center;">
+<body id="body" class="auth-page" style="background-image: url('<?php echo base_url('assets/images/4239587_90460.jpg'); ?>'); background-size: cover; background-position: center center;">
   <!-- Log In page -->
   <div class="container-md">
     <div class="row vh-100 d-flex justify-content-center">
@@ -38,7 +38,7 @@
                 <div class="card-body ">
                   <div class="text-center p-3">
                     <a href="index.html" class="logo logo-admin">
-                      <img src="<?php echo base_url('assets/images/pln-logo1.png'); ?>" height="50" alt="logo" class="auth-logo">
+                      <img src="<?php echo base_url('assets/images/antares.png'); ?>" height="50" alt="logo" class="auth-logo">
                     </a>
                     <h4 class="mt-3 mb-1 fw-semibold text-blue font-18">Let's Get Started!</h4>
                     <p class="text-muted  mb-0">Sign in to continue.</p>

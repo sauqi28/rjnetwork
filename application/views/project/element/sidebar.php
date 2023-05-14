@@ -4,7 +4,7 @@
          <div class="brand">
              <a href="index.html" class="logo">
                  <span>
-                     <img src="<?php echo base_url('assets/images/Logo_PLN.png'); ?>" width="50" height="70">
+                     <img src="<?php echo base_url('assets/images/antares_2.png'); ?>" width="50" height="50">
                  </span>
              </a>
          </div>

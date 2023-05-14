@@ -27,7 +27,7 @@ class Monitor extends CI_Controller
 	// public function index()
 	// {
 	// 	$data['users'] = $this->Data_monitor_model->get_users();
-	// 	$this->load->view('data/user/index', $data);
+	// 	$this->load->view('data/monitor/index', $data);
 	// }
 
 	public function users()
@@ -68,7 +68,7 @@ class Monitor extends CI_Controller
 		$data['subtitle'] = $this->subtitle;
 		$data['navbar'] = "data_user";
 
-		$this->load->view('data/user/index', $data);
+		$this->load->view('data/monitor/index', $data);
 	}
 
 	public function non_aktif()
@@ -109,7 +109,7 @@ class Monitor extends CI_Controller
 		$data['subtitle'] = $this->subtitle;
 		$data['navbar'] = "data_user_nonaktif";
 
-		$this->load->view('data/user/user_nonaktif', $data);
+		$this->load->view('data/monitor/user_nonaktif', $data);
 	}
 
 
@@ -130,7 +130,7 @@ class Monitor extends CI_Controller
 		$data['user_positions'] = $this->Data_monitor_model->get_all_positions();
 		$data['user_roles'] = $this->Data_monitor_model->get_all_roles();
 		$data['user_category'] = $this->Data_monitor_model->get_all_category();
-		$this->load->view('data/user/view', $data);
+		$this->load->view('data/monitor/view', $data);
 	}
 
 	public function create()
@@ -151,7 +151,7 @@ class Monitor extends CI_Controller
 			$data['user_positions'] = $this->Data_monitor_model->get_all_positions();
 			$data['user_roles'] = $this->Data_monitor_model->get_all_roles();
 			$data['user_category'] = $this->Data_monitor_model->get_all_category();
-			$this->load->view('data/user/create', $data);
+			$this->load->view('data/monitor/create', $data);
 		} else {
 			$this->Data_monitor_model->create_user();
 			$this->session->set_flashdata('message', 'User berhasil ditambahkan');
@@ -200,7 +200,7 @@ class Monitor extends CI_Controller
 			$data['user_positions'] = $this->Data_monitor_model->get_all_positions();
 			$data['user_roles'] = $this->Data_monitor_model->get_all_roles();
 			$data['user_category'] = $this->Data_monitor_model->get_all_category();
-			$this->load->view('data/user/edit', $data);
+			$this->load->view('data/monitor/edit', $data);
 		} else {
 			$this->Data_monitor_model->update_user($id);
 			$this->session->set_flashdata('message', 'User berhasil di update');

@@ -61,7 +61,7 @@ class Data_monitor_model extends CI_Model
     $this->db->join('PingHistory p', 'c.id = p.customer_id');
     $this->db->join('Locations l', 'c.id_locations = l.id');
     $this->db->join('(SELECT customer_id, MAX(timestamp) AS max_timestamp FROM PingHistory GROUP BY customer_id) AS latest', 'p.customer_id = latest.customer_id AND p.timestamp = latest.max_timestamp');
-    $this->db->where('p.status', 0);
+    $this->db->where('l.Latency', 0);
     $this->db->order_by('l.locationname, c.name', 'ASC');
     if ($search) {
       $this->db->group_start();
@@ -109,7 +109,7 @@ class Data_monitor_model extends CI_Model
     $this->db->join('PingHistory p', 'c.id = p.customer_id');
     $this->db->join('Locations l', 'c.id_locations = l.id');
     $this->db->join('(SELECT customer_id, MAX(timestamp) AS max_timestamp FROM PingHistory GROUP BY customer_id) AS latest', 'p.customer_id = latest.customer_id AND p.timestamp = latest.max_timestamp');
-    $this->db->where('p.status', 0);
+    $this->db->where('l.Latency', 0);
     $this->db->order_by('l.locationname, c.name', 'ASC');
     if ($search) {
       $this->db->group_start();

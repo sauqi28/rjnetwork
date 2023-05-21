@@ -26,6 +26,63 @@
 
 
       <div class="row">
+        <div class="col-lg-3 col-md-6">
+          <div class="card overflow-hidden">
+            <div class="card-body">
+              <div class="row d-flex">
+                <div class="col-3">
+                  <i class="ti ti-users font-36 align-self-center text-dark"></i>
+                </div><!--end col-->
+                <div class="col-12 ms-auto align-self-center">
+                  <div id="dash_spark_1" class="mb-3"></div>
+                </div><!--end col-->
+                <div class="col-12 ms-auto align-self-center">
+                  <h3 class="text-dark my-0 font-22 fw-bold">24000</h3>
+                  <p class="text-muted mb-0 fw-semibold">Sessions</p>
+                </div><!--end col-->
+              </div><!--end row-->
+            </div><!--end card-body-->
+          </div><!--end card-->
+        </div> <!--end col-->
+        <div class="col-lg-3 col-md-6">
+          <div class="card overflow-hidden">
+            <div class="card-body">
+              <div class="row d-flex">
+                <div class="col-3">
+                  <i class="ti ti-clock font-36 align-self-center text-dark"></i>
+                </div><!--end col-->
+                <div class="col-auto ms-auto align-self-center">
+                  <span class="badge badge-soft-success px-2 py-1 font-11">Active</span>
+                </div><!--end col-->
+                <div class="col-12 ms-auto align-self-center">
+                  <div id="dash_spark_2" class="mb-3"></div>
+                </div><!--end col-->
+                <div class="col-12 ms-auto align-self-center">
+                  <h3 class="text-dark my-0 font-22 fw-bold">00:18</h3>
+                  <p class="text-muted mb-0 fw-semibold">Avg.Sessions</p>
+                </div><!--end col-->
+              </div><!--end row-->
+            </div><!--end card-body-->
+          </div><!--end card-->
+        </div> <!--end col-->
+        <div class="col-lg-3 col-md-6">
+          <div class="card overflow-hidden">
+            <div class="card-body">
+              <div class="row d-flex">
+                <div class="col-3">
+                  <i class="ti ti-activity font-36 align-self-center text-dark"></i>
+                </div><!--end col-->
+                <div class="col-12 ms-auto align-self-center">
+                  <div id="dash_spark_3" class="mb-3"></div>
+                </div><!--end col-->
+                <div class="col-12 ms-auto align-self-center">
+                  <h3 class="text-dark my-0 font-22 fw-bold">$2400</h3>
+                  <p class="text-muted mb-0 fw-semibold">Bounce Rate</p>
+                </div><!--end col-->
+              </div><!--end row-->
+            </div><!--end card-body-->
+          </div><!--end card-->
+        </div> <!--end col-->
         <div class="col-12">
           <div class="card">
             <div class="card-header">
@@ -36,30 +93,7 @@
             </div><!--end card-header-->
 
             <div class="card-body">
-              <div class="row d-flex justify-content-center">
-                <div class="col">
-                  <p class="text-dark mb-1 fw-semibold">Tasks</p>
-                  <h4 class="font-22 fw-bold">41</h4>
-                  <p class="mb-0 text-truncate text-muted"><span class="badge badge-soft-success">Active</span> Week Avg.Sessions</p>
-                </div>
-                <div class="col-auto align-self-center">
-                  <div class="bg-light-alt d-flex justify-content-center align-items-center thumb-md  rounded-circle">
-                    <i data-feather="check-square" class="align-self-center text-muted icon-sm"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="row d-flex justify-content-center">
-                <div class="col">
-                  <p class="text-dark mb-1 fw-semibold">Tasks</p>
-                  <h4 class="font-22 fw-bold">41</h4>
-                  <p class="mb-0 text-truncate text-muted"><span class="badge badge-soft-success">Active</span> Week Avg.Sessions</p>
-                </div>
-                <div class="col-auto align-self-center">
-                  <div class="bg-light-alt d-flex justify-content-center align-items-center thumb-md  rounded-circle">
-                    <i data-feather="check-square" class="align-self-center text-muted icon-sm"></i>
-                  </div>
-                </div>
-              </div>
+
 
               <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid">

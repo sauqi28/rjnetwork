@@ -32,6 +32,56 @@
                 <!-- <code class="highlighter-rouge">background-color</code> utilities. -->
               </p>
             </div><!--end card-header-->
+            <div class="col-md-6 col-lg-3">
+              <div class="card report-card">
+                <div class="card-body">
+                  <div class="row d-flex justify-content-center">
+                    <div class="col">
+                      <p class="text-dark mb-1 fw-semibold">Projects</p>
+                      <h4 class="font-22 fw-bold">77</h4>
+                      <p class="mb-0 text-truncate text-muted"><span class="text-success"><i class="mdi mdi-checkbox-marked-circle-outline me-1"></i></span>26 Project Complete</p>
+                    </div>
+                    <div class="col-auto align-self-center">
+                      <div class="bg-light-alt d-flex justify-content-center align-items-center thumb-md  rounded-circle">
+                        <i data-feather="layers" class="align-self-center text-muted icon-sm"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div><!--end card-body-->
+              </div><!--end card-->
+              <div class="card report-card">
+                <div class="card-body">
+                  <div class="row d-flex justify-content-center">
+                    <div class="col">
+                      <p class="text-dark mb-1 fw-semibold">Tasks</p>
+                      <h4 class="font-22 fw-bold">41</h4>
+                      <p class="mb-0 text-truncate text-muted"><span class="badge badge-soft-success">Active</span> Week Avg.Sessions</p>
+                    </div>
+                    <div class="col-auto align-self-center">
+                      <div class="bg-light-alt d-flex justify-content-center align-items-center thumb-md  rounded-circle">
+                        <i data-feather="check-square" class="align-self-center text-muted icon-sm"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div><!--end card-body-->
+              </div><!--end card-->
+              <div class="card report-card">
+                <div class="card-body">
+                  <div class="row d-flex justify-content-center">
+                    <div class="col">
+                      <p class="text-dark mb-1 fw-semibold">Budget</p>
+                      <h4 class="font-22 fw-bold">$24100</h4>
+                      <p class="mb-0 text-truncate text-muted"><span class="text-dark">$14k</span> Total used budgets</p>
+                    </div>
+                    <div class="col-auto align-self-center">
+                      <div class="bg-light-alt d-flex justify-content-center align-items-center thumb-md  rounded-circle">
+                        <i data-feather="dollar-sign" class="align-self-center text-muted icon-sm"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div><!--end card-body-->
+              </div><!--end card-->
+            </div> <!--end col-->
             <div class="card-body">
 
               <nav class="navbar navbar-expand-lg navbar-dark bg-dark">

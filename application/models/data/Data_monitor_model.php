@@ -13,6 +13,28 @@ class Data_monitor_model extends CI_Model
     $this->db->from('Customers');
     return $this->db->count_all_results();
   }
+  public function getTotalLatestActive()
+  {
+    $this->db->select('COUNT(ph.id) as total');
+    $this->db->from('PingHistory ph');
+    $this->db->join('Customers c', 'c.id = ph.customer_id');
+    $this->db->where('ph.ping_status', 1);
+    $this->db->where('ph.timestamp = (SELECT MAX(timestamp) FROM PingHistory WHERE customer_id = ph.customer_id)');
+
+    $query = $this->db->get();
+    return $query->row()->total;
+  }
+  public function getTotalLatestNonActive()
+  {
+    $this->db->select('COUNT(ph.id) as total');
+    $this->db->from('PingHistory ph');
+    $this->db->join('Customers c', 'c.id = ph.customer_id');
+    $this->db->where('ph.ping_status', 0);
+    $this->db->where('ph.timestamp = (SELECT MAX(timestamp) FROM PingHistory WHERE customer_id = ph.customer_id)');
+
+    $query = $this->db->get();
+    return $query->row()->total;
+  }
 
   public function get_users_view($id = NULL)
   {

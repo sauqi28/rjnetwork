@@ -52,7 +52,7 @@
                   <i class="ti ti-clock font-36 align-self-center text-dark"></i>
                 </div><!--end col-->
                 <div class="col-auto ms-auto align-self-center">
-                  <span class="badge badge-soft-success px-2 py-1 font-11">Active</span>
+                  <span class="badge badge-soft-success px-2 py-1 font-11">Aktif</span>
                 </div><!--end col-->
                 <div class="col-12 ms-auto align-self-center">
                   <div id="dash_spark_2" class="mb-3"></div>
@@ -73,7 +73,7 @@
                   <i class="ti ti-clock font-36 align-self-center text-dark"></i>
                 </div><!--end col-->
                 <div class="col-auto ms-auto align-self-center">
-                  <span class="badge badge-soft-success px-2 py-1 font-11">Isolir</span>
+                  <span class="badge badge-soft-warning px-2 py-1 font-11">Isolir</span>
                 </div><!--end col-->
                 <div class="col-12 ms-auto align-self-center">
                   <div id="dash_spark_2" class="mb-3"></div>
@@ -94,7 +94,7 @@
                   <i class="ti ti-clock font-36 align-self-center text-dark"></i>
                 </div><!--end col-->
                 <div class="col-auto ms-auto align-self-center">
-                  <span class="badge badge-soft-success px-2 py-1 font-11">Non Aktif</span>
+                  <span class="badge badge-soft-danger px-2 py-1 font-11">Non Aktif</span>
                 </div><!--end col-->
                 <div class="col-12 ms-auto align-self-center">
                   <div id="dash_spark_2" class="mb-3"></div>

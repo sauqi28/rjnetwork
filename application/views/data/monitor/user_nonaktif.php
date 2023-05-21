@@ -24,6 +24,88 @@
         <!--end col-->
       </div>
       <div class="row">
+        <div class="col-lg-3 col-md-6">
+          <div class="card overflow-hidden">
+            <div class="card-body">
+              <div class="row d-flex">
+                <div class="col-3">
+                  <i class="ti ti-users font-36 align-self-center text-dark"></i>
+                </div><!--end col-->
+                <div class="col-12 ms-auto align-self-center">
+                  <div id="dash_spark_1" class="mb-3"></div>
+                </div><!--end col-->
+                <div class="col-12 ms-auto align-self-center">
+                  <h3 class="text-dark my-0 font-22 fw-bold"><?php echo $count_with_ip; ?></h3>
+                  <p class="text-muted mb-0 fw-semibold">Total user</p>
+                </div><!--end col-->
+              </div><!--end row-->
+            </div><!--end card-body-->
+          </div><!--end card-->
+        </div> <!--end col-->
+        <div class="col-lg-3 col-md-6">
+          <div class="card overflow-hidden">
+            <div class="card-body">
+              <div class="row d-flex">
+                <div class="col-3">
+                  <i class="ti ti-clock font-36 align-self-center text-dark"></i>
+                </div><!--end col-->
+                <div class="col-auto ms-auto align-self-center">
+                  <span class="badge badge-soft-success px-2 py-1 font-11">Aktif</span>
+                </div><!--end col-->
+                <div class="col-12 ms-auto align-self-center">
+                  <div id="dash_spark_2" class="mb-3"></div>
+                </div><!--end col-->
+                <div class="col-12 ms-auto align-self-center">
+                  <h3 class="text-dark my-0 font-22 fw-bold"><?php echo $getTotalLatestActive; ?></h3>
+                  <p class="text-muted mb-0 fw-semibold">User Aktif</p>
+                </div><!--end col-->
+              </div><!--end row-->
+            </div><!--end card-body-->
+          </div><!--end card-->
+        </div> <!--end col-->
+        <div class="col-lg-3 col-md-6">
+          <div class="card overflow-hidden">
+            <div class="card-body">
+              <div class="row d-flex">
+                <div class="col-3">
+                  <i class="ti ti-clock font-36 align-self-center text-dark"></i>
+                </div><!--end col-->
+                <div class="col-auto ms-auto align-self-center">
+                  <span class="badge badge-soft-warning px-2 py-1 font-11">Isolir</span>
+                </div><!--end col-->
+                <div class="col-12 ms-auto align-self-center">
+                  <div id="dash_spark_2" class="mb-3"></div>
+                </div><!--end col-->
+                <div class="col-12 ms-auto align-self-center">
+                  <h3 class="text-dark my-0 font-22 fw-bold">00:18</h3>
+                  <p class="text-muted mb-0 fw-semibold">User Isolir</p>
+                </div><!--end col-->
+              </div><!--end row-->
+            </div><!--end card-body-->
+          </div><!--end card-->
+        </div> <!--end col-->
+        <div class="col-lg-3 col-md-6">
+          <div class="card overflow-hidden">
+            <div class="card-body">
+              <div class="row d-flex">
+                <div class="col-3">
+                  <i class="ti ti-clock font-36 align-self-center text-dark"></i>
+                </div><!--end col-->
+                <div class="col-auto ms-auto align-self-center">
+                  <span class="badge badge-soft-danger px-2 py-1 font-11">Non Aktif</span>
+                </div><!--end col-->
+                <div class="col-12 ms-auto align-self-center">
+                  <div id="dash_spark_2" class="mb-3"></div>
+                </div><!--end col-->
+                <div class="col-12 ms-auto align-self-center">
+                  <h3 class="text-dark my-0 font-22 fw-bold"><?php echo $getTotalLatestNonActive; ?></h3>
+
+                  <p class="text-muted mb-0 fw-semibold">User NonAktif</p>
+                </div><!--end col-->
+              </div><!--end row-->
+            </div><!--end card-body-->
+          </div><!--end card-->
+        </div> <!--end col-->
         <div class="col-12">
           <div class="card">
             <div class="card-header">

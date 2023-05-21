@@ -63,6 +63,7 @@ class Monitor extends CI_Controller
 
 
 		$data['users'] = $this->Data_monitor_model->get_users($config['per_page'], $page, $search);
+		$data['count_with_ip'] = $this->Data_monitor_model->get_count_with_ip();
 		$data['pagination'] = $this->pagination->create_links();
 		$data['title'] = $this->title;
 		$data['subtitle'] = $this->subtitle;

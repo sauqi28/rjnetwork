@@ -7,6 +7,12 @@ class Data_monitor_model extends CI_Model
   {
     $this->load->database();
   }
+  public function get_count_with_ip()
+  {
+    $this->db->where('ip_address IS NOT NULL', null, false);
+    $this->db->from('Customers');
+    return $this->db->count_all_results();
+  }
 
   public function get_users_view($id = NULL)
   {

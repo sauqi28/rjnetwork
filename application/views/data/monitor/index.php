@@ -37,7 +37,7 @@
                   <div id="dash_spark_1" class="mb-3"></div>
                 </div><!--end col-->
                 <div class="col-12 ms-auto align-self-center">
-                  <h3 class="text-dark my-0 font-22 fw-bold">24000</h3>
+                  <h3 class="text-dark my-0 font-22 fw-bold"><?php echo $count_with_ip; ?></h3>
                   <p class="text-muted mb-0 fw-semibold">Total user</p>
                 </div><!--end col-->
               </div><!--end row-->
